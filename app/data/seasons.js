@@ -1,0 +1,58 @@
+// https://stackoverflow.com/questions/30620684/importing-moment-timzone-and-moment-range-with-webpack-babel-es6
+// const moment = require('moment');
+import moment from 'moment';
+import { extendMoment } from 'moment-range';
+// import 'moment-range';
+window.moment = moment;
+extendMoment(window.moment);
+
+
+const today = moment();
+
+const quarters = [
+  { name: 'q1', number: 1, weekCount: 3 },
+  { name: 'q2', number: 2, weekCount: 4 },
+  { name: 'q3', number: 3, weekCount: 3 },
+  { name: 'q4', number: 4, weekCount: 3 },
+];
+
+// will assume first year is most recent
+const seasons = [
+  { year: 2017, kickoffDate: moment('2017-09-07', 'YYYY-MM-DD'), isCurrent: 1, isPast: 0 },
+  { year: 2016, kickoffDate: moment('2016-09-08', 'YYYY-MM-DD'), isCurrent: 0, isPast: 1 },
+  { year: 2015, kickoffDate: moment('2015-09-10', 'YYYY-MM-DD'), isCurrent: 0, isPast: 1 },
+];
+
+
+for (let i = 0; i < seasons.length; i += 1) {
+  const s = seasons[i];
+
+  let firstWeekNumber = 0;
+  let endDate = s.kickoffDate.clone().add(-1, 'millisecond');
+  // assume quarters in order
+  s.quarters = quarters.map((q) => {
+    const startDate = endDate.clone().add(1, 'millisecond');
+    endDate = startDate.clone().add(q.weekCount, 'week').add(-1, 'millisecond');
+    const weeks = [];
+    for (let d = startDate.clone(); d < endDate; d.add(1, 'week')) {
+      const dates = moment().range(d.clone(), d.clone().add(1, 'week').add(-1, 'millisecond'));
+      weeks.push({
+        number: firstWeekNumber += 1,
+        isCurrent: dates.contains(today),
+        isPast: today > dates.end,
+        dates,
+      });
+    }
+
+    const qDates = moment().range(startDate, endDate);
+    return {
+      ...q,
+      dates: qDates,
+      isCurrent: qDates.contains(today),
+      isPast: today > qDates.end,
+      weeks,
+    };
+  });
+}
+
+export default seasons;
