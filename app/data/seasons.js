@@ -6,7 +6,6 @@ import { extendMoment } from 'moment-range';
 window.moment = moment;
 extendMoment(window.moment);
 
-
 const today = moment();
 
 const quarters = [
@@ -23,7 +22,6 @@ const seasons = [
   { year: 2015, kickoffDate: moment('2015-09-10', 'YYYY-MM-DD'), isCurrent: 0, isPast: 1 },
 ];
 
-
 for (let i = 0; i < seasons.length; i += 1) {
   const s = seasons[i];
 
@@ -32,12 +30,21 @@ for (let i = 0; i < seasons.length; i += 1) {
   // assume quarters in order
   s.quarters = quarters.map((q) => {
     const startDate = endDate.clone().add(1, 'millisecond');
-    endDate = startDate.clone().add(q.weekCount, 'week').add(-1, 'millisecond');
+    endDate = startDate
+      .clone()
+      .add(q.weekCount, 'week')
+      .add(-1, 'millisecond');
     const weeks = [];
     for (let d = startDate.clone(); d < endDate; d.add(1, 'week')) {
-      const dates = moment().range(d.clone(), d.clone().add(1, 'week').add(-1, 'millisecond'));
+      const dates = moment().range(
+        d.clone(),
+        d
+          .clone()
+          .add(1, 'week')
+          .add(-1, 'millisecond'),
+      );
       weeks.push({
-        number: firstWeekNumber += 1,
+        number: (firstWeekNumber += 1),
         isCurrent: dates.contains(today),
         isPast: today > dates.end,
         dates,

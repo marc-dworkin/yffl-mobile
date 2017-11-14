@@ -1,0 +1,1678 @@
+{
+  "weeks": [
+    11,
+    12,
+    13
+  ],
+  "teams": {
+    "7": {
+      "initials": "JG",
+      "owner": "Jesse",
+      "name": "Fluffydogs"
+    },
+    "6": {
+      "initials": "CF",
+      "owner": "Chris F.",
+      "name": "Philly Pimps"
+    },
+    "4": {
+      "initials": "MF",
+      "owner": "Michael",
+      "name": ""
+    },
+    "2": {
+      "initials": "DL",
+      "owner": "Danny",
+      "name": "Boston Massacre"
+    },
+    "0": {
+      "initials": "LP",
+      "owner": "Lev",
+      "name": "Entwistlers"
+    },
+    "5": {
+      "initials": "RF",
+      "owner": "Rocky",
+      "name": "Smashers"
+    },
+    "8": {
+      "initials": "AG",
+      "owner": "Ananda",
+      "name": "Anacondas"
+    },
+    "1": {
+      "initials": "MD",
+      "owner": "Marc",
+      "name": "Bombers"
+    },
+    "3": {
+      "initials": "CL",
+      "owner": "Chris L.",
+      "name": "Camel Toes"
+    }
+  },
+  "lineups": [
+    {
+      "nfl_id": "2550545",
+      "last_name": "Boswell",
+      "position": "K",
+      "nfl_team": "PIT",
+      "gsis_id": "00-0031136",
+      "yffl_team": 0,
+      "first_name": "Chris"
+    },
+    {
+      "nfl_id": "2550636",
+      "last_name": "Santos",
+      "position": "K",
+      "nfl_team": "KC",
+      "gsis_id": "00-0031203",
+      "yffl_team": 0,
+      "first_name": "Cairo"
+    },
+    {
+      "nfl_id": "497095",
+      "last_name": "Bradford",
+      "position": "QB",
+      "nfl_team": "MIN",
+      "gsis_id": "00-0027854",
+      "yffl_team": 0,
+      "first_name": "Sam"
+    },
+    {
+      "nfl_id": "2495186",
+      "last_name": "Kaepernick",
+      "position": "QB",
+      "nfl_team": "SF",
+      "gsis_id": "00-0027974",
+      "yffl_team": 0,
+      "first_name": "Colin"
+    },
+    {
+      "nfl_id": "2533031",
+      "last_name": "Luck",
+      "position": "QB",
+      "nfl_team": "IND",
+      "gsis_id": "00-0029668",
+      "yffl_team": 0,
+      "first_name": "Andrew"
+    },
+    {
+      "nfl_id": "2495455",
+      "last_name": "Newton",
+      "position": "QB",
+      "nfl_team": "CAR",
+      "gsis_id": "00-0027939",
+      "yffl_team": 0,
+      "first_name": "Cam"
+    },
+    {
+      "nfl_id": "310",
+      "last_name": "Ryan",
+      "position": "QB",
+      "nfl_team": "ATL",
+      "gsis_id": "00-0026143",
+      "yffl_team": 0,
+      "first_name": "Matt"
+    },
+    {
+      "nfl_id": "2540156",
+      "last_name": "Bernard",
+      "position": "RB",
+      "nfl_team": "CIN",
+      "gsis_id": "00-0030456",
+      "yffl_team": 0,
+      "first_name": "Giovani"
+    },
+    {
+      "nfl_id": "2543603",
+      "last_name": "Hill",
+      "position": "RB",
+      "nfl_team": "CIN",
+      "gsis_id": "00-0031301",
+      "yffl_team": 0,
+      "first_name": "Jeremy"
+    },
+    {
+      "nfl_id": "2555418",
+      "last_name": "Howard",
+      "position": "RB",
+      "nfl_team": "CHI",
+      "gsis_id": "00-0032780",
+      "yffl_team": 0,
+      "first_name": "Jordan"
+    },
+    {
+      "nfl_id": "71345",
+      "last_name": "Jennings",
+      "position": "RB",
+      "nfl_team": "NYG",
+      "gsis_id": "00-0027155",
+      "yffl_team": 0,
+      "first_name": "Rashad"
+    },
+    {
+      "nfl_id": "2552461",
+      "last_name": "Johnson",
+      "position": "RB",
+      "nfl_team": "CLE",
+      "gsis_id": "00-0032257",
+      "yffl_team": 0,
+      "first_name": "Duke"
+    },
+    {
+      "nfl_id": "2543715",
+      "last_name": "McKinnon",
+      "position": "RB",
+      "nfl_team": "MIN",
+      "gsis_id": "00-0031376",
+      "yffl_team": 0,
+      "first_name": "Jerick"
+    },
+    {
+      "nfl_id": "2530747",
+      "last_name": "Baldwin",
+      "position": "WR",
+      "nfl_team": "SEA",
+      "gsis_id": "00-0028434",
+      "yffl_team": 0,
+      "first_name": "Doug"
+    },
+    {
+      "nfl_id": "2543498",
+      "last_name": "Cooks",
+      "position": "WR",
+      "nfl_team": "NO",
+      "gsis_id": "00-0031236",
+      "yffl_team": 0,
+      "first_name": "Brandin"
+    },
+    {
+      "nfl_id": "2495450",
+      "last_name": "Green",
+      "position": "WR",
+      "nfl_team": "CIN",
+      "gsis_id": "00-0027942",
+      "yffl_team": 0,
+      "first_name": "A.J."
+    },
+    {
+      "nfl_id": "2543488",
+      "last_name": "Landry",
+      "position": "WR",
+      "nfl_team": "MIA",
+      "gsis_id": "00-0031382",
+      "yffl_team": 0,
+      "first_name": "Jarvis"
+    },
+    {
+      "nfl_id": "2543500",
+      "last_name": "Matthews",
+      "position": "WR",
+      "nfl_team": "PHI",
+      "gsis_id": "00-0031299",
+      "yffl_team": 0,
+      "first_name": "Jordan"
+    },
+    {
+      "nfl_id": "2495700",
+      "last_name": "Olsen",
+      "position": "WR",
+      "nfl_team": "CAR",
+      "gsis_id": "00-0025418",
+      "yffl_team": 0,
+      "first_name": "Greg"
+    },
+    {
+      "nfl_id": "2550256",
+      "last_name": "Snead",
+      "position": "WR",
+      "nfl_team": "NO",
+      "gsis_id": "00-0030663",
+      "yffl_team": 0,
+      "first_name": "Willie"
+    },
+    {
+      "nfl_id": "2507232",
+      "last_name": "Crosby",
+      "position": "K",
+      "nfl_team": "GB",
+      "gsis_id": "00-0025580",
+      "yffl_team": 1,
+      "first_name": "Mason"
+    },
+    {
+      "nfl_id": "2553648",
+      "last_name": "Franks",
+      "position": "K",
+      "nfl_team": "MIA",
+      "gsis_id": "00-0031718",
+      "yffl_team": 1,
+      "first_name": "Andrew"
+    },
+    {
+      "nfl_id": "2506194",
+      "last_name": "Novak",
+      "position": "K",
+      "nfl_team": "HOU",
+      "gsis_id": "00-0023096",
+      "yffl_team": 1,
+      "first_name": "Nick"
+    },
+    {
+      "nfl_id": "2532968",
+      "last_name": "Walsh",
+      "position": "K",
+      "nfl_team": "XXX",
+      "gsis_id": "00-0029576",
+      "yffl_team": 1,
+      "first_name": "Blair"
+    },
+    {
+      "nfl_id": "2495824",
+      "last_name": "Cutler",
+      "position": "QB",
+      "nfl_team": "CHI",
+      "gsis_id": "00-0024226",
+      "yffl_team": 1,
+      "first_name": "Jay"
+    },
+    {
+      "nfl_id": "2543801",
+      "last_name": "Garoppolo",
+      "position": "QB",
+      "nfl_team": "NE",
+      "gsis_id": "00-0031345",
+      "yffl_team": 1,
+      "first_name": "Jimmy"
+    },
+    {
+      "nfl_id": "2552588",
+      "last_name": "Hundley",
+      "position": "QB",
+      "nfl_team": "GB",
+      "gsis_id": "00-0031589",
+      "yffl_team": 1,
+      "first_name": "Brett"
+    },
+    {
+      "nfl_id": "79860",
+      "last_name": "Stafford",
+      "position": "QB",
+      "nfl_team": "DET",
+      "gsis_id": "00-0026498",
+      "yffl_team": 1,
+      "first_name": "Matthew"
+    },
+    {
+      "nfl_id": "2541544",
+      "last_name": "Cunningham",
+      "position": "RB",
+      "nfl_team": "LA",
+      "gsis_id": "00-0029795",
+      "yffl_team": 1,
+      "first_name": "Benny"
+    },
+    {
+      "nfl_id": "2555224",
+      "last_name": "Elliott",
+      "position": "RB",
+      "nfl_team": "DAL",
+      "gsis_id": "00-0033045",
+      "yffl_team": 1,
+      "first_name": "Ezekiel"
+    },
+    {
+      "nfl_id": "2506404",
+      "last_name": "Gore",
+      "position": "RB",
+      "nfl_team": "IND",
+      "gsis_id": "00-0023500",
+      "yffl_team": 1,
+      "first_name": "Frank"
+    },
+    {
+      "nfl_id": "2540020",
+      "last_name": "Riddick",
+      "position": "RB",
+      "nfl_team": "DET",
+      "gsis_id": "00-0030107",
+      "yffl_team": 1,
+      "first_name": "Theo"
+    },
+    {
+      "nfl_id": "2543664",
+      "last_name": "West",
+      "position": "RB",
+      "nfl_team": "BAL",
+      "gsis_id": "00-0031375",
+      "yffl_team": 1,
+      "first_name": "Terrance"
+    },
+    {
+      "nfl_id": "2532790",
+      "last_name": "Benjamin",
+      "position": "WR",
+      "nfl_team": "SD",
+      "gsis_id": "00-0029269",
+      "yffl_team": 1,
+      "first_name": "Travis"
+    },
+    {
+      "nfl_id": "71217",
+      "last_name": "Britt",
+      "position": "WR",
+      "nfl_team": "LA",
+      "gsis_id": "00-0027006",
+      "yffl_team": 1,
+      "first_name": "Kenny"
+    },
+    {
+      "nfl_id": "2495267",
+      "last_name": "Cameron",
+      "position": "WR",
+      "nfl_team": "MIA",
+      "gsis_id": "00-0028040",
+      "yffl_team": 1,
+      "first_name": "Jordan"
+    },
+    {
+      "nfl_id": "2552415",
+      "last_name": "Crowder",
+      "position": "WR",
+      "nfl_team": "WAS",
+      "gsis_id": "00-0031941",
+      "yffl_team": 1,
+      "first_name": "Jamison"
+    },
+    {
+      "nfl_id": "2495893",
+      "last_name": "Marshall",
+      "position": "WR",
+      "nfl_team": "NYJ",
+      "gsis_id": "00-0024334",
+      "yffl_team": 1,
+      "first_name": "Brandon"
+    },
+    {
+      "nfl_id": "2507763",
+      "last_name": "Wallace",
+      "position": "WR",
+      "nfl_team": "BAL",
+      "gsis_id": "00-0026901",
+      "yffl_team": 1,
+      "first_name": "Mike"
+    },
+    {
+      "nfl_id": "2553913",
+      "last_name": "Williams",
+      "position": "WR",
+      "nfl_team": "SD",
+      "gsis_id": "00-0032160",
+      "yffl_team": 1,
+      "first_name": "Tyrell"
+    },
+    {
+      "nfl_id": "2507463",
+      "last_name": "Barth",
+      "position": "K",
+      "nfl_team": "CHI",
+      "gsis_id": "00-0026138",
+      "yffl_team": 2,
+      "first_name": "Connor"
+    },
+    {
+      "nfl_id": "2503471",
+      "last_name": "Vinatieri",
+      "position": "K",
+      "nfl_team": "IND",
+      "gsis_id": "00-0016919",
+      "yffl_team": 2,
+      "first_name": "Adam"
+    },
+    {
+      "nfl_id": "2504211",
+      "last_name": "Brady",
+      "position": "QB",
+      "nfl_team": "NE",
+      "gsis_id": "00-0019596",
+      "yffl_team": 2,
+      "first_name": "Tom"
+    },
+    {
+      "nfl_id": "2506581",
+      "last_name": "Fitzpatrick",
+      "position": "QB",
+      "nfl_team": "NYJ",
+      "gsis_id": "00-0023682",
+      "yffl_team": 2,
+      "first_name": "Ryan"
+    },
+    {
+      "nfl_id": "2555387",
+      "last_name": "Kessler",
+      "position": "QB",
+      "nfl_team": "CLE",
+      "gsis_id": "00-0033104",
+      "yffl_team": 2,
+      "first_name": "Cody"
+    },
+    {
+      "nfl_id": "2552369",
+      "last_name": "Petty",
+      "position": "QB",
+      "nfl_team": "NYJ",
+      "gsis_id": "00-0031568",
+      "yffl_team": 2,
+      "first_name": "Bryce"
+    },
+    {
+      "nfl_id": "2495240",
+      "last_name": "Taylor",
+      "position": "QB",
+      "nfl_team": "BUF",
+      "gsis_id": "00-0028118",
+      "yffl_team": 2,
+      "first_name": "Tyrod"
+    },
+    {
+      "nfl_id": "2555223",
+      "last_name": "Booker",
+      "position": "RB",
+      "nfl_team": "DEN",
+      "gsis_id": "00-0032972",
+      "yffl_team": 2,
+      "first_name": "Devontae"
+    },
+    {
+      "nfl_id": "2552635",
+      "last_name": "Jones",
+      "position": "RB",
+      "nfl_team": "WAS",
+      "gsis_id": "00-0031939",
+      "yffl_team": 2,
+      "first_name": "Matt"
+    },
+    {
+      "nfl_id": "2532899",
+      "last_name": "Martin",
+      "position": "RB",
+      "nfl_team": "TB",
+      "gsis_id": "00-0029613",
+      "yffl_team": 2,
+      "first_name": "Doug"
+    },
+    {
+      "nfl_id": "497188",
+      "last_name": "Mathews",
+      "position": "RB",
+      "nfl_team": "PHI",
+      "gsis_id": "00-0027864",
+      "yffl_team": 2,
+      "first_name": "Ryan"
+    },
+    {
+      "nfl_id": "2556118",
+      "last_name": "Washington",
+      "position": "RB",
+      "nfl_team": "DET",
+      "gsis_id": "00-0032450",
+      "yffl_team": 2,
+      "first_name": "Dwayne"
+    },
+    {
+      "nfl_id": "2552471",
+      "last_name": "Yeldon",
+      "position": "RB",
+      "nfl_team": "JAC",
+      "gsis_id": "00-0032209",
+      "yffl_team": 2,
+      "first_name": "T.J."
+    },
+    {
+      "nfl_id": "2539336",
+      "last_name": "Austin",
+      "position": "WR",
+      "nfl_team": "LA",
+      "gsis_id": "00-0030525",
+      "yffl_team": 2,
+      "first_name": "Tavon"
+    },
+    {
+      "nfl_id": "2505587",
+      "last_name": "Boldin",
+      "position": "WR",
+      "nfl_team": "DET",
+      "gsis_id": "00-0022084",
+      "yffl_team": 2,
+      "first_name": "Anquan"
+    },
+    {
+      "nfl_id": "2532841",
+      "last_name": "Floyd",
+      "position": "WR",
+      "nfl_team": "ARI",
+      "gsis_id": "00-0029638",
+      "yffl_team": 2,
+      "first_name": "Michael"
+    },
+    {
+      "nfl_id": "2532865",
+      "last_name": "Hilton",
+      "position": "WR",
+      "nfl_team": "IND",
+      "gsis_id": "00-0029608",
+      "yffl_team": 2,
+      "first_name": "T.Y."
+    },
+    {
+      "nfl_id": "2540160",
+      "last_name": "Reed",
+      "position": "WR",
+      "nfl_team": "WAS",
+      "gsis_id": "00-0030472",
+      "yffl_team": 2,
+      "first_name": "Jordan"
+    },
+    {
+      "nfl_id": "2555295",
+      "last_name": "Shepard",
+      "position": "WR",
+      "nfl_team": "NYG",
+      "gsis_id": "00-0032385",
+      "yffl_team": 2,
+      "first_name": "Sterling"
+    },
+    {
+      "nfl_id": "2556370",
+      "last_name": "Thomas",
+      "position": "WR",
+      "nfl_team": "NO",
+      "gsis_id": "00-0032765",
+      "yffl_team": 2,
+      "first_name": "Michael"
+    },
+    {
+      "nfl_id": "71309",
+      "last_name": "Gano",
+      "position": "K",
+      "nfl_team": "CAR",
+      "gsis_id": "00-0026858",
+      "yffl_team": 3,
+      "first_name": "Graham"
+    },
+    {
+      "nfl_id": "2506386",
+      "last_name": "Nugent",
+      "position": "K",
+      "nfl_team": "CIN",
+      "gsis_id": "00-0023482",
+      "yffl_team": 3,
+      "first_name": "Mike"
+    },
+    {
+      "nfl_id": "2534797",
+      "last_name": "Zuerlein",
+      "position": "K",
+      "nfl_team": "LA",
+      "gsis_id": "00-0029621",
+      "yffl_team": 3,
+      "first_name": "Greg"
+    },
+    {
+      "nfl_id": "2543477",
+      "last_name": "Bortles",
+      "position": "QB",
+      "nfl_team": "JAC",
+      "gsis_id": "00-0031407",
+      "yffl_team": 3,
+      "first_name": "Blake"
+    },
+    {
+      "nfl_id": "2495143",
+      "last_name": "Dalton",
+      "position": "QB",
+      "nfl_team": "CIN",
+      "gsis_id": "00-0027973",
+      "yffl_team": 3,
+      "first_name": "Andy"
+    },
+    {
+      "nfl_id": "2552466",
+      "last_name": "Mariota",
+      "position": "QB",
+      "nfl_team": "TEN",
+      "gsis_id": "00-0032268",
+      "yffl_team": 3,
+      "first_name": "Marcus"
+    },
+    {
+      "nfl_id": "2506363",
+      "last_name": "Rodgers",
+      "position": "QB",
+      "nfl_team": "GB",
+      "gsis_id": "00-0023459",
+      "yffl_team": 3,
+      "first_name": "Aaron"
+    },
+    {
+      "nfl_id": "2552375",
+      "last_name": "Artis-Payne",
+      "position": "RB",
+      "nfl_team": "CAR",
+      "gsis_id": "00-0031599",
+      "yffl_team": 3,
+      "first_name": "Cameron"
+    },
+    {
+      "nfl_id": "2555229",
+      "last_name": "Dixon",
+      "position": "RB",
+      "nfl_team": "BAL",
+      "gsis_id": "00-0032411",
+      "yffl_team": 3,
+      "first_name": "Kenneth"
+    },
+    {
+      "nfl_id": "2556075",
+      "last_name": "Henry",
+      "position": "RB",
+      "nfl_team": "TEN",
+      "gsis_id": "00-0032764",
+      "yffl_team": 3,
+      "first_name": "Derrick"
+    },
+    {
+      "nfl_id": "2533457",
+      "last_name": "Morris",
+      "position": "RB",
+      "nfl_team": "DAL",
+      "gsis_id": "00-0029141",
+      "yffl_team": 3,
+      "first_name": "Alfred"
+    },
+    {
+      "nfl_id": "2555417",
+      "last_name": "Prosise",
+      "position": "RB",
+      "nfl_team": "SEA",
+      "gsis_id": "00-0032393",
+      "yffl_team": 3,
+      "first_name": "C.J."
+    },
+    {
+      "nfl_id": "1060",
+      "last_name": "Barnidge",
+      "position": "WR",
+      "nfl_team": "CLE",
+      "gsis_id": "00-0026281",
+      "yffl_team": 3,
+      "first_name": "Gary"
+    },
+    {
+      "nfl_id": "1062",
+      "last_name": "Bennett",
+      "position": "WR",
+      "nfl_team": "NE",
+      "gsis_id": "00-0026201",
+      "yffl_team": 3,
+      "first_name": "Martellus"
+    },
+    {
+      "nfl_id": "2495448",
+      "last_name": "Cobb",
+      "position": "WR",
+      "nfl_team": "GB",
+      "gsis_id": "00-0028002",
+      "yffl_team": 3,
+      "first_name": "Randall"
+    },
+    {
+      "nfl_id": "1581",
+      "last_name": "Jackson",
+      "position": "WR",
+      "nfl_team": "WAS",
+      "gsis_id": "00-0026189",
+      "yffl_team": 3,
+      "first_name": "DeSean"
+    },
+    {
+      "nfl_id": "2532903",
+      "last_name": "Matthews",
+      "position": "WR",
+      "nfl_team": "TEN",
+      "gsis_id": "00-0029580",
+      "yffl_team": 3,
+      "first_name": "Rishard"
+    },
+    {
+      "nfl_id": "2555348",
+      "last_name": "Miller",
+      "position": "WR",
+      "nfl_team": "HOU",
+      "gsis_id": "00-0033069",
+      "yffl_team": 3,
+      "first_name": "Braxton"
+    },
+    {
+      "nfl_id": "2533040",
+      "last_name": "Sanu",
+      "position": "WR",
+      "nfl_team": "ATL",
+      "gsis_id": "00-0029632",
+      "yffl_team": 3,
+      "first_name": "Mohamed"
+    },
+    {
+      "nfl_id": "2540202",
+      "last_name": "Stills",
+      "position": "WR",
+      "nfl_team": "MIA",
+      "gsis_id": "00-0030085",
+      "yffl_team": 3,
+      "first_name": "Kenny"
+    },
+    {
+      "nfl_id": "2495259",
+      "last_name": "Bailey",
+      "position": "K",
+      "nfl_team": "DAL",
+      "gsis_id": "00-0028660",
+      "yffl_team": 4,
+      "first_name": "Dan"
+    },
+    {
+      "nfl_id": "2506677",
+      "last_name": "Prater",
+      "position": "K",
+      "nfl_team": "DET",
+      "gsis_id": "00-0023853",
+      "yffl_team": 4,
+      "first_name": "Matt"
+    },
+    {
+      "nfl_id": "2536340",
+      "last_name": "Tucker",
+      "position": "K",
+      "nfl_team": "BAL",
+      "gsis_id": "00-0029597",
+      "yffl_team": 4,
+      "first_name": "Justin"
+    },
+    {
+      "nfl_id": "2504775",
+      "last_name": "Brees",
+      "position": "QB",
+      "nfl_team": "NO",
+      "gsis_id": "00-0020531",
+      "yffl_team": 4,
+      "first_name": "Drew"
+    },
+    {
+      "nfl_id": "2532820",
+      "last_name": "Cousins",
+      "position": "QB",
+      "nfl_team": "WAS",
+      "gsis_id": "00-0029604",
+      "yffl_team": 4,
+      "first_name": "Kirk"
+    },
+    {
+      "nfl_id": "2505996",
+      "last_name": "Manning",
+      "position": "QB",
+      "nfl_team": "NYG",
+      "gsis_id": "00-0022803",
+      "yffl_team": 4,
+      "first_name": "Eli"
+    },
+    {
+      "nfl_id": "2505245",
+      "last_name": "Palmer",
+      "position": "QB",
+      "nfl_team": "ARI",
+      "gsis_id": "00-0021429",
+      "yffl_team": 4,
+      "first_name": "Carson"
+    },
+    {
+      "nfl_id": "2495258",
+      "last_name": "Asiata",
+      "position": "RB",
+      "nfl_team": "MIN",
+      "gsis_id": "00-0028198",
+      "yffl_team": 4,
+      "first_name": "Matt"
+    },
+    {
+      "nfl_id": "2540175",
+      "last_name": "Bell",
+      "position": "RB",
+      "nfl_team": "PIT",
+      "gsis_id": "00-0030496",
+      "yffl_team": 4,
+      "first_name": "Le'Veon"
+    },
+    {
+      "nfl_id": "2552453",
+      "last_name": "Coleman",
+      "position": "RB",
+      "nfl_team": "ATL",
+      "gsis_id": "00-0032058",
+      "yffl_team": 4,
+      "first_name": "Tevin"
+    },
+    {
+      "nfl_id": "2543583",
+      "last_name": "Freeman",
+      "position": "RB",
+      "nfl_team": "ATL",
+      "gsis_id": "00-0031285",
+      "yffl_team": 4,
+      "first_name": "Devonta"
+    },
+    {
+      "nfl_id": "2552475",
+      "last_name": "Gurley",
+      "position": "RB",
+      "nfl_team": "LA",
+      "gsis_id": "00-0032241",
+      "yffl_team": 4,
+      "first_name": "Todd"
+    },
+    {
+      "nfl_id": "2553435",
+      "last_name": "Johnson",
+      "position": "RB",
+      "nfl_team": "ARI",
+      "gsis_id": "00-0032187",
+      "yffl_team": 4,
+      "first_name": "David"
+    },
+    {
+      "nfl_id": "497278",
+      "last_name": "Bryant",
+      "position": "WR",
+      "nfl_team": "DAL",
+      "gsis_id": "00-0027902",
+      "yffl_team": 4,
+      "first_name": "Dez"
+    },
+    {
+      "nfl_id": "71269",
+      "last_name": "Crabtree",
+      "position": "WR",
+      "nfl_team": "OAK",
+      "gsis_id": "00-0026986",
+      "yffl_team": 4,
+      "first_name": "Michael"
+    },
+    {
+      "nfl_id": "2552608",
+      "last_name": "Diggs",
+      "position": "WR",
+      "nfl_team": "MIN",
+      "gsis_id": "00-0031588",
+      "yffl_team": 4,
+      "first_name": "Stefon"
+    },
+    {
+      "nfl_id": "497236",
+      "last_name": "Graham",
+      "position": "WR",
+      "nfl_team": "SEA",
+      "gsis_id": "00-0027696",
+      "yffl_team": 4,
+      "first_name": "Jimmy"
+    },
+    {
+      "nfl_id": "2540258",
+      "last_name": "Kelce",
+      "position": "WR",
+      "nfl_team": "KC",
+      "gsis_id": "00-0030506",
+      "yffl_team": 4,
+      "first_name": "Travis"
+    },
+    {
+      "nfl_id": "2531332",
+      "last_name": "Pryor",
+      "position": "WR",
+      "nfl_team": "CLE",
+      "gsis_id": "00-0028825",
+      "yffl_team": 4,
+      "first_name": "Terrelle"
+    },
+    {
+      "nfl_id": "2505629",
+      "last_name": "Witten",
+      "position": "WR",
+      "nfl_team": "DAL",
+      "gsis_id": "00-0022127",
+      "yffl_team": 4,
+      "first_name": "Jason"
+    },
+    {
+      "nfl_id": "2504797",
+      "last_name": "Bryant",
+      "position": "K",
+      "nfl_team": "ATL",
+      "gsis_id": "00-0020578",
+      "yffl_team": 5,
+      "first_name": "Matt"
+    },
+    {
+      "nfl_id": "2550325",
+      "last_name": "Catanzaro",
+      "position": "K",
+      "nfl_team": "ARI",
+      "gsis_id": "00-0030896",
+      "yffl_team": 5,
+      "first_name": "Chandler"
+    },
+    {
+      "nfl_id": "2500351",
+      "last_name": "Dawson",
+      "position": "K",
+      "nfl_team": "SF",
+      "gsis_id": "00-0004091",
+      "yffl_team": 5,
+      "first_name": "Phil"
+    },
+    {
+      "nfl_id": "2555334",
+      "last_name": "Goff",
+      "position": "QB",
+      "nfl_team": "LA",
+      "gsis_id": "00-0033106",
+      "yffl_team": 5,
+      "first_name": "Jared"
+    },
+    {
+      "nfl_id": "2553457",
+      "last_name": "Siemian",
+      "position": "QB",
+      "nfl_team": "DEN",
+      "gsis_id": "00-0032156",
+      "yffl_team": 5,
+      "first_name": "Trevor"
+    },
+    {
+      "nfl_id": "2532956",
+      "last_name": "Tannehill",
+      "position": "QB",
+      "nfl_team": "MIA",
+      "gsis_id": "00-0029701",
+      "yffl_team": 5,
+      "first_name": "Ryan"
+    },
+    {
+      "nfl_id": "2552033",
+      "last_name": "Winston",
+      "position": "QB",
+      "nfl_team": "TB",
+      "gsis_id": "00-0031503",
+      "yffl_team": 5,
+      "first_name": "Jameis"
+    },
+    {
+      "nfl_id": "2552582",
+      "last_name": "Ajayi",
+      "position": "RB",
+      "nfl_team": "MIA",
+      "gsis_id": "00-0031590",
+      "yffl_team": 5,
+      "first_name": "Jay"
+    },
+    {
+      "nfl_id": "497149",
+      "last_name": "Blount",
+      "position": "RB",
+      "nfl_team": "NE",
+      "gsis_id": "00-0027325",
+      "yffl_team": 5,
+      "first_name": "LeGarrette"
+    },
+    {
+      "nfl_id": "2556414",
+      "last_name": "Kelley",
+      "position": "RB",
+      "nfl_team": "WAS",
+      "gsis_id": "00-0032371",
+      "yffl_team": 5,
+      "first_name": "Rob"
+    },
+    {
+      "nfl_id": "2541161",
+      "last_name": "Murray",
+      "position": "RB",
+      "nfl_team": "OAK",
+      "gsis_id": "00-0030513",
+      "yffl_team": 5,
+      "first_name": "Latavius"
+    },
+    {
+      "nfl_id": "2495328",
+      "last_name": "Powell",
+      "position": "RB",
+      "nfl_team": "NYJ",
+      "gsis_id": "00-0028064",
+      "yffl_team": 5,
+      "first_name": "Bilal"
+    },
+    {
+      "nfl_id": "2553733",
+      "last_name": "Rawls",
+      "position": "RB",
+      "nfl_team": "SEA",
+      "gsis_id": "00-0031897",
+      "yffl_team": 5,
+      "first_name": "Thomas"
+    },
+    {
+      "nfl_id": "2543773",
+      "last_name": "White",
+      "position": "RB",
+      "nfl_team": "NE",
+      "gsis_id": "00-0031062",
+      "yffl_team": 5,
+      "first_name": "James"
+    },
+    {
+      "nfl_id": "2543495",
+      "last_name": "Adams",
+      "position": "WR",
+      "nfl_team": "GB",
+      "gsis_id": "00-0031381",
+      "yffl_team": 5,
+      "first_name": "Davante"
+    },
+    {
+      "nfl_id": "2508061",
+      "last_name": "Brown",
+      "position": "WR",
+      "nfl_team": "PIT",
+      "gsis_id": "00-0027793",
+      "yffl_team": 5,
+      "first_name": "Antonio"
+    },
+    {
+      "nfl_id": "2543468",
+      "last_name": "Evans",
+      "position": "WR",
+      "nfl_team": "TB",
+      "gsis_id": "00-0031408",
+      "yffl_team": 5,
+      "first_name": "Mike"
+    },
+    {
+      "nfl_id": "497240",
+      "last_name": "Gronkowski",
+      "position": "WR",
+      "nfl_team": "NE",
+      "gsis_id": "00-0027656",
+      "yffl_team": 5,
+      "first_name": "Rob"
+    },
+    {
+      "nfl_id": "2495454",
+      "last_name": "Jones",
+      "position": "WR",
+      "nfl_team": "ATL",
+      "gsis_id": "00-0027944",
+      "yffl_team": 5,
+      "first_name": "Julio"
+    },
+    {
+      "nfl_id": "2532884",
+      "last_name": "Jones",
+      "position": "WR",
+      "nfl_team": "DET",
+      "gsis_id": "00-0029293",
+      "yffl_team": 5,
+      "first_name": "Marvin"
+    },
+    {
+      "nfl_id": "2555408",
+      "last_name": "Aguayo",
+      "position": "K",
+      "nfl_team": "TB",
+      "gsis_id": "00-0033102",
+      "yffl_team": 6,
+      "first_name": "Roberto"
+    },
+    {
+      "nfl_id": "2507401",
+      "last_name": "Carpenter",
+      "position": "K",
+      "nfl_team": "BUF",
+      "gsis_id": "00-0026003",
+      "yffl_team": 6,
+      "first_name": "Dan"
+    },
+    {
+      "nfl_id": "2504257",
+      "last_name": "Janikowski",
+      "position": "K",
+      "nfl_team": "OAK",
+      "gsis_id": "00-0019646",
+      "yffl_team": 6,
+      "first_name": "Sebastian"
+    },
+    {
+      "nfl_id": "2539637",
+      "last_name": "Sturgis",
+      "position": "K",
+      "nfl_team": "PHI",
+      "gsis_id": "00-0030390",
+      "yffl_team": 6,
+      "first_name": "Caleb"
+    },
+    {
+      "nfl_id": "2505076",
+      "last_name": "McCown",
+      "position": "QB",
+      "nfl_team": "CLE",
+      "gsis_id": "00-0021206",
+      "yffl_team": 6,
+      "first_name": "Josh"
+    },
+    {
+      "nfl_id": "2506109",
+      "last_name": "Roethlisberger",
+      "position": "QB",
+      "nfl_team": "PIT",
+      "gsis_id": "00-0022924",
+      "yffl_team": 6,
+      "first_name": "Ben"
+    },
+    {
+      "nfl_id": "2506340",
+      "last_name": "Smith",
+      "position": "QB",
+      "nfl_team": "KC",
+      "gsis_id": "00-0023436",
+      "yffl_team": 6,
+      "first_name": "Alex"
+    },
+    {
+      "nfl_id": "2555259",
+      "last_name": "Wentz",
+      "position": "QB",
+      "nfl_team": "PHI",
+      "gsis_id": "00-0032950",
+      "yffl_team": 6,
+      "first_name": "Carson"
+    },
+    {
+      "nfl_id": "2539289",
+      "last_name": "Barner",
+      "position": "RB",
+      "nfl_team": "PHI",
+      "gsis_id": "00-0030465",
+      "yffl_team": 6,
+      "first_name": "Kenjon"
+    },
+    {
+      "nfl_id": "234",
+      "last_name": "Forte",
+      "position": "RB",
+      "nfl_team": "NYJ",
+      "gsis_id": "00-0026184",
+      "yffl_team": 6,
+      "first_name": "Matt"
+    },
+    {
+      "nfl_id": "2552469",
+      "last_name": "Gordon",
+      "position": "RB",
+      "nfl_team": "SD",
+      "gsis_id": "00-0032144",
+      "yffl_team": 6,
+      "first_name": "Melvin"
+    },
+    {
+      "nfl_id": "79607",
+      "last_name": "McCoy",
+      "position": "RB",
+      "nfl_team": "BUF",
+      "gsis_id": "00-0027029",
+      "yffl_team": 6,
+      "first_name": "LeSean"
+    },
+    {
+      "nfl_id": "2555461",
+      "last_name": "Smallwood",
+      "position": "RB",
+      "nfl_team": "PHI",
+      "gsis_id": "00-0032782",
+      "yffl_team": 6,
+      "first_name": "Wendell"
+    },
+    {
+      "nfl_id": "2555466",
+      "last_name": "Boyd",
+      "position": "WR",
+      "nfl_team": "CIN",
+      "gsis_id": "00-0033009",
+      "yffl_team": 6,
+      "first_name": "Tyler"
+    },
+    {
+      "nfl_id": "2543847",
+      "last_name": "Brown",
+      "position": "WR",
+      "nfl_team": "ARI",
+      "gsis_id": "00-0031051",
+      "yffl_team": 6,
+      "first_name": "John"
+    },
+    {
+      "nfl_id": "2552487",
+      "last_name": "Cooper",
+      "position": "WR",
+      "nfl_team": "OAK",
+      "gsis_id": "00-0031544",
+      "yffl_team": 6,
+      "first_name": "Amari"
+    },
+    {
+      "nfl_id": "2506106",
+      "last_name": "Fitzgerald",
+      "position": "WR",
+      "nfl_team": "ARI",
+      "gsis_id": "00-0022921",
+      "yffl_team": 6,
+      "first_name": "Larry"
+    },
+    {
+      "nfl_id": "2556214",
+      "last_name": "Hill",
+      "position": "WR",
+      "nfl_team": "KC",
+      "gsis_id": "00-0033040",
+      "yffl_team": 6,
+      "first_name": "Tyreek"
+    },
+    {
+      "nfl_id": "2543509",
+      "last_name": "Robinson",
+      "position": "WR",
+      "nfl_team": "JAC",
+      "gsis_id": "00-0031428",
+      "yffl_team": 6,
+      "first_name": "Allen"
+    },
+    {
+      "nfl_id": "497326",
+      "last_name": "Tate",
+      "position": "WR",
+      "nfl_team": "DET",
+      "gsis_id": "00-0027891",
+      "yffl_team": 6,
+      "first_name": "Golden"
+    },
+    {
+      "nfl_id": "2506922",
+      "last_name": "Gostkowski",
+      "position": "K",
+      "nfl_team": "NE",
+      "gsis_id": "00-0024333",
+      "yffl_team": 7,
+      "first_name": "Stephen"
+    },
+    {
+      "nfl_id": "2507374",
+      "last_name": "Hauschka",
+      "position": "K",
+      "nfl_team": "SEA",
+      "gsis_id": "00-0025944",
+      "yffl_team": 7,
+      "first_name": "Steven"
+    },
+    {
+      "nfl_id": "2553833",
+      "last_name": "Lambo",
+      "position": "K",
+      "nfl_team": "SD",
+      "gsis_id": "00-0032087",
+      "yffl_team": 7,
+      "first_name": "Josh"
+    },
+    {
+      "nfl_id": "2543499",
+      "last_name": "Carr",
+      "position": "QB",
+      "nfl_team": "OAK",
+      "gsis_id": "00-0031280",
+      "yffl_team": 7,
+      "first_name": "Derek"
+    },
+    {
+      "nfl_id": "382",
+      "last_name": "Flacco",
+      "position": "QB",
+      "nfl_team": "BAL",
+      "gsis_id": "00-0026158",
+      "yffl_team": 7,
+      "first_name": "Joe"
+    },
+    {
+      "nfl_id": "2533436",
+      "last_name": "Osweiler",
+      "position": "QB",
+      "nfl_team": "HOU",
+      "gsis_id": "00-0029682",
+      "yffl_team": 7,
+      "first_name": "Brock"
+    },
+    {
+      "nfl_id": "2506121",
+      "last_name": "Rivers",
+      "position": "QB",
+      "nfl_team": "SD",
+      "gsis_id": "00-0022942",
+      "yffl_team": 7,
+      "first_name": "Philip"
+    },
+    {
+      "nfl_id": "2539663",
+      "last_name": "Gillislee",
+      "position": "RB",
+      "nfl_team": "BUF",
+      "gsis_id": "00-0030433",
+      "yffl_team": 7,
+      "first_name": "Mike"
+    },
+    {
+      "nfl_id": "2495466",
+      "last_name": "Ingram",
+      "position": "RB",
+      "nfl_team": "NO",
+      "gsis_id": "00-0027966",
+      "yffl_team": 7,
+      "first_name": "Mark (NO)"
+    },
+    {
+      "nfl_id": "2507999",
+      "last_name": "Ivory",
+      "position": "RB",
+      "nfl_team": "JAC",
+      "gsis_id": "00-0027531",
+      "yffl_team": 7,
+      "first_name": "Chris"
+    },
+    {
+      "nfl_id": "2495207",
+      "last_name": "Murray",
+      "position": "RB",
+      "nfl_team": "TEN",
+      "gsis_id": "00-0028009",
+      "yffl_team": 7,
+      "first_name": "DeMarco"
+    },
+    {
+      "nfl_id": "2555460",
+      "last_name": "Perkins",
+      "position": "RB",
+      "nfl_team": "NYG",
+      "gsis_id": "00-0032417",
+      "yffl_team": 7,
+      "first_name": "Paul"
+    },
+    {
+      "nfl_id": "2540204",
+      "last_name": "Ware",
+      "position": "RB",
+      "nfl_team": "KC",
+      "gsis_id": "00-0030414",
+      "yffl_team": 7,
+      "first_name": "Spencer"
+    },
+    {
+      "nfl_id": "2543496",
+      "last_name": "Beckham",
+      "position": "WR",
+      "nfl_team": "NYG",
+      "gsis_id": "00-0031235",
+      "yffl_team": 7,
+      "first_name": "Odell"
+    },
+    {
+      "nfl_id": "238498",
+      "last_name": "Edelman",
+      "position": "WR",
+      "nfl_team": "NE",
+      "gsis_id": "00-0027150",
+      "yffl_team": 7,
+      "first_name": "Julian"
+    },
+    {
+      "nfl_id": "2540148",
+      "last_name": "Eifert",
+      "position": "WR",
+      "nfl_team": "CIN",
+      "gsis_id": "00-0030549",
+      "yffl_team": 7,
+      "first_name": "Tyler"
+    },
+    {
+      "nfl_id": "2532838",
+      "last_name": "Fleener",
+      "position": "WR",
+      "nfl_team": "NO",
+      "gsis_id": "00-0029697",
+      "yffl_team": 7,
+      "first_name": "Coby"
+    },
+    {
+      "nfl_id": "2505299",
+      "last_name": "Gates",
+      "position": "WR",
+      "nfl_team": "SD",
+      "gsis_id": "00-0021547",
+      "yffl_team": 7,
+      "first_name": "Antonio"
+    },
+    {
+      "nfl_id": "2540165",
+      "last_name": "Hopkins",
+      "position": "WR",
+      "nfl_team": "HOU",
+      "gsis_id": "00-0030564",
+      "yffl_team": 7,
+      "first_name": "DeAndre"
+    },
+    {
+      "nfl_id": "2550353",
+      "last_name": "Hurns",
+      "position": "WR",
+      "nfl_team": "JAC",
+      "gsis_id": "00-0030821",
+      "yffl_team": 7,
+      "first_name": "Allen"
+    },
+    {
+      "nfl_id": "2539227",
+      "last_name": "Hopkins",
+      "position": "K",
+      "nfl_team": "WAS",
+      "gsis_id": "00-0030098",
+      "yffl_team": 8,
+      "first_name": "Dustin"
+    },
+    {
+      "nfl_id": "2556601",
+      "last_name": "Lutz",
+      "position": "K",
+      "nfl_team": "NO",
+      "gsis_id": "00-0032569",
+      "yffl_team": 8,
+      "first_name": "Wil"
+    },
+    {
+      "nfl_id": "2541556",
+      "last_name": "McManus",
+      "position": "K",
+      "nfl_team": "DEN",
+      "gsis_id": "00-0029822",
+      "yffl_team": 8,
+      "first_name": "Brandon"
+    },
+    {
+      "nfl_id": "2555260",
+      "last_name": "Prescott",
+      "position": "QB",
+      "nfl_team": "DAL",
+      "gsis_id": "00-0033077",
+      "yffl_team": 8,
+      "first_name": "Dak"
+    },
+    {
+      "nfl_id": "2532975",
+      "last_name": "Wilson",
+      "position": "QB",
+      "nfl_team": "SEA",
+      "gsis_id": "00-0029263",
+      "yffl_team": 8,
+      "first_name": "Russell"
+    },
+    {
+      "nfl_id": "2550189",
+      "last_name": "Crowell",
+      "position": "RB",
+      "nfl_team": "CLE",
+      "gsis_id": "00-0030656",
+      "yffl_team": 8,
+      "first_name": "Isaiah"
+    },
+    {
+      "nfl_id": "2543743",
+      "last_name": "Hyde",
+      "position": "RB",
+      "nfl_team": "SF",
+      "gsis_id": "00-0031045",
+      "yffl_team": 8,
+      "first_name": "Carlos"
+    },
+    {
+      "nfl_id": "2552379",
+      "last_name": "Langford",
+      "position": "RB",
+      "nfl_team": "CHI",
+      "gsis_id": "00-0031569",
+      "yffl_team": 8,
+      "first_name": "Jeremy"
+    },
+    {
+      "nfl_id": "2533034",
+      "last_name": "Miller",
+      "position": "RB",
+      "nfl_team": "HOU",
+      "gsis_id": "00-0029615",
+      "yffl_team": 8,
+      "first_name": "Lamar"
+    },
+    {
+      "nfl_id": "497206",
+      "last_name": "Starks",
+      "position": "RB",
+      "nfl_team": "GB",
+      "gsis_id": "00-0027791",
+      "yffl_team": 8,
+      "first_name": "James"
+    },
+    {
+      "nfl_id": "949",
+      "last_name": "Stewart",
+      "position": "RB",
+      "nfl_team": "CAR",
+      "gsis_id": "00-0026153",
+      "yffl_team": 8,
+      "first_name": "Jonathan"
+    },
+    {
+      "nfl_id": "2535698",
+      "last_name": "Beasley",
+      "position": "WR",
+      "nfl_team": "DAL",
+      "gsis_id": "00-0029000",
+      "yffl_team": 8,
+      "first_name": "Cole"
+    },
+    {
+      "nfl_id": "2543471",
+      "last_name": "Benjamin",
+      "position": "WR",
+      "nfl_team": "CAR",
+      "gsis_id": "00-0031359",
+      "yffl_team": 8,
+      "first_name": "Kelvin"
+    },
+    {
+      "nfl_id": "2555341",
+      "last_name": "Henry",
+      "position": "WR",
+      "nfl_team": "SD",
+      "gsis_id": "00-0033090",
+      "yffl_team": 8,
+      "first_name": "Hunter"
+    },
+    {
+      "nfl_id": "2530515",
+      "last_name": "Hogan",
+      "position": "WR",
+      "nfl_team": "NE",
+      "gsis_id": "00-0028237",
+      "yffl_team": 8,
+      "first_name": "Chris"
+    },
+    {
+      "nfl_id": "2552430",
+      "last_name": "Lockett",
+      "position": "WR",
+      "nfl_team": "SEA",
+      "gsis_id": "00-0032211",
+      "yffl_team": 8,
+      "first_name": "Tyler"
+    },
+    {
+      "nfl_id": "2543614",
+      "last_name": "Moncrief",
+      "position": "WR",
+      "nfl_team": "IND",
+      "gsis_id": "00-0031339",
+      "yffl_team": 8,
+      "first_name": "Donte"
+    },
+    {
+      "nfl_id": "1032",
+      "last_name": "Nelson",
+      "position": "WR",
+      "nfl_team": "GB",
+      "gsis_id": "00-0026176",
+      "yffl_team": 8,
+      "first_name": "Jordy"
+    },
+    {
+      "nfl_id": "497322",
+      "last_name": "Sanders",
+      "position": "WR",
+      "nfl_team": "DEN",
+      "gsis_id": "00-0027685",
+      "yffl_team": 8,
+      "first_name": "Emmanuel"
+    },
+    {
+      "nfl_id": "497328",
+      "last_name": "Thomas",
+      "position": "WR",
+      "nfl_team": "DEN",
+      "gsis_id": "00-0027874",
+      "yffl_team": 8,
+      "first_name": "Demaryius"
+    }
+  ],
+  "quarter": "q4",
+  "year": 2016
+}

@@ -25,7 +25,7 @@ const styles = EStyleSheet.create({
     },
   },
   bannerImage: {
-    display: 'flex',
+    //    display: 'flex',
     flexDirection: 'row',
     // needs to be set for elevation to work: https://github.com/facebook/react-native/issues/10411
     justifyContent: 'center',
