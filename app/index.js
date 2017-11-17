@@ -4,7 +4,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { Provider } from 'react-redux';
 
 // import Sample from './screens/Sample';
-import BoxScore from './screens/BoxScore';
+import { BoxScoreNavigator } from './config/routes';
 import store from './config/redux';
 import Header from './components/Header';
 
@@ -12,7 +12,7 @@ const styles = EStyleSheet.create({
   container: {
     flexDirection: 'column',
     alignItems: 'stretch',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     flexWrap: 'nowrap',
     flex: 1,
   },
@@ -27,7 +27,7 @@ export default () => (
     <View style={styles.container}>
       <StatusBar backgroundColor="#ff0000" barStyle="default" />
       <Header />
-      <BoxScore />
+      <BoxScoreNavigator />
     </View>
   </Provider>
 );

@@ -1,6 +1,5 @@
-import { BoxScoreState, rootBoxScoreSaga } from './redux';
-import TeamWeak from './BoxScore';
+import BoxScore from './BoxScore';
+import { BoxScoreState } from './redux';
 
-
-export { BoxScoreState, rootBoxScoreSaga };
-export default TeamWeak;
+export { BoxScoreState };
+export default BoxScore;

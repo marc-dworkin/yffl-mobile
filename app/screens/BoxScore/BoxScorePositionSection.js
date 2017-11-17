@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, ScrollView, FlatList, View, Platform, StyleSheet } from 'react-native';
+import { Text, ScrollView, FlatList, View, StyleSheet } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import PropTypes from 'prop-types';
 
@@ -23,19 +23,14 @@ const styles = EStyleSheet.create({
   statContainer: {},
 
   text: {
-    ...Platform.select({
-      ios: {
-        fontFamily: 'Helvetica',
-      },
-      android: {
-        fontFamily: 'Roboto',
-      },
-    }),
+    // https://medium.com/differential/better-cross-platform-react-native-components-cb8aadeba472
+    fontFamily: 'System',
     fontSize: 11,
     color: '#6c6d6f',
     textAlign: 'left',
     padding: 3,
     marginLeft: 3,
+    fontWeight: '400',
   },
 
   data: {
@@ -84,11 +79,14 @@ const BoxScorePositionSection = (props) => {
       )
       : {};
 
+  //  console.log(Object.values(sectionStatsRaw)[0]);
+
   const sectionStats = Object.values(
     util.map(sectionStatsRaw, c => ({
       key: `player_${props.section}_${c.player.nfl_id}`,
       player: c.player,
       gameData: c.gameData[props.section],
+      gameInfo: c.gameData.gameInfo,
     })),
   );
 
@@ -97,6 +95,8 @@ const BoxScorePositionSection = (props) => {
     sectionStats[i].index = i;
     sectionStats[i].isAltRow = i % 2 !== 0;
   }
+
+  //  console.log(sectionStats[0]);
 
   const positionStatNames =
     sectionStats != null && sectionStats.length > 0
@@ -125,6 +125,7 @@ const BoxScorePositionSection = (props) => {
           <View style={styles.headerRow}>
             <Text style={[styles.text, styles.th, styles.playerNameData]}>Player</Text>
             <Text style={[styles.text, styles.th, styles.teamNameData]}>Team</Text>
+            <Text style={[styles.text, styles.th, styles.teamNameData]}>Opp</Text>
             {positionStatNames.map(c => (
               <Text style={[styles.text, styles.th, styles.statData]} key={c.key}>
                 {c.display}
@@ -138,6 +139,11 @@ const BoxScorePositionSection = (props) => {
                   {item.player.last_name}, {item.player.first_name}
                 </Text>
                 <Text style={[styles.text, styles.teamNameData]}>{item.player.nfl_team}</Text>
+                <Text style={[styles.text, styles.teamNameData]}>
+                  {item.player.nfl_team === item.gameInfo.RoadTeamName
+                    ? item.gameInfo.HomeTeamName
+                    : item.gameInfo.RoadTeamName}
+                </Text>
                 {positionStatNames.map(c => (
                   <Text
                     style={[styles.text, styles.statData, styles.data]}

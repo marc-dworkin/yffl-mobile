@@ -1,6 +1,6 @@
 {
-  "name": "yffl-crna",
-  "version": "0.1.0",
+  "name": "yffl-mobile",
+  "version": "0.1.1",
   "private": true,
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -42,6 +42,7 @@
     "react-native-dropdownalert": "^2.8.0",
     "react-native-extended-stylesheet": "^0.6.0",
     "react-native-xml2js": "^1.0.3",
+    "react-navigation": "^1.0.0-beta.19",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.1",

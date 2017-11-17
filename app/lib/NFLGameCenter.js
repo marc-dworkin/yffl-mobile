@@ -1,7 +1,7 @@
 import { parseString } from 'react-native-xml2js';
 // import util from '../lib/util';
 
-function parseGameSideData(sideData) {
+function parseGameSideData(sideData, gameInfo) {
   const passing = sideData.passing;
   const rushing = sideData.rushing;
   const receiving = sideData.receiving;
@@ -11,7 +11,7 @@ function parseGameSideData(sideData) {
 
   if (passing != null) {
     Object.keys(passing).forEach((playerId) => {
-      result[playerId] = { passing: passing[playerId] };
+      result[playerId] = { passing: passing[playerId], gameInfo };
     });
   }
 
@@ -20,7 +20,7 @@ function parseGameSideData(sideData) {
       if (playerId in result) {
         result[playerId].rushing = rushing[playerId];
       } else {
-        result[playerId] = { rushing: rushing[playerId] };
+        result[playerId] = { rushing: rushing[playerId], gameInfo };
       }
     });
   }
@@ -29,7 +29,7 @@ function parseGameSideData(sideData) {
       if (playerId in result) {
         result[playerId].receiving = receiving[playerId];
       } else {
-        result[playerId] = { receiving: receiving[playerId] };
+        result[playerId] = { receiving: receiving[playerId], gameInfo };
       }
     });
   }
@@ -39,7 +39,7 @@ function parseGameSideData(sideData) {
       if (playerId in result) {
         result[playerId].kicking = kicking[playerId];
       } else {
-        result[playerId] = { kicking: kicking[playerId] };
+        result[playerId] = { kicking: kicking[playerId], gameInfo };
       }
     });
   }
@@ -47,18 +47,18 @@ function parseGameSideData(sideData) {
   return result;
 }
 
-function parseGameData(gameData) {
+function parseGameData(gameData, gameInfo) {
   // game hasn't happened yet
   if (gameData === undefined) {
     return {};
   }
-  const homeStats = parseGameSideData(gameData.home.stats);
-  const awayStats = parseGameSideData(gameData.away.stats);
+  const homeStats = parseGameSideData(gameData.home.stats, gameInfo);
+  const awayStats = parseGameSideData(gameData.away.stats, gameInfo);
   return Object.assign({}, homeStats, awayStats);
 }
 
-export const loadGameCenterGameData = async function loadGameData(eid) {
-  const url = `http://www.nfl.com/liveupdate/game-center/${eid}/${eid}_gtd.json`;
+export const loadGameCenterGameData = async function loadGameCenterGameData(gameInfo) {
+  const url = `http://www.nfl.com/liveupdate/game-center/${gameInfo.eid}/${gameInfo.eid}_gtd.json`;
   // console.log(url);
   const response = await fetch(url);
   const result = await response.json();
@@ -67,8 +67,8 @@ export const loadGameCenterGameData = async function loadGameData(eid) {
     return result;
   }
 
-  const rawGameData = result[eid];
-  return parseGameData(rawGameData, eid);
+  const rawGameData = result[gameInfo.eid];
+  return parseGameData(rawGameData, gameInfo);
 };
 
 export const loadGameCenterSchedule = async function loadGameList(seasonYear, weekNumber) {
@@ -104,9 +104,17 @@ export const loadGameCenterSchedule = async function loadGameList(seasonYear, we
     gameList = result.ss.gms[0].g;
   });
 
-  return gameList
-    .map(c => c.$)
-    .map(c => ({ eid: c.eid, HomeTeamName: c.h, gsis_id: c.gsis, RoadTeamName: c.v }));
+  return gameList.map(c => c.$).map(c => ({
+    eid: c.eid,
+    HomeTeamName: c.h,
+    HomeTeamScore: c.hs,
+    gsis_id: c.gsis,
+    RoadTeamName: c.v,
+    RoadTeamSCore: c.vs,
+    Day: c.d,
+    Time: c.t,
+    // TODO:    RedZone: c.rz,
+  }));
 };
 
 export const loadGameCenterWeekData = async function loadWeekData(seasonYear, weekNumber) {
@@ -116,7 +124,8 @@ export const loadGameCenterWeekData = async function loadWeekData(seasonYear, we
     gameList.map(
       c =>
         new Promise((resolve, reject) => {
-          const gameData = loadGameCenterGameData(c.eid);
+          const gameData = loadGameCenterGameData(c);
+
           if (gameData.error) {
             reject(gameData.error);
           } else {
@@ -126,9 +135,11 @@ export const loadGameCenterWeekData = async function loadWeekData(seasonYear, we
     ),
   );
 
-  const weekData = results.reduce((acc, cv) => Object.assign(acc, cv), {});
+  const playerData = results.reduce((acc, cv) => Object.assign(acc, cv), {});
+
+  console.log(results.length);
 
   //  console.log(`weekData.length: ${weekData.length}`);
   // console.log(weekData);
-  return weekData;
+  return { gameList, playerData };
 };

@@ -2,11 +2,25 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 
-import { BoxScoreState, rootBoxScoreSaga } from '../screens/BoxScore';
+import { QuarterPickerState, rootQuarterPickerSaga } from '../screens/QuarterPicker';
+
+import { TeamPickerState } from '../screens/TeamPicker';
+
+import { BoxScoreState } from '../screens/BoxScore';
+
+import Navigation from './routes';
 
 const sagaMiddleware = createSagaMiddleware();
 
+const NavigationState = (state, action) => {
+  const newState = Navigation.router.getStateForAction(action, state);
+  return newState || state;
+};
+
 const reducer = combineReducers({
+  QuarterPickerState,
+  TeamPickerState,
+  NavigationState,
   BoxScoreState,
 });
 
@@ -19,6 +33,6 @@ if (process.env.NODE_ENV === 'doesnt seem useful') {
 
 const store = createStore(reducer, applyMiddleware(...middleware));
 
-sagaMiddleware.run(rootBoxScoreSaga);
+sagaMiddleware.run(rootQuarterPickerSaga);
 
 export default store;

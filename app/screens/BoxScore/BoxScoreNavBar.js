@@ -1,3 +1,4 @@
+/*
 import React, { Component } from 'react';
 import { Text, View, Picker } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -129,3 +130,5 @@ class BoxScoreNavBar extends Component {
 }
 
 export default connect(BoxScoreNavBar.mapStateToProps)(BoxScoreNavBar);
+
+*/

@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, Platform } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import BoxScoreNavBar from './BoxScoreNavBar';
+
+import XPlatformIcon from '../../components/XPlatformIcon';
+import XPlatformTouchable from '../../components/XPlatformTouchable';
 import BoxScorePositionSection from './BoxScorePositionSection';
-// import teams from '../data/teams';
-// import weeks from '../data/weeks';
+
 import {
   getSeason,
-  getWeek,
   getQuarter,
-  getTeam,
   getLineups,
   getGameData,
-  getIsBoxScoreInitialized,
-  boxScoreInitialized,
-} from './redux';
+  getIsQuarterPickerInitialized,
+  quarterPickerInitialized,
+} from '../QuarterPicker';
+import { getTeam } from '../TeamPicker';
+
 import util from '../../lib/util';
+
+import RadioMenu from '../../components/RadioMenu';
+import { weekSelected, getWeekNumber } from './redux';
 
 const styles = EStyleSheet.create({
   card: {
@@ -32,12 +36,24 @@ const styles = EStyleSheet.create({
     '@media ios': {
       shadowOpacity: 0.75,
       shadowRadius: 5,
-      shadowColor: 'red',
+      shadowColor: '#ddd',
       shadowOffset: { height: 0, width: 0 },
     },
     '@media android': {
       elevation: 10,
     },
+  },
+
+  row: {
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+  },
+
+  weekContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   container: {
@@ -47,93 +63,172 @@ const styles = EStyleSheet.create({
     justifyContent: 'flex-start',
   },
 
-  textSeasonWeekHeader: {
-    color: '#6c6d6f',
+  text: {
+    // https://medium.com/differential/better-cross-platform-react-native-components-cb8aadeba472
+    fontFamily: 'System',
     fontSize: 11,
+    color: '#6c6d6f',
     fontWeight: '400',
+    textAlign: 'left',
+    padding: 3,
+    marginLeft: 3,
   },
 
-  textTeamNameHeader: {
+  h1: {
     color: '#6c6d6f',
     fontSize: 18,
     fontWeight: '700',
-    ...Platform.select({
-      ios: {
-        fontFamily: 'Helvetica',
-      },
-      android: {
-        fontFamily: 'Roboto',
-      },
-    }),
+    // https://medium.com/differential/better-cross-platform-react-native-components-cb8aadeba472
+    fontFamily: 'System',
+  },
+
+  th: {
+    color: '#48494a',
+    textAlign: 'left',
+    fontWeight: '600',
+  },
+
+  h2: {
+    color: '#2b2c2d',
+    fontSize: 14,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+
+  playerNameData: {
+    width: 120,
+    paddingLeft: 3,
+    marginLeft: 0,
+  },
+
+  teamNameData: {
+    width: 50,
+  },
+
+  statData: {
+    width: 40,
+  },
+
+  altRow: {
+    backgroundColor: '#f7f8f9',
   },
 });
 
 class BoxScore extends Component {
   static propTypes = {
+    navigation: PropTypes.object,
     dispatch: PropTypes.func,
     season: PropTypes.object,
     week: PropTypes.object,
     quarter: PropTypes.object,
     team: PropTypes.object,
     stats: PropTypes.object,
-    isBoxScoreInitialized: PropTypes.bool,
+    isQuarterPickerInitialized: PropTypes.bool,
   };
 
   static mapStateToProps = (state) => {
     // TODO: maybe these should be more primative, or more typesafe?
     const season = getSeason(state);
     const quarter = getQuarter(state);
-    const week = getWeek(state);
+
+    //    const week = getWeek(state);
     const team = getTeam(state);
     const lineups = getLineups(state);
-    const isBoxScoreInitialized = getIsBoxScoreInitialized(state);
+    const weekNumber = getWeekNumber(state);
+
+    const firstWeekInQuarter = quarter ? quarter.weeks[0] : null;
+
+    const week =
+      weekNumber && quarter
+        ? quarter.weeks.filter(c => c.number === weekNumber)[0]
+        : firstWeekInQuarter;
+
+    const isQuarterPickerInitialized = getIsQuarterPickerInitialized(state);
     const lineup =
       lineups != null
         ? util.toDictionary(lineups.filter(c => c.yffl_team === team.number), c => c.gsis_id)
         : {};
 
-    const allGameData = getGameData(state);
+    const rawGameData = getGameData(state);
+
+    const weekData =
+      rawGameData != null
+        ? rawGameData
+          .filter(c => c.seasonYear === season.year && c.weekNumber === week.number)
+          .map(c => c.weekData)[0]
+        : {};
 
     const stats = {};
     if (lineup != null) {
-      //      console.log(Object.keys(allGameData));
       Object.keys(lineup).forEach((key) => {
         stats[key] = {
           player: lineup[key],
           // not all players will have gameData
-          gameData: allGameData != null && key in allGameData ? allGameData[key] : {},
+          gameData:
+            weekData && weekData.playerData && weekData.playerData[key]
+              ? weekData.playerData[key]
+              : {},
+
+          hadGameData: weekData && weekData.playerData && weekData.playerData[key],
         };
       });
     }
-
-    //    console.log(stats);
-
     return {
       season,
       quarter,
       week,
       team,
       stats,
-      isBoxScoreInitialized,
+      isQuarterPickerInitialized,
     };
   };
 
-  render() {
-    if (!this.props.isBoxScoreInitialized) {
-      this.props.dispatch(boxScoreInitialized());
+  componentDidMount() {
+    if (!this.props.isQuarterPickerInitialized) {
+      this.props.dispatch(quarterPickerInitialized());
     }
+  }
 
+  handleQuarterPickerPressed = () => {
+    this.props.navigation.navigate('QuarterPicker');
+  };
+
+  handleTeamPickerPressed = () => {
+    this.props.navigation.navigate('TeamPicker');
+  };
+
+  render() {
     return (
       <View style={styles.container}>
-        <BoxScoreNavBar />
         <View style={styles.card}>
-          <Text style={styles.textSeasonWeekHeader}>
-            {this.props.season.year} Quarter {this.props.quarter.number}, Week{' '}
-            {this.props.week.number}
-          </Text>
-          <Text style={styles.textTeamNameHeader}>
-            {this.props.team.owner} {this.props.team.name}
-          </Text>
+          <View style={[styles.row, { alignItems: 'flex-start' }]}>
+            <XPlatformTouchable onPress={this.handleTeamPickerPressed}>
+              <Text style={[styles.text, styles.h1]}>
+                {this.props.team.name} ({this.props.team.owner}) &nbsp;
+                <XPlatformIcon name="arrow-dropdown" size={18} />
+              </Text>
+            </XPlatformTouchable>
+            <XPlatformTouchable onPress={this.handleQuarterPickerPressed}>
+              <Text style={styles.text}>
+                {this.props.season.year} Quarter {this.props.quarter.number}
+                &nbsp;
+                <XPlatformIcon name="arrow-dropdown" size={11} />
+              </Text>
+            </XPlatformTouchable>
+          </View>
+
+          <RadioMenu
+            selectedKey={this.props.week ? this.props.week.number : null}
+            options={this.props.quarter.weeks.map(c => ({
+              key: c.number,
+              value: `Week ${c.number}`,
+            }))}
+            onValueChange={(value) => {
+              console.log(`onValueChange ${value}`);
+              this.props.dispatch(weekSelected(value));
+            }}
+          />
+
           <ScrollView>
             <BoxScorePositionSection stats={this.props.stats} section="passing" />
             <BoxScorePositionSection stats={this.props.stats} section="rushing" />

@@ -1,33 +1,44 @@
 import { takeEvery, select, call, put } from 'redux-saga/effects';
 import {
-  BOXSCORE_INITIALIZED,
-  SEASON_SELECTED,
-  QUARTER_SELECTED,
-  WEEK_SELECTED,
+  QUARTER_CHANGED,
   LINEUPS_LOADED,
   LINEUPS_FAILED,
   GAMEDATA_LOADED,
   GAMEDATA_FAILED,
 } from './actions';
 
-import { getSeasonYear, getQuarterName, getWeekNumber } from './reducers';
+import { getSeasonYear, getQuarter, getQuarterName } from './reducers';
 
 import { loadGameCenterWeekData } from '../../../lib/NFLGameCenter';
 
-export const loadWeekData = function* loadWeekData() {
+const loadQuarterData = function* loadQuarterData() {
+  console.log('loadQuarterData');
   try {
+    const quarter = yield select(getQuarter);
     const seasonYear = yield select(getSeasonYear);
-    const weekNumber = yield select(getWeekNumber);
-    console.log(`loadWeekData ${seasonYear} W${weekNumber}`);
 
-    const result = yield loadGameCenterWeekData(seasonYear, weekNumber);
+    const results = yield Promise.all(
+      quarter.weeks.map(
+        w =>
+          new Promise(async (resolve, reject) => {
+            const weekNumber = w.number;
+            console.log(`loadWeekData ${seasonYear} W${weekNumber}`);
+            const result = await loadGameCenterWeekData(seasonYear, weekNumber);
+            if (result.error) {
+              reject(result.error);
+            } else {
+              resolve({ seasonYear, weekNumber, weekData: result });
+            }
+          }),
+      ),
+    );
 
-    if (result.error) {
+    if (results.error) {
       //  console.log(result.error);
-      yield put({ type: GAMEDATA_FAILED, value: result.error });
+      yield put({ type: GAMEDATA_FAILED, value: results.error });
     } else {
       //      console.log(`Object.keys(result).length: ${Object.keys(result).length}`);
-      yield put({ type: GAMEDATA_LOADED, value: result });
+      yield put({ type: GAMEDATA_LOADED, value: results });
     }
   } catch (error) {
     console.log(error);
@@ -61,12 +72,11 @@ const loadLineups = function* loadLineups() {
   }
 };
 
-export const rootBoxScoreSaga = function* rootBoxScoreSaga() {
-  yield takeEvery(SEASON_SELECTED, loadWeekData);
-  yield takeEvery(QUARTER_SELECTED, loadWeekData);
-  yield takeEvery(WEEK_SELECTED, loadWeekData);
-  yield takeEvery(SEASON_SELECTED, loadLineups);
-  yield takeEvery(QUARTER_SELECTED, loadLineups);
-  yield takeEvery(BOXSCORE_INITIALIZED, loadLineups);
-  yield takeEvery(BOXSCORE_INITIALIZED, loadWeekData);
+export const rootQuarterPickerSaga = function* rootBoxScoreSaga() {
+  //  yield takeEvery(QUARTERPICKER_INITIALIZED, loadLineups);
+  //  yield takeEvery(QUARTERPICKER_INITIALIZED, loadQuarterData);
+  yield takeEvery(QUARTER_CHANGED, loadQuarterData);
+  yield takeEvery(QUARTER_CHANGED, loadLineups);
 };
+
+export default rootQuarterPickerSaga;

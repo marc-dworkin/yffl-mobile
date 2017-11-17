@@ -14,7 +14,7 @@ const styles = EStyleSheet.create({
       height: 92,
       shadowOpacity: 0.75,
       shadowRadius: 5,
-      shadowColor: 'red',
+      shadowColor: '#ddd',
       shadowOffset: { height: 0, width: 0 },
     },
     '@media android': {
@@ -57,7 +57,11 @@ const Header = ({ onPress }) => (
       <TouchableOpacity onPress={onPress} style={styles.hamburgerButton}>
         <Image resizeMode="contain" source={require('../assets/hamburger_48.png')} />
       </TouchableOpacity>
-      <Image resizeMode="contain" style={styles.logoImage} source={require('../assets/yffl_128.png')} />
+      <Image
+        resizeMode="contain"
+        style={styles.logoImage}
+        source={require('../assets/yffl_128.png')}
+      />
     </Image>
   </View>
 );
