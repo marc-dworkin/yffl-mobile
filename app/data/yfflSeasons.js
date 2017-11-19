@@ -63,3 +63,7 @@ for (let i = 0; i < seasons.length; i += 1) {
 }
 
 export default seasons;
+
+export const currentYear = seasons[0];
+export const currentQuarter = currentYear.quarters.filter(s => s.isCurrent)[0];
+export const currentWeek = currentQuarter.weeks.filter(s => s.isCurrent)[0];

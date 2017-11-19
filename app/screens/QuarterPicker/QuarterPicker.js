@@ -10,10 +10,11 @@ import {
   getQuarterPickerWorkingSeason,
   getQuarterPickerWorkingQuarter,
   getIsQuarterPickerInitialized,
+  getIsQuarterPickerLoading,
   quarterChanged,
 } from './redux';
 
-import seasons from '../../data/seasons';
+import seasons from '../../data/yfflSeasons';
 import { workingSeasonSelected, workingQuarterSelected } from './redux/actions';
 
 import XPlatformButton from '../../components/XPlatformButton';
@@ -131,6 +132,7 @@ class QuarterPicker extends Component {
     const workingSeason = getQuarterPickerWorkingSeason(state);
     const workingQuarter = getQuarterPickerWorkingQuarter(state);
     const isInitialized = getIsQuarterPickerInitialized(state);
+    const isLoading = getIsQuarterPickerLoading(state);
 
     return {
       originalQuarterNumber,
@@ -138,6 +140,7 @@ class QuarterPicker extends Component {
       workingSeason,
       workingQuarter,
       isInitialized,
+      isLoading,
     };
   };
 

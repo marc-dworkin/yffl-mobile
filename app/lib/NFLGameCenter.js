@@ -117,27 +117,31 @@ export const loadGameCenterSchedule = async function loadGameList(seasonYear, we
   }));
 };
 
-export const loadGameCenterWeekData = async function loadWeekData(seasonYear, weekNumber) {
+export const loadGameCenterWeekData = async function loadGameCenterWeekData(
+  seasonYear,
+  weekNumber,
+) {
   const gameList = await loadGameCenterSchedule(seasonYear, weekNumber);
 
+  // https://stackoverflow.com/questions/31424561/wait-until-all-es6-promises-complete-even-rejected-promises
   const results = await Promise.all(
     gameList.map(
       c =>
-        new Promise((resolve, reject) => {
-          const gameData = loadGameCenterGameData(c);
-
-          if (gameData.error) {
-            reject(gameData.error);
-          } else {
+        new Promise(async (resolve) => {
+          try {
+            const gameData = await loadGameCenterGameData(c);
             resolve(gameData);
+          } catch (error) {
+            resolve({ error });
           }
         }),
     ),
   );
 
+  // TODO: captureErrors better.
   const playerData = results.reduce((acc, cv) => Object.assign(acc, cv), {});
 
-  console.log(results.length);
+  //  console.log(results.length);
 
   //  console.log(`weekData.length: ${weekData.length}`);
   // console.log(weekData);

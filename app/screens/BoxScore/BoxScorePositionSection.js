@@ -3,7 +3,7 @@ import { Text, ScrollView, FlatList, View, StyleSheet } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import PropTypes from 'prop-types';
 
-import util from './../../lib/util';
+import collections from './../../lib/collections';
 
 const styles = EStyleSheet.create({
   dataRow: {
@@ -72,7 +72,7 @@ const styles = EStyleSheet.create({
 const BoxScorePositionSection = (props) => {
   const sectionStatsRaw =
     props.stats != null
-      ? util.filter(
+      ? collections.filter(
         props.stats,
         () => true,
         c => Object.prototype.hasOwnProperty.call(c.gameData, props.section),
@@ -82,7 +82,7 @@ const BoxScorePositionSection = (props) => {
   //  console.log(Object.values(sectionStatsRaw)[0]);
 
   const sectionStats = Object.values(
-    util.map(sectionStatsRaw, c => ({
+    collections.map(sectionStatsRaw, c => ({
       key: `player_${props.section}_${c.player.nfl_id}`,
       player: c.player,
       gameData: c.gameData[props.section],
@@ -119,7 +119,7 @@ const BoxScorePositionSection = (props) => {
 
   return (
     <View>
-      <Text style={[styles.text, styles.h2]}>{util.ucFirst(props.section)}</Text>
+      <Text style={[styles.text, styles.h2]}>{collections.ucFirst(props.section)}</Text>
       <ScrollView style={styles.statContainer} horizontal>
         <View>
           <View style={styles.headerRow}>
