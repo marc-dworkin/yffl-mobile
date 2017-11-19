@@ -1,4 +1,4 @@
-class Util {
+class Collections {
   // https://jasonharper.wordpress.com/2012/09/22/select-and-selectmany-for-javascript-arrays/
   static mapMany(array, projector) {
     let result = [];
@@ -63,6 +63,7 @@ class Util {
     }, {});
   }
 
+  // TODO: doesn't belong in collections
   // https://arjunphp.com/capitalize-first-letter-string-javascript/
   static ucFirst(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -76,4 +77,4 @@ class Util {
   }
 }
 
-export default Util;
+export default Collections;

@@ -8,7 +8,9 @@ import {
   getIsQuarterPickerInitialized,
   QUARTERPICKER_INITIALIZED,
   quarterPickerInitialized,
+  getIsQuarterPickerLoading,
 } from './redux';
+
 import QuarterPicker from './QuarterPicker';
 
 export {
@@ -21,5 +23,6 @@ export {
   getIsQuarterPickerInitialized,
   QUARTERPICKER_INITIALIZED,
   quarterPickerInitialized,
+  getIsQuarterPickerLoading,
 };
 export default QuarterPicker;

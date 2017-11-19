@@ -35,6 +35,7 @@ import {
   getLineups,
   getGameData,
   getIsQuarterPickerInitialized,
+  getIsQuarterPickerLoading,
 } from './reducers';
 
 export {
@@ -66,6 +67,7 @@ export {
   getLineups,
   getGameData,
   getIsQuarterPickerInitialized,
+  getIsQuarterPickerLoading,
   loadWeekData,
   loadLineups,
   rootQuarterPickerSaga,

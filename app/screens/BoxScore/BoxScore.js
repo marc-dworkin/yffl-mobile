@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, ActivityIndicator } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { renderIf } from '../../lib/ReactNativeUtil';
 import XPlatformIcon from '../../components/XPlatformIcon';
 import XPlatformTouchable from '../../components/XPlatformTouchable';
 import BoxScorePositionSection from './BoxScorePositionSection';
@@ -14,11 +15,12 @@ import {
   getLineups,
   getGameData,
   getIsQuarterPickerInitialized,
+  getIsQuarterPickerLoading,
   quarterPickerInitialized,
 } from '../QuarterPicker';
 import { getTeam } from '../TeamPicker';
 
-import util from '../../lib/util';
+import collections from '../../lib/collections';
 
 import RadioMenu from '../../components/RadioMenu';
 import { weekSelected, getWeekNumber } from './redux';
@@ -124,6 +126,7 @@ class BoxScore extends Component {
     team: PropTypes.object,
     stats: PropTypes.object,
     isQuarterPickerInitialized: PropTypes.bool,
+    isQuarterPickerLoading: PropTypes.bool,
   };
 
   static mapStateToProps = (state) => {
@@ -144,9 +147,10 @@ class BoxScore extends Component {
         : firstWeekInQuarter;
 
     const isQuarterPickerInitialized = getIsQuarterPickerInitialized(state);
+    const isQuarterPickerLoading = getIsQuarterPickerLoading(state);
     const lineup =
       lineups != null
-        ? util.toDictionary(lineups.filter(c => c.yffl_team === team.number), c => c.gsis_id)
+        ? collections.toDictionary(lineups.filter(c => c.yffl_team === team.number), c => c.gsis_id)
         : {};
 
     const rawGameData = getGameData(state);
@@ -173,6 +177,7 @@ class BoxScore extends Component {
         };
       });
     }
+
     return {
       season,
       quarter,
@@ -180,6 +185,7 @@ class BoxScore extends Component {
       team,
       stats,
       isQuarterPickerInitialized,
+      isQuarterPickerLoading,
     };
   };
 
@@ -224,17 +230,24 @@ class BoxScore extends Component {
               value: `Week ${c.number}`,
             }))}
             onValueChange={(value) => {
-              console.log(`onValueChange ${value}`);
+              //              console.log(`onValueChange ${value}`);
               this.props.dispatch(weekSelected(value));
             }}
           />
 
-          <ScrollView>
-            <BoxScorePositionSection stats={this.props.stats} section="passing" />
-            <BoxScorePositionSection stats={this.props.stats} section="rushing" />
-            <BoxScorePositionSection stats={this.props.stats} section="receiving" />
-            <BoxScorePositionSection stats={this.props.stats} section="kicking" />
-          </ScrollView>
+          {renderIf(
+            !this.props.isQuarterPickerLoading,
+            <ScrollView>
+              <BoxScorePositionSection stats={this.props.stats} section="passing" />
+              <BoxScorePositionSection stats={this.props.stats} section="rushing" />
+              <BoxScorePositionSection stats={this.props.stats} section="receiving" />
+              <BoxScorePositionSection stats={this.props.stats} section="kicking" />
+            </ScrollView>,
+          )}
+          {renderIf(
+            this.props.isQuarterPickerLoading,
+            <ActivityIndicator animating style={{ margin: 15 }} size={'large'} hidesWhenStopped />,
+          )}
         </View>
       </View>
     );

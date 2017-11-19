@@ -1,48 +1,50 @@
-import { takeEvery, select, call, put } from 'redux-saga/effects';
+// import seasons, { currentYear, currentQuarter } from '../../../data/yfflSeasons';
+
+import { takeEvery, select, call, put, all } from 'redux-saga/effects';
 import {
   QUARTER_CHANGED,
-  LINEUPS_LOADED,
-  LINEUPS_FAILED,
-  GAMEDATA_LOADED,
-  GAMEDATA_FAILED,
+  lineupsLoaded,
+  lineupsFailed,
+  gameDataLoaded,
+  gameDataFailed,
+  quarterDataLoading,
+  quarterDataLoaded,
+  QUARTERPICKER_INITIALIZED,
 } from './actions';
 
 import { getSeasonYear, getQuarter, getQuarterName } from './reducers';
 
 import { loadGameCenterWeekData } from '../../../lib/NFLGameCenter';
 
-const loadQuarterData = function* loadQuarterData() {
-  console.log('loadQuarterData');
+const loadGameData = function* loadGameData() {
+  //  console.log('loadQuarterData');
   try {
     const quarter = yield select(getQuarter);
     const seasonYear = yield select(getSeasonYear);
 
+    // TODO: don't load games that aren't started..
+
     const results = yield Promise.all(
       quarter.weeks.map(
         w =>
-          new Promise(async (resolve, reject) => {
+          new Promise(async (resolve) => {
             const weekNumber = w.number;
-            console.log(`loadWeekData ${seasonYear} W${weekNumber}`);
-            const result = await loadGameCenterWeekData(seasonYear, weekNumber);
-            if (result.error) {
-              reject(result.error);
-            } else {
+            try {
+              // https://stackoverflow.com/questions/31424561/wait-until-all-es6-promises-complete-even-rejected-promises
+              const result = await loadGameCenterWeekData(seasonYear, weekNumber);
               resolve({ seasonYear, weekNumber, weekData: result });
+            } catch (error) {
+              resolve({ seasonYear, weekNumber, error });
             }
           }),
       ),
     );
 
-    if (results.error) {
-      //  console.log(result.error);
-      yield put({ type: GAMEDATA_FAILED, value: results.error });
-    } else {
-      //      console.log(`Object.keys(result).length: ${Object.keys(result).length}`);
-      yield put({ type: GAMEDATA_LOADED, value: results });
-    }
+    //      console.log(`Object.keys(result).length: ${Object.keys(result).length}`);
+    yield put(gameDataLoaded(results));
   } catch (error) {
-    console.log(error);
-    yield put({ type: GAMEDATA_FAILED, value: error.message });
+    console.log(`error: ${error}`);
+    yield put(gameDataFailed(error.message));
   }
 };
 
@@ -55,28 +57,28 @@ const loadLineupsFunc = (seasonYear, quarterName) => {
 const loadLineups = function* loadLineups() {
   const seasonYear = yield select(getSeasonYear);
   const quarterName = yield select(getQuarterName);
-  console.log(`loadLineups ${seasonYear} ${quarterName}`);
   try {
     const response = yield call(loadLineupsFunc, seasonYear, quarterName);
     const result = yield response.json();
     if (result.error) {
-      // console.log(result);
-      yield put({ type: LINEUPS_FAILED, value: result.error });
+      yield put(lineupsFailed(result.error));
     } else {
-      //      console.log(result.lineups.length);
-      yield put({ type: LINEUPS_LOADED, value: result.lineups });
+      yield put(lineupsLoaded(result.lineups));
     }
   } catch (error) {
-    console.log(error);
-    yield put({ type: LINEUPS_FAILED, value: error.message });
+    yield put(lineupsFailed(error.message));
   }
 };
 
+const quarterDataSaga = function* quarterDataSaga() {
+  yield put(quarterDataLoading());
+  yield all([call(loadLineups), call(loadGameData)]);
+  yield put(quarterDataLoaded());
+};
+
 export const rootQuarterPickerSaga = function* rootBoxScoreSaga() {
-  //  yield takeEvery(QUARTERPICKER_INITIALIZED, loadLineups);
-  //  yield takeEvery(QUARTERPICKER_INITIALIZED, loadQuarterData);
-  yield takeEvery(QUARTER_CHANGED, loadQuarterData);
-  yield takeEvery(QUARTER_CHANGED, loadLineups);
+  yield takeEvery(QUARTER_CHANGED, quarterDataSaga);
+  yield takeEvery(QUARTERPICKER_INITIALIZED, quarterDataSaga);
 };
 
 export default rootQuarterPickerSaga;

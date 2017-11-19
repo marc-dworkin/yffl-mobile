@@ -1,4 +1,4 @@
-import seasons from '../../../data/seasons';
+import seasons, { currentYear, currentQuarter } from '../../../data/yfflSeasons';
 
 import {
   WORKING_SEASON_SELECTED,
@@ -7,15 +7,13 @@ import {
   QUARTER_SELECTED,
   LINEUPS_LOADED,
   GAMEDATA_LOADED,
+  QUARTERDATA_LOADED,
+  QUARTERDATA_LOADING,
+  GAMEDATA_FAILED,
 } from './actions';
 
 // assume first year is current
 // TODO: make this work in off-season
-
-const currentYear = seasons[0];
-const currentQuarter = currentYear.quarters.filter(s => s.isCurrent)[0];
-
-// const currentWeek = currentQuarter.weeks.filter(s => s.isCurrent)[0];
 
 export const initialState = {
   season: currentYear,
@@ -60,6 +58,9 @@ export const getWeekNumber = state => getWeek(state).number;
 export const getLineups = state => getQuarterPickerState(state).lineups;
 export const getGameData = state => getQuarterPickerState(state).gameData;
 
+export const getIsQuarterPickerLoading = state =>
+  getQuarterPickerState(state).isQuarterPickerLoading;
+
 export const getIsQuarterPickerInitialized = state =>
   getQuarterPickerState(state).isQuarterPickerInitialized;
 
@@ -86,6 +87,7 @@ export const QuarterPickerState = (state = initialState, action) => {
       break;
     case GAMEDATA_LOADED:
       if (action.value != null) {
+        console.log(`GAMEDATA_LOADED: ${action.value.seasonYear} ${action.value.weekNumber}`);
         res.gameData = action.value;
       }
       break;
@@ -112,6 +114,15 @@ export const QuarterPickerState = (state = initialState, action) => {
           ...res.working.season.quarters.filter(s => s.number === action.value)[0],
         };
       }
+      break;
+    case QUARTERDATA_LOADED:
+      res.isQuarterPickerLoading = false;
+      break;
+    case QUARTERDATA_LOADING:
+      res.isQuarterPickerLoading = true;
+      break;
+    case GAMEDATA_FAILED:
+      console.log(action);
       break;
     default:
       break;
