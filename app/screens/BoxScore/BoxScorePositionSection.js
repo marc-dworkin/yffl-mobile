@@ -3,6 +3,8 @@ import { Text, ScrollView, FlatList, View, StyleSheet } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import PropTypes from 'prop-types';
 
+import { getYFFLPoints } from '../../lib/yffl';
+
 import collections from './../../lib/collections';
 
 const styles = EStyleSheet.create({
@@ -87,8 +89,9 @@ const BoxScorePositionSection = (props) => {
       player: c.player,
       gameData: c.gameData[props.section],
       gameInfo: c.gameData.gameInfo,
+      yfflPoints: getYFFLPoints(props.section, c.gameData[props.section]),
     })),
-  );
+  ).sort(collections.sortBy(c => c.yfflPoints, false));
 
   // no-return-assign so have to do in seperat loop
   for (let i = 0; i < sectionStats.length; i += 1) {
@@ -126,6 +129,7 @@ const BoxScorePositionSection = (props) => {
             <Text style={[styles.text, styles.th, styles.playerNameData]}>Player</Text>
             <Text style={[styles.text, styles.th, styles.teamNameData]}>Team</Text>
             <Text style={[styles.text, styles.th, styles.teamNameData]}>Opp</Text>
+            <Text style={[styles.text, styles.th, styles.statData]}>PTS</Text>
             {positionStatNames.map(c => (
               <Text style={[styles.text, styles.th, styles.statData]} key={c.key}>
                 {c.display}
@@ -144,6 +148,7 @@ const BoxScorePositionSection = (props) => {
                     ? item.gameInfo.HomeTeamName
                     : item.gameInfo.RoadTeamName}
                 </Text>
+                <Text style={[styles.text, styles.statData, styles.data]}>{item.yfflPoints}</Text>
                 {positionStatNames.map(c => (
                   <Text
                     style={[styles.text, styles.statData, styles.data]}

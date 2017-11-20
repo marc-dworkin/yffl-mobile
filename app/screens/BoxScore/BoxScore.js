@@ -210,18 +210,18 @@ class BoxScore extends Component {
 
   render() {
     return (
-      <ScrollView
-        refreshControl={
-          <RefreshControl
-            colors={['#009688']}
-            tintColor={'#009688'}
-            refreshing={this.props.isQuarterPickerLoading}
-            onRefresh={this.handleRefreshPulled}
-          />
-        }
-      >
-        <View style={styles.container}>
-          <View style={styles.card}>
+      <View style={styles.container}>
+        <View style={styles.card}>
+          <ScrollView
+            refreshControl={
+              <RefreshControl
+                colors={['#009688']}
+                tintColor={'#009688'}
+                refreshing={this.props.isQuarterPickerLoading}
+                onRefresh={this.handleRefreshPulled}
+              />
+            }
+          >
             <View style={[styles.row, { alignItems: 'flex-start' }]}>
               <XPlatformTouchable onPress={this.handleTeamPickerPressed}>
                 <Text style={[styles.text, styles.h1]}>
@@ -252,9 +252,9 @@ class BoxScore extends Component {
             <BoxScorePositionSection stats={this.props.stats} section="rushing" />
             <BoxScorePositionSection stats={this.props.stats} section="receiving" />
             <BoxScorePositionSection stats={this.props.stats} section="kicking" />
-          </View>
+          </ScrollView>
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }
