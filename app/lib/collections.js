@@ -50,6 +50,29 @@ class Collections {
     }, {});
   }
 
+  static sortBy(selector, ascending = true) {
+    return (a1, a2) => {
+      const s1 = selector(a1);
+      const s2 = selector(a2);
+
+      if (s1 === s2) {
+        return 0;
+      }
+
+      if (ascending) {
+        if (s1 > s2) {
+          return 1;
+        }
+        return -1;
+      }
+
+      if (s1 < s2) {
+        return 1;
+      }
+      return -1;
+    };
+  }
+
   // since we seem to be using objects as dictionaries, or hashes.
   // ability to filter by dictionary key or value.
   static toDictionary(arr, keySelector = true, valueSelector = c => c) {
