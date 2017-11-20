@@ -3,19 +3,23 @@ import { Text, View, Picker, StyleSheet } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import {
-  quarterSelected,
   getSeasonYear,
   getQuarterNumber,
   getQuarterPickerWorkingSeason,
   getQuarterPickerWorkingQuarter,
   getIsQuarterPickerInitialized,
   getIsQuarterPickerLoading,
-  quarterChanged,
-} from './redux';
+} from './redux/reducers';
 
 import seasons from '../../data/yfflSeasons';
-import { workingSeasonSelected, workingQuarterSelected } from './redux/actions';
+import {
+  workingSeasonSelected,
+  workingQuarterSelected,
+  quarterSelected,
+  quarterDataRequested,
+} from './redux/actions';
 
 import XPlatformButton from '../../components/XPlatformButton';
 
@@ -161,7 +165,7 @@ class QuarterPicker extends Component {
 
     // TODO confirm if reducer is guarranteed to run
     if (isChanged) {
-      this.props.dispatch(quarterChanged());
+      this.props.dispatch(quarterDataRequested());
     }
 
     this.props.navigation.goBack();

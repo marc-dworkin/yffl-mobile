@@ -17,9 +17,9 @@ export const quarterSelected = () => ({
   type: QUARTER_SELECTED,
 });
 
-export const QUARTER_CHANGED = 'QUARTER_CHANGED';
-export const quarterChanged = () => ({
-  type: QUARTER_CHANGED,
+export const QUARTER_DATA_REQUESTED = 'QUARTER_DATA_REQUESTED';
+export const quarterDataRequested = () => ({
+  type: QUARTER_DATA_REQUESTED,
 });
 
 export const LINEUPS_LOADED = 'LINEUP_LOADED';
@@ -28,15 +28,15 @@ export const lineupsLoaded = value => ({
   value,
 });
 
-export const GAMEDATA_FAILED = 'GAMEDATA_FAILED';
+export const GAME_DATA_FAILED = 'GAME_DATA_FAILED';
 export const gameDataFailed = value => ({
-  type: GAMEDATA_FAILED,
+  type: GAME_DATA_FAILED,
   value,
 });
 
-export const GAMEDATA_LOADED = 'GAMEDATA_LOADED';
+export const GAME_DATA_LOADED = 'GAME_DATA_LOADED';
 export const gameDataLoaded = value => ({
-  type: GAMEDATA_LOADED,
+  type: GAME_DATA_LOADED,
   value,
 });
 
@@ -51,12 +51,12 @@ export const quarterPickerInitialized = () => ({
   type: QUARTERPICKER_INITIALIZED,
 });
 
-export const QUARTERDATA_LOADING = 'QUARTERDATA_LOADING';
+export const QUARTER_DATA_LOADING = 'QUARTER_DATA_LOADING';
 export const quarterDataLoading = () => ({
-  type: QUARTERDATA_LOADING,
+  type: QUARTER_DATA_LOADING,
 });
 
-export const QUARTERDATA_LOADED = 'QUARTERDATA_LOADED';
+export const QUARTER_DATA_LOADED = 'QUARTER_DATA_LOADED';
 export const quarterDataLoaded = () => ({
-  type: QUARTERDATA_LOADED,
+  type: QUARTER_DATA_LOADED,
 });

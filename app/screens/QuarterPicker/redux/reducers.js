@@ -6,10 +6,10 @@ import {
   QUARTERPICKER_INITIALIZED,
   QUARTER_SELECTED,
   LINEUPS_LOADED,
-  GAMEDATA_LOADED,
-  QUARTERDATA_LOADED,
-  QUARTERDATA_LOADING,
-  GAMEDATA_FAILED,
+  GAME_DATA_LOADED,
+  QUARTER_DATA_LOADED,
+  QUARTER_DATA_LOADING,
+  GAME_DATA_FAILED,
 } from './actions';
 
 // assume first year is current
@@ -22,6 +22,8 @@ export const initialState = {
     season: currentYear,
     quarter: currentQuarter,
   },
+  isQuarterPickerLoading: false,
+  isQuarterPickerInitialized: false,
 };
 
 export const getQuarterPickerState = (state = initialState) => {
@@ -85,9 +87,9 @@ export const QuarterPickerState = (state = initialState, action) => {
         res.lineups = action.value;
       }
       break;
-    case GAMEDATA_LOADED:
+    case GAME_DATA_LOADED:
       if (action.value != null) {
-        console.log(`GAMEDATA_LOADED: ${action.value.seasonYear} ${action.value.weekNumber}`);
+        console.log(`GAME_DATA_LOADED: ${action.value.seasonYear} ${action.value.weekNumber}`);
         res.gameData = action.value;
       }
       break;
@@ -115,13 +117,13 @@ export const QuarterPickerState = (state = initialState, action) => {
         };
       }
       break;
-    case QUARTERDATA_LOADED:
+    case QUARTER_DATA_LOADED:
       res.isQuarterPickerLoading = false;
       break;
-    case QUARTERDATA_LOADING:
+    case QUARTER_DATA_LOADING:
       res.isQuarterPickerLoading = true;
       break;
-    case GAMEDATA_FAILED:
+    case GAME_DATA_FAILED:
       console.log(action);
       break;
     default:

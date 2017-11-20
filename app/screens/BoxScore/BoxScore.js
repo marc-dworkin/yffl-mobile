@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, ActivityIndicator } from 'react-native';
+import { Text, View, ScrollView, RefreshControl } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { renderIf } from '../../lib/ReactNativeUtil';
 import XPlatformIcon from '../../components/XPlatformIcon';
 import XPlatformTouchable from '../../components/XPlatformTouchable';
 import BoxScorePositionSection from './BoxScorePositionSection';
@@ -17,6 +16,7 @@ import {
   getIsQuarterPickerInitialized,
   getIsQuarterPickerLoading,
   quarterPickerInitialized,
+  quarterDataRequested,
 } from '../QuarterPicker';
 import { getTeam } from '../TeamPicker';
 
@@ -195,6 +195,11 @@ class BoxScore extends Component {
     }
   }
 
+  handleRefreshPulled = () => {
+    // TODO: don't have to refresh all quarter data
+    this.props.dispatch(quarterDataRequested());
+  };
+
   handleQuarterPickerPressed = () => {
     this.props.navigation.navigate('QuarterPicker');
   };
@@ -205,51 +210,51 @@ class BoxScore extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.card}>
-          <View style={[styles.row, { alignItems: 'flex-start' }]}>
-            <XPlatformTouchable onPress={this.handleTeamPickerPressed}>
-              <Text style={[styles.text, styles.h1]}>
-                {this.props.team.name} ({this.props.team.owner}) &nbsp;
-                <XPlatformIcon name="arrow-dropdown" size={18} />
-              </Text>
-            </XPlatformTouchable>
-            <XPlatformTouchable onPress={this.handleQuarterPickerPressed}>
-              <Text style={styles.text}>
-                {this.props.season.year} Quarter {this.props.quarter.number}
-                &nbsp;
-                <XPlatformIcon name="arrow-dropdown" size={11} />
-              </Text>
-            </XPlatformTouchable>
-          </View>
-
-          <RadioMenu
-            selectedKey={this.props.week ? this.props.week.number : null}
-            options={this.props.quarter.weeks.map(c => ({
-              key: c.number,
-              value: `Week ${c.number}`,
-            }))}
-            onValueChange={(value) => {
-              //              console.log(`onValueChange ${value}`);
-              this.props.dispatch(weekSelected(value));
-            }}
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            colors={['#009688']}
+            tintColor={'#009688'}
+            refreshing={this.props.isQuarterPickerLoading}
+            onRefresh={this.handleRefreshPulled}
           />
-
-          {renderIf(
-            !this.props.isQuarterPickerLoading,
-            <ScrollView>
-              <BoxScorePositionSection stats={this.props.stats} section="passing" />
-              <BoxScorePositionSection stats={this.props.stats} section="rushing" />
-              <BoxScorePositionSection stats={this.props.stats} section="receiving" />
-              <BoxScorePositionSection stats={this.props.stats} section="kicking" />
-            </ScrollView>,
-          )}
-          {renderIf(
-            this.props.isQuarterPickerLoading,
-            <ActivityIndicator animating style={{ margin: 15 }} size={'large'} hidesWhenStopped />,
-          )}
+        }
+      >
+        <View style={styles.container}>
+          <View style={styles.card}>
+            <View style={[styles.row, { alignItems: 'flex-start' }]}>
+              <XPlatformTouchable onPress={this.handleTeamPickerPressed}>
+                <Text style={[styles.text, styles.h1]}>
+                  {this.props.team.name} ({this.props.team.owner}) &nbsp;
+                  <XPlatformIcon name="arrow-dropdown" size={18} />
+                </Text>
+              </XPlatformTouchable>
+              <XPlatformTouchable onPress={this.handleQuarterPickerPressed}>
+                <Text style={styles.text}>
+                  {this.props.season.year} Quarter {this.props.quarter.number}
+                  &nbsp;
+                  <XPlatformIcon name="arrow-dropdown" size={11} />
+                </Text>
+              </XPlatformTouchable>
+            </View>
+            <RadioMenu
+              selectedKey={this.props.week ? this.props.week.number : null}
+              options={this.props.quarter.weeks.map(c => ({
+                key: c.number,
+                value: `Week ${c.number}`,
+              }))}
+              onValueChange={(value) => {
+                //              console.log(`onValueChange ${value}`);
+                this.props.dispatch(weekSelected(value));
+              }}
+            />
+            <BoxScorePositionSection stats={this.props.stats} section="passing" />
+            <BoxScorePositionSection stats={this.props.stats} section="rushing" />
+            <BoxScorePositionSection stats={this.props.stats} section="receiving" />
+            <BoxScorePositionSection stats={this.props.stats} section="kicking" />
+          </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
