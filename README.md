@@ -4,8 +4,8 @@ Below you'll find information about performing common tasks. The most recent ver
 
 ## Table of Contents
 
-* [Release Notes] (#release-notes)
-  * [0.2.0] (#0.2.0)
+* [Release Notes](#release-notes)
+  * [0.2.0](#020)
 * [Updating to New Releases](#updating-to-new-releases)
 * [Available Scripts](#available-scripts)
   * [npm start](#npm-start)
