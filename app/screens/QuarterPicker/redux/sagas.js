@@ -2,14 +2,15 @@
 
 import { takeEvery, select, call, put, all } from 'redux-saga/effects';
 import {
-  QUARTER_CHANGED,
+  QUARTER_DATA_REQUESTED,
+  QUARTERPICKER_INITIALIZED,
   lineupsLoaded,
   lineupsFailed,
   gameDataLoaded,
   gameDataFailed,
   quarterDataLoading,
   quarterDataLoaded,
-  QUARTERPICKER_INITIALIZED,
+  quarterDataRequested,
 } from './actions';
 
 import { getSeasonYear, getQuarter, getQuarterName } from './reducers';
@@ -76,9 +77,13 @@ const quarterDataSaga = function* quarterDataSaga() {
   yield put(quarterDataLoaded());
 };
 
+const quarterPickerInitializedSaga = function* quarterPickerInitializedSaga() {
+  yield put(quarterDataRequested());
+};
+
 export const rootQuarterPickerSaga = function* rootBoxScoreSaga() {
-  yield takeEvery(QUARTER_CHANGED, quarterDataSaga);
-  yield takeEvery(QUARTERPICKER_INITIALIZED, quarterDataSaga);
+  yield takeEvery(QUARTER_DATA_REQUESTED, quarterDataSaga);
+  yield takeEvery(QUARTERPICKER_INITIALIZED, quarterPickerInitializedSaga);
 };
 
 export default rootQuarterPickerSaga;
