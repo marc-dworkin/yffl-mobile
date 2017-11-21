@@ -11,7 +11,7 @@ export const weekSelected = value => ({
 // ..reducers
 
 const initialState = {
-  week: null,
+  weekNumber: null,
 };
 
 export const getBoxScoreState = (state = initialState) => {
