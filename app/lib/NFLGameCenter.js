@@ -2,10 +2,9 @@ import { parseString } from 'react-native-xml2js';
 // import util from '../lib/util';
 
 function parseGameSideData(sideData, gameInfo) {
-  const passing = sideData.passing;
-  const rushing = sideData.rushing;
-  const receiving = sideData.receiving;
-  const kicking = sideData.kicking;
+  const {
+    passing, rushing, receiving, kicking,
+  } = sideData;
 
   const result = {};
 
@@ -58,6 +57,7 @@ function parseGameData(gameData, gameInfo) {
 }
 
 export const loadGameCenterGameData = async function loadGameCenterGameData(gameInfo) {
+  //  console.log('loadGameCenterGameData');
   const url = `http://www.nfl.com/liveupdate/game-center/${gameInfo.eid}/${gameInfo.eid}_gtd.json`;
   // console.log(url);
   const response = await fetch(url);
@@ -72,6 +72,7 @@ export const loadGameCenterGameData = async function loadGameCenterGameData(game
 };
 
 export const loadGameCenterSchedule = async function loadGameList(seasonYear, weekNumber) {
+  //  console.log('loadGameCenterSchedule');
   const url = `http://www.nfl.com/ajax/scorestrip?season=${seasonYear}&seasonType=REG&week=${weekNumber}`;
   //  console.log(url);
   const gameListResponse = await fetch(url);
@@ -126,15 +127,14 @@ export const loadGameCenterWeekData = async function loadGameCenterWeekData(
   // https://stackoverflow.com/questions/31424561/wait-until-all-es6-promises-complete-even-rejected-promises
   const results = await Promise.all(
     gameList.map(
-      c =>
-        new Promise(async (resolve) => {
-          try {
-            const gameData = await loadGameCenterGameData(c);
-            resolve(gameData);
-          } catch (error) {
-            resolve({ error });
-          }
-        }),
+      c => new Promise(async (resolve) => {
+        try {
+          const gameData = await loadGameCenterGameData(c);
+          resolve(gameData);
+        } catch (error) {
+          resolve({ error });
+        }
+      }),
     ),
   );
 

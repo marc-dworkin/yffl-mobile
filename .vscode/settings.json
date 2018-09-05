@@ -1,4 +1,5 @@
 {
+  "react-native-tools.logLevel": "Trace",
   "files.eol": "\n",
   "editor.tabSize": 2,
   "editor.formatOnSave": true,

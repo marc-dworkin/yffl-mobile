@@ -50,7 +50,9 @@ const styles = EStyleSheet.create({
   },
 });
 
-const XPlatformTouchable = ({ raised, onPress, children, style }) => {
+const XPlatformTouchable = ({
+  raised, onPress, children, style,
+}) => {
   // All Android Buttons should have the ripple effect
   if (Platform.OS === 'android') {
     // Raised Android buttons need a white ripple
@@ -60,7 +62,9 @@ const XPlatformTouchable = ({ raised, onPress, children, style }) => {
           onPress={onPress}
           background={TouchableNativeFeedback.Ripple('#FFF')}
         >
-          <View style={[styles.button, styles.buttonRaised, style]}>{children}</View>
+          <View style={[styles.button, styles.buttonRaised, style]}>
+            {children}
+          </View>
         </TouchableNativeFeedback>
       );
     }
@@ -68,7 +72,9 @@ const XPlatformTouchable = ({ raised, onPress, children, style }) => {
     // Normal Android buttons get a gray ripple
     return (
       <TouchableNativeFeedback onPress={onPress} background={TouchableNativeFeedback.Ripple()}>
-        <View style={style}>{children}</View>
+        <View style={style}>
+          {children}
+        </View>
       </TouchableNativeFeedback>
     );
   }
@@ -87,12 +93,23 @@ const XPlatformTouchable = ({ raised, onPress, children, style }) => {
   }
 
   // Normal iOS buttons use TouchableOpacity
-  return <TouchableOpacity onPress={onPress}>{children}</TouchableOpacity>;
+  return (
+    <TouchableOpacity onPress={onPress}>
+      {children}
+    </TouchableOpacity>
+  );
 };
 
 XPlatformTouchable.propTypes = {
   raised: PropTypes.bool,
   style: PropTypes.object,
+  onPress: PropTypes.func,
+  children: PropTypes.object,
+};
+
+XPlatformTouchable.defaultProps = {
+  raised: false,
+  style: {},
   onPress: PropTypes.func,
   children: PropTypes.object,
 };

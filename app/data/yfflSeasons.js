@@ -17,9 +17,30 @@ const quarters = [
 
 // will assume first year is most recent
 const seasons = [
-  { year: 2017, kickoffDate: moment('2017-09-07', 'YYYY-MM-DD'), isCurrent: 1, isPast: 0 },
-  { year: 2016, kickoffDate: moment('2016-09-08', 'YYYY-MM-DD'), isCurrent: 0, isPast: 1 },
-  { year: 2015, kickoffDate: moment('2015-09-10', 'YYYY-MM-DD'), isCurrent: 0, isPast: 1 },
+  {
+    year: 2018,
+    kickoffDate: moment('2018-09-06', 'YYYY-MM-DD'),
+    isCurrent: 1,
+    isPast: 0,
+  },
+  {
+    year: 2017,
+    kickoffDate: moment('2017-09-07', 'YYYY-MM-DD'),
+    isCurrent: 0,
+    isPast: 1,
+  },
+  {
+    year: 2016,
+    kickoffDate: moment('2016-09-08', 'YYYY-MM-DD'),
+    isCurrent: 0,
+    isPast: 1,
+  },
+  {
+    year: 2015,
+    kickoffDate: moment('2015-09-10', 'YYYY-MM-DD'),
+    isCurrent: 0,
+    isPast: 1,
+  },
 ];
 
 for (let i = 0; i < seasons.length; i += 1) {
@@ -51,11 +72,14 @@ for (let i = 0; i < seasons.length; i += 1) {
       });
     }
 
+    // todo: if past quaarter last week is current
+
     const qDates = moment().range(startDate, endDate);
     return {
       ...q,
       dates: qDates,
-      isCurrent: qDates.contains(today),
+      // if past season last quarter is current
+      isCurrent: s.isPast === 0 ? qDates.contains(today) : q.number === 4,
       isPast: today > qDates.end,
       weeks,
     };
@@ -64,6 +88,8 @@ for (let i = 0; i < seasons.length; i += 1) {
 
 export default seasons;
 
-export const currentYear = seasons[0];
-export const currentQuarter = currentYear.quarters.filter(s => s.isCurrent)[0];
-export const currentWeek = currentQuarter.weeks.filter(s => s.isCurrent)[0];
+export const currentYear = seasons.filter(s => today > s.kickoffDate)[0];
+// .filter(s => s.isCurrent)[0];
+export const currentQuarter = currentYear.quarters.filter(s => s.isCurrent)[0] || currentYear.quarters[3];
+export const currentWeek = currentQuarter.weeks.filter(s => s.isCurrent)[0]
+  || currentQuarter.weeks[currentQuarter.weeks.length - 1];

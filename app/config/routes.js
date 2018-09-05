@@ -1,7 +1,7 @@
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import BoxScore from '../screens/BoxScore';
-import QuarterPicker from '../screens/QuarterPicker';
-import TeamPicker from '../screens/TeamPicker';
+import { BoxScore } from '../containers/BoxScore';
+import { QuarterPicker } from '../containers/QuarterPicker';
+import { TeamPicker } from '../containers/TeamPicker';
 
 // Manifest of possible screens
 const MyTabNavigator = TabNavigator({

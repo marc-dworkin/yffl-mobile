@@ -1,14 +1,11 @@
 {
-  // https://github.com/facebook/react-native/issues/14838
   "presets": [
     "react-native",
     "babel-preset-expo"
   ],
   "env": {
     "development": {
-      "plugins": [
-        "transform-react-jsx-source"
-      ]
+      "plugins": ["transform-react-jsx-source"]
     }
   }
 }
