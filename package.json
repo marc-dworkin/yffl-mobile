@@ -1,20 +1,23 @@
 {
   "name": "yffl-mobile",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
+  "license": "UNLICENSED",
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^8.2.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-react-native": "^2.0.0",
     "eslint": "^4.5.0",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.3.0",
-    "jest-expo": "^20.0.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "jest-expo": "~27.0.0",
     "prettier": "^1.5.3",
     "prettier-eslint": "^6.4.2",
-    "react-native-scripts": "1.2.1",
-    "react-test-renderer": "16.0.0-alpha.12"
+    "react-native-scripts": "1.14.0",
+    "react-test-renderer": "16.3.1",
+    "remote-redux-devtools": "^0.5.12"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -22,30 +25,24 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch"
+    "test": "jest"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@expo/vector-icons": "^5.1.0",
-    "color": "^2.0.0",
-    "expo": "21.x.x",
-    "flow": "^0.2.3",
-    "flow-bin": "^0.59.0",
-    "hoist-non-react-statics": "^2.3.0",
-    "moment": "^2.19.0",
-    "moment-range": "^3.0.3",
-    "prop-types": "^15.5.10",
-    "react": "16.0.0-alpha.12",
-    "react-native": "0.48.x",
-    "react-native-dropdownalert": "^2.8.0",
-    "react-native-extended-stylesheet": "^0.6.0",
+    "expo": "^27.0.1",
+    "moment": "^2.22.2",
+    "moment-range": "^4.0.1",
+    "prop-types": "*",
+    "react": "16.3.1",
+    "react-native": "~0.55.2",
+    "react-native-extended-stylesheet": "*",
     "react-native-xml2js": "^1.0.3",
-    "react-navigation": "^1.0.0-beta.19",
-    "react-redux": "^5.0.6",
-    "redux": "^3.7.2",
-    "redux-logger": "^3.0.1",
-    "redux-saga": "^0.15.6"
+    "react-navigation": "*",
+    "react-redux": "*",
+    "redux": "*",
+    "redux-logger": "*",
+    "redux-saga": "*"
   }
 }

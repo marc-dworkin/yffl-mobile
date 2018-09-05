@@ -49,8 +49,8 @@ export default class RadioMenu extends Component {
   }
 
   render() {
-    console.log(`this.props.selectedKey: ${this.props.selectedKey}`);
-    console.log(`this.state.selectedKey: ${this.state.selectedKey}`);
+    // console.log(`this.props.selectedKey: ${this.props.selectedKey}`);
+    // console.log(`this.state.selectedKey: ${this.state.selectedKey}`);
     return (
       <View style={styles.container}>
         {this.props.options.map((p) => {

@@ -98,6 +98,16 @@ class Collections {
     }
     return arr;
   }
+  // https://stackoverflow.com/questions/1960473/get-all-unique-values-in-an-array-remove-duplicates
+  static distinct(arr, valueSelector = null) {
+    if (!valueSelector) {
+      return arr.filter((value, index, self) => self.indexOf(value) === index);
+    }
+    const valArr = arr.map(valueSelector);
+    return arr.filter(
+      (value, index) => valArr.indexOf(valueSelector(value)) === index
+    );
+  }
 }
 
 export default Collections;

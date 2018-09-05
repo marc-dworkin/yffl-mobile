@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Image, TouchableOpacity, StatusBar } from 'react-native';
+import { View, Image, ImageBackground, TouchableOpacity, StatusBar } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const styles = EStyleSheet.create({
@@ -53,7 +53,7 @@ const styles = EStyleSheet.create({
 
 const Header = ({ onPress }) => (
   <View style={styles.headerRow}>
-    <Image resizeMode="stretch" style={styles.bannerImage} source={require('../assets/banner.png')}>
+    <ImageBackground resizeMode="stretch" style={styles.bannerImage} source={require('../assets/banner.png')}>
       <TouchableOpacity onPress={onPress} style={styles.hamburgerButton}>
         <Image resizeMode="contain" source={require('../assets/hamburger_48.png')} />
       </TouchableOpacity>
@@ -62,7 +62,7 @@ const Header = ({ onPress }) => (
         style={styles.logoImage}
         source={require('../assets/yffl_128.png')}
       />
-    </Image>
+    </ImageBackground>
   </View>
 );
 
