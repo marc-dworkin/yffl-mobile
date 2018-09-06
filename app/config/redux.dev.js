@@ -1,34 +1,39 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-// import { composeWithDevTools } from 'remote-redux-devtools';
+import { composeWithDevTools } from 'remote-redux-devtools';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 // import { all } from 'redux-saga/effects';
-// import { combinedReducer, rootSaga } from '../containers';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+// import logger from 'redux-logger';
 
+import { reducers } from '../containers';
+
+const combinedReducer = combineReducers({
+  ...reducers,
+});
 
 const sagaMiddleware = createSagaMiddleware();
 
-const initialState = {
-};
+/*
+const sagaMiddleware = createSagaMiddleware();
+const middleware = [sagaMiddleware];
 
-export const appState = (state = initialState/* , action */) => {
-  const newState = {
-    ...state,
-  };
-  return newState;
-};
+if (process.env.NODE_ENV === 'doesnt seem useful') {
+  // 'development') {
+  //  middleware.push(logger);
+}
 
+const store = createStore(reducer, applyMiddleware(...middleware));
 
-export const combinedReducer = combineReducers({
-  appState,
-});
+sagaMiddleware.run(rootQuarterPickerSaga);
+
+export default store;
+*/
 
 const store = createStore(
   combinedReducer,
   //  initialState,
-  applyMiddleware(sagaMiddleware, logger),
+  composeWithDevTools(applyMiddleware(sagaMiddleware, logger)),
 );
-
 
 /*
 

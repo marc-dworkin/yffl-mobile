@@ -1,3 +1,10 @@
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('./redux.prod'); // eslint-disable-line global-require
+} else {
+  module.exports = require('./redux.dev'); // eslint-disable-line global-require
+}
+
+/*
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 // import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
@@ -34,3 +41,4 @@ const store = createStore(reducer, applyMiddleware(...middleware));
 sagaMiddleware.run(rootQuarterPickerSaga);
 
 export default store;
+*/
