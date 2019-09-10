@@ -1,4 +1,3 @@
-
 // Replaces newline with \r*\n and tab with \t
 export function encodeSlashes(str) {
   if (str) {
@@ -19,11 +18,16 @@ export function renderIf(condition, content) {
 }
 
 export function renderIfElse(
-  condition1, content1,
-  condition2, content2,
-  condition3, content3,
-  condition4, content4,
-  condition5, content5,
+  condition1,
+  content1,
+  condition2,
+  content2,
+  condition3,
+  content3,
+  condition4,
+  content4,
+  condition5,
+  content5,
 ) {
   if (condition1) {
     return content1;
@@ -42,6 +46,5 @@ export function renderIfElse(
   }
   return null;
 }
-
 
 export default null;

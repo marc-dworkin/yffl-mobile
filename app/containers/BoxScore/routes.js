@@ -1,4 +1,4 @@
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import BoxScore from './BoxScore';
 import QuarterPicker from '../QuarterPicker';
 import TeamPicker from '../TeamPicker';

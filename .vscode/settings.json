@@ -1,7 +1,13 @@
 {
-  "react-native-tools.logLevel": "Trace",
   "files.eol": "\n",
+  "files.exclude": {
+    "__bak__": true,
+  },
   "editor.tabSize": 2,
   "editor.formatOnSave": true,
-  "prettier.eslintIntegration": true
+  "prettier.eslintIntegration": true,
+  "search.exclude": {
+    "__bak__": true,
+  },
+  "react-native.packager.port": 19000
 }

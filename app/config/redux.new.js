@@ -7,10 +7,9 @@ import createSagaMiddleware from 'redux-saga';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const initialState = {
-};
+const initialState = {};
 
-export const appState = (state = initialState/* , action */) => {
+export const appState = (state = initialState /* , action */) => {
   const newState = {
     ...state,
   };
@@ -19,8 +18,8 @@ export const appState = (state = initialState/* , action */) => {
 
 export const combinedReducer = combineReducers({
   appState,
-//  feedListState,
-//  feedState
+  //  feedListState,
+  //  feedState
 });
 
 const store = createStore(
@@ -52,7 +51,6 @@ if (module.hot) {
   });
 }
 */
-
 
 /*
 if (process.env.NODE_ENV === 'production') {

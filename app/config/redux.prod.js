@@ -1,15 +1,22 @@
-import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { combinedReducer, rootSaga } from '../containers';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 
-// const configureStore = (history, initialState) => {
+import { rootQuarterPickerSaga } from '../containers/QuarterPicker';
+import { reducers } from '../containers';
+
+
+const combinedReducer = combineReducers({
+  ...reducers,
+});
+
 const sagaMiddleware = createSagaMiddleware();
+
 const store = createStore(
   combinedReducer,
   // initialState,
-  applyMiddleware(sagaMiddleware)
+  applyMiddleware(sagaMiddleware),
 );
 
-sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootQuarterPickerSaga);
 
 export default store;

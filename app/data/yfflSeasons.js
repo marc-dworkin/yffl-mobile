@@ -8,20 +8,37 @@ extendMoment(window.moment);
 
 const today = moment();
 
-const quarters = [
-  { name: 'q1', number: 1, weekCount: 3 },
-  { name: 'q2', number: 2, weekCount: 4 },
-  { name: 'q3', number: 3, weekCount: 3 },
-  { name: 'q4', number: 4, weekCount: 3 },
-];
+
+const quarters = (year) => {
+  if (year >= 2019) {
+    return [
+      { name: 'q1', number: 1, weekCount: 3 },
+      { name: 'q2', number: 2, weekCount: 3 },
+      { name: 'q3', number: 3, weekCount: 3 },
+      { name: 'q4', number: 4, weekCount: 3 },
+    ];
+  }
+  return [
+    { name: 'q1', number: 1, weekCount: 3 },
+    { name: 'q2', number: 2, weekCount: 4 },
+    { name: 'q3', number: 3, weekCount: 3 },
+    { name: 'q4', number: 4, weekCount: 3 },
+  ];
+};
 
 // will assume first year is most recent
 const seasons = [
   {
-    year: 2018,
-    kickoffDate: moment('2018-09-06', 'YYYY-MM-DD'),
+    year: 2019,
+    kickoffDate: moment('2019-09-05', 'YYYY-MM-DD'),
     isCurrent: 1,
     isPast: 0,
+  },
+  {
+    year: 2018,
+    kickoffDate: moment('2018-09-06', 'YYYY-MM-DD'),
+    isCurrent: 0,
+    isPast: 1,
   },
   {
     year: 2017,
@@ -49,7 +66,7 @@ for (let i = 0; i < seasons.length; i += 1) {
   let firstWeekNumber = 0;
   let endDate = s.kickoffDate.clone().add(-1, 'millisecond');
   // assume quarters in order
-  s.quarters = quarters.map((q) => {
+  s.quarters = quarters(s.year).map((q) => {
     const startDate = endDate.clone().add(1, 'millisecond');
     endDate = startDate
       .clone()
@@ -88,8 +105,10 @@ for (let i = 0; i < seasons.length; i += 1) {
 
 export default seasons;
 
-export const currentYear = seasons.filter(s => today > s.kickoffDate)[0];
+export const currentYear = seasons.filter((s) => today > s.kickoffDate)[0];
 // .filter(s => s.isCurrent)[0];
-export const currentQuarter = currentYear.quarters.filter(s => s.isCurrent)[0] || currentYear.quarters[3];
-export const currentWeek = currentQuarter.weeks.filter(s => s.isCurrent)[0]
+export const currentQuarter = currentYear
+  .quarters.filter((s) => s.isCurrent)[0] || currentYear.quarters[3];
+
+export const currentWeek = currentQuarter.weeks.filter((s) => s.isCurrent)[0]
   || currentQuarter.weeks[currentQuarter.weeks.length - 1];
