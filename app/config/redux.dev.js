@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { composeWithDevTools } from 'remote-redux-devtools';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
@@ -5,6 +6,7 @@ import createSagaMiddleware from 'redux-saga';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 // import logger from 'redux-logger';
 
+import { rootQuarterPickerSaga } from '../containers/QuarterPicker';
 import { reducers } from '../containers';
 
 const combinedReducer = combineReducers({
@@ -13,27 +15,12 @@ const combinedReducer = combineReducers({
 
 const sagaMiddleware = createSagaMiddleware();
 
-/*
-const sagaMiddleware = createSagaMiddleware();
-const middleware = [sagaMiddleware];
-
-if (process.env.NODE_ENV === 'doesnt seem useful') {
-  // 'development') {
-  //  middleware.push(logger);
-}
-
-const store = createStore(reducer, applyMiddleware(...middleware));
-
-sagaMiddleware.run(rootQuarterPickerSaga);
-
-export default store;
-*/
-
 const store = createStore(
   combinedReducer,
   //  initialState,
   composeWithDevTools(applyMiddleware(sagaMiddleware, logger)),
 );
+sagaMiddleware.run(rootQuarterPickerSaga);
 
 /*
 
@@ -58,7 +45,5 @@ if (module.hot) {
   });
 }
 */
-
-sagaMiddleware.run(rootSaga);
 
 export default store;
