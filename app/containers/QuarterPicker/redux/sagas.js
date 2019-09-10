@@ -53,7 +53,7 @@ const loadGameData = function* loadGameData() {
 const loadLineupsFunc = (seasonYear, quarterName) => {
   //  const url = `https://storage.googleapis.com/y_1993/live-scoring/${quarterName}-${seasonYear}-lineups.json`;
   const url = `http://dlewis.net/yffl/lineups/${quarterName}-${seasonYear}-lineups.json`;
-  console.log(`loadLineupsFunc: ${url}`);
+ // console.log(`loadLineupsFunc: ${url}`);
   return fetch(url);
 };
 
