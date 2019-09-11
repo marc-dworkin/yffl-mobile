@@ -1,34 +1,26 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-// import { composeWithDevTools } from 'remote-redux-devtools';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { composeWithDevTools } from 'remote-redux-devtools';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 // import { all } from 'redux-saga/effects';
-// import { combinedReducer, rootSaga } from '../containers';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+// import logger from 'redux-logger';
 
+import { rootQuarterPickerSaga } from '../containers/QuarterPicker';
+import { reducers } from '../containers';
+
+const combinedReducer = combineReducers({
+  ...reducers,
+});
 
 const sagaMiddleware = createSagaMiddleware();
-
-const initialState = {
-};
-
-export const appState = (state = initialState/* , action */) => {
-  const newState = {
-    ...state,
-  };
-  return newState;
-};
-
-
-export const combinedReducer = combineReducers({
-  appState,
-});
 
 const store = createStore(
   combinedReducer,
   //  initialState,
-  applyMiddleware(sagaMiddleware, logger),
+  composeWithDevTools(applyMiddleware(sagaMiddleware, logger)),
 );
-
+sagaMiddleware.run(rootQuarterPickerSaga);
 
 /*
 
@@ -53,7 +45,5 @@ if (module.hot) {
   });
 }
 */
-
-sagaMiddleware.run(rootSaga);
 
 export default store;

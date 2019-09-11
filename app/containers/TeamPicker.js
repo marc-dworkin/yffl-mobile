@@ -13,7 +13,7 @@ import teams from '../data/teams';
 export const WORKING_TEAM_SELECTED = 'WORKING_TEAM_SELECTED';
 export const TEAM_SELECTED = 'TEAM_SELECTED';
 
-export const workingTeamSelected = value => ({
+export const workingTeamSelected = (value) => ({
   type: WORKING_TEAM_SELECTED,
   value,
 });
@@ -38,9 +38,9 @@ export const getTeamPickerState = (state = initialState) => {
   return state;
 };
 
-export const getTeam = state => getTeamPickerState(state || initialState).team;
+export const getTeam = (state) => getTeamPickerState(state || initialState).team;
 
-export const getWorkingTeam = state => getTeamPickerState(state || initialState).workingTeam
+export const getWorkingTeam = (state) => getTeamPickerState(state || initialState).workingTeam
   // if workingteam not defined, team is workingteam
   || getTeamPickerState(state).team;
 
@@ -56,7 +56,7 @@ export const TeamPickerState = (state = initialState, action) => {
     case WORKING_TEAM_SELECTED:
       if (action.value != null) {
         res.workingTeam = teams.find(
-          t => t.owner === action.value
+          (t) => t.owner === action.value
             || t.name === action.value
             || t.number === parseInt(action.value, 10),
         );
@@ -76,7 +76,7 @@ const styles = EStyleSheet.create({
 });
 
 // component
-const TeamPicker = props => (
+const TeamPicker = (props) => (
   //  console.log(props);
   <ModalForm
     caption="Select Team"
@@ -99,7 +99,7 @@ const TeamPicker = props => (
           props.dispatch(workingTeamSelected(value));
         }}
       >
-        {teams.map(t => (
+        {teams.map((t) => (
           <Picker.Item
             value={t.number.toString()}
             key={t.number.toString()}

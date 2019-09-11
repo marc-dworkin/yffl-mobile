@@ -122,8 +122,12 @@ const styles = EStyleSheet.create({
   },
 });
 
+// TODO: Clean Up
+/* eslint-disable react/destructuring-assignment, react/forbid-prop-types */
+
+
 class BoxScore extends Component {
-  static mapStateToProps = (state) => {
+  static mapStateToProps(state) {
     // TODO: maybe these should be more primative, or more typesafe?
     const season = getSeason(state);
     const quarter = getQuarter(state);
@@ -137,21 +141,24 @@ class BoxScore extends Component {
     const firstWeekInQuarter = quarter ? quarter.weeks[0] : null;
 
     const week = weekNumber && quarter
-      ? quarter.weeks.filter(c => c.number === weekNumber)[0]
+      ? quarter.weeks.filter((c) => c.number === weekNumber)[0]
       : firstWeekInQuarter;
 
     const isQuarterPickerInitialized = getIsQuarterPickerInitialized(state);
     const isQuarterPickerLoading = getIsQuarterPickerLoading(state);
     const lineup = lineups != null
-      ? collections.toDictionary(lineups.filter(c => c.yffl_team === team.number), c => c.gsis_id)
+      ? collections.toDictionary(
+        lineups.filter((c) => c.yffl_team === team.number),
+        (c) => c.gsis_id,
+      )
       : {};
 
     const rawGameData = getGameData(state);
 
     const weekData = rawGameData != null
       ? rawGameData
-        .filter(c => c.seasonYear === season.year && c.weekNumber === week.number)
-        .map(c => c.weekData)[0]
+        .filter((c) => c.seasonYear === season.year && c.weekNumber === week.number)
+        .map((c) => c.weekData)[0]
       : {};
 
     const stats = {};
@@ -179,29 +186,7 @@ class BoxScore extends Component {
       isQuarterPickerInitialized,
       isQuarterPickerLoading,
     };
-  };
-
-  static propTypes = {
-    navigation: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired,
-    season: PropTypes.object,
-    week: PropTypes.object,
-    quarter: PropTypes.object,
-    team: PropTypes.object,
-    stats: PropTypes.object,
-    isQuarterPickerInitialized: PropTypes.bool,
-    isQuarterPickerLoading: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    season: currentYear,
-    week: currentWeek,
-    quarter: currentQuarter,
-    team: teams[0],
-    stats: null,
-    isQuarterPickerInitialized: false,
-    isQuarterPickerLoading: false,
-  };
+  }
 
   componentDidMount() {
     if (!this.props.isQuarterPickerInitialized) {
@@ -235,7 +220,7 @@ class BoxScore extends Component {
                 refreshing={this.props.isQuarterPickerLoading}
                 onRefresh={this.handleRefreshPulled}
               />
-)}
+            )}
           >
             <View style={[styles.row, { alignItems: 'flex-start' }]}>
               <XPlatformTouchable onPress={this.handleTeamPickerPressed}>
@@ -243,7 +228,7 @@ class BoxScore extends Component {
                   {this.props.team && this.props.team.name}
                   &nbsp;(
                   {this.props.team && this.props.team.owner}
-) &nbsp;
+                  ) &nbsp;
                   <XPlatformIcon name="arrow-dropdown" size={18} />
                 </Text>
               </XPlatformTouchable>
@@ -261,7 +246,7 @@ class BoxScore extends Component {
               selectedKey={this.props.week ? this.props.week.number : null}
               options={
                 this.props.quarter
-                && this.props.quarter.weeks.map(c => ({
+                && this.props.quarter.weeks.map((c) => ({
                   key: c.number,
                   value: `Week ${c.number}`,
                 }))
@@ -281,5 +266,32 @@ class BoxScore extends Component {
     );
   }
 }
+
+// {navigation, dispatch, season, week, quarter, team, stats,
+// isQuarterPickerInitialized, isQuarterPickerLoading}
+
+
+BoxScore.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  season: PropTypes.object,
+  week: PropTypes.object,
+  quarter: PropTypes.object,
+  team: PropTypes.object,
+  stats: PropTypes.object,
+  isQuarterPickerInitialized: PropTypes.bool,
+  isQuarterPickerLoading: PropTypes.bool,
+};
+
+BoxScore.defaultProps = {
+  season: currentYear,
+  week: currentWeek,
+  quarter: currentQuarter,
+  team: teams[0],
+  stats: null,
+  isQuarterPickerInitialized: false,
+  isQuarterPickerLoading: false,
+};
+
 
 export default connect(BoxScore.mapStateToProps)(BoxScore);

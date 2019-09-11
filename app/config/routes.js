@@ -1,7 +1,16 @@
-import { TabNavigator, StackNavigator } from 'react-navigation';
-import { BoxScore } from '../containers/BoxScore';
-import { QuarterPicker } from '../containers/QuarterPicker';
-import { TeamPicker } from '../containers/TeamPicker';
+import {
+  TabNavigator,
+  StackNavigator,
+} from 'react-navigation';
+import {
+  BoxScore,
+} from '../containers/BoxScore';
+import {
+  QuarterPicker,
+} from '../containers/QuarterPicker';
+import {
+  TeamPicker,
+} from '../containers/TeamPicker';
 
 // Manifest of possible screens
 const MyTabNavigator = TabNavigator({
@@ -13,24 +22,24 @@ const MyTabNavigator = TabNavigator({
   },
 });
 
-export const BoxScoreNavigator = StackNavigator(
-  {
-    BoxScore: {
-      screen: BoxScore,
-    },
-    QuarterPicker: {
-      screen: QuarterPicker,
-    },
-    TeamPicker: {
-      screen: TeamPicker,
-    },
+export const BoxScoreNavigator = StackNavigator({
+  BoxScore: {
+    screen: BoxScore,
   },
-  {
-    mode: 'modal',
-    headerMode: 'none ',
-    // https://github.com/react-community/react-navigation/issues/864
-    cardStyle: { backgroundColor: 'transparent', opacity: 1 },
+  QuarterPicker: {
+    screen: QuarterPicker,
   },
-);
+  TeamPicker: {
+    screen: TeamPicker,
+  },
+}, {
+  mode: 'modal',
+  headerMode: 'none ',
+  // https://github.com/react-community/react-navigation/issues/864
+  cardStyle: {
+    backgroundColor: 'transparent',
+    opacity: 1,
+  },
+});
 
 export default MyTabNavigator;

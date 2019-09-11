@@ -49,7 +49,7 @@ export const getQuarterPickerWorkingWeekNumber = state => getQuarterPickerWorkin
 
 // for other components
 export const getSeason = (state) => {
-  console.log(state || initialState);
+//  console.log(state || initialState);
   return getQuarterPickerState(state || initialState).season;
 };
 
