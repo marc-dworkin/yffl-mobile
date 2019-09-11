@@ -3,6 +3,7 @@
 import {
   takeEvery, select, call, put, all,
 } from 'redux-saga/effects';
+
 import {
   QUARTER_DATA_REQUESTED,
   QUARTERPICKER_INITIALIZED,
@@ -18,6 +19,7 @@ import {
 import { getSeasonYear, getQuarter, getQuarterName } from './reducers';
 
 import { loadGameCenterWeekData } from '../../../lib/NFLGameCenter';
+import { log, LOG_LEVEL_ERROR, LOG_LEVEL_INFO } from '../../../lib/util';
 
 const loadGameData = function* loadGameData() {
   //  console.log('loadGameData');
@@ -29,7 +31,7 @@ const loadGameData = function* loadGameData() {
 
     const results = yield Promise.all(
       quarter.weeks.map(
-        w => new Promise(async (resolve) => {
+        (w) => new Promise(async (resolve) => {
           const weekNumber = w.number;
           try {
             // https://stackoverflow.com/questions/31424561/wait-until-all-es6-promises-complete-even-rejected-promises
@@ -45,7 +47,7 @@ const loadGameData = function* loadGameData() {
     //      console.log(`Object.keys(result).length: ${Object.keys(result).length}`);
     yield put(gameDataLoaded(results));
   } catch (error) {
-    console.log(`error: ${error}`);
+    log(`error: ${error}`, LOG_LEVEL_ERROR);
     yield put(gameDataFailed(error.message));
   }
 };
@@ -53,7 +55,7 @@ const loadGameData = function* loadGameData() {
 const loadLineupsFunc = (seasonYear, quarterName) => {
   //  const url = `https://storage.googleapis.com/y_1993/live-scoring/${quarterName}-${seasonYear}-lineups.json`;
   const url = `http://dlewis.net/yffl/lineups/${quarterName}-${seasonYear}-lineups.json`;
-  console.log(`loadLineupsFunc: ${url}`);
+  log(`loadLineupsFunc: ${url}`, LOG_LEVEL_INFO);
   return fetch(url);
 };
 

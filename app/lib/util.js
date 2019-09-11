@@ -1,3 +1,18 @@
+
+// TODO: Add More
+export const LOG_LEVEL_INFO = 'LOG_LEVEL_INFO';
+export const LOG_LEVEL_ERROR = 'LOG_LEVEL_ERROR';
+
+export const log = (msg, logLevel) => {
+  if (__DEV__) {
+    // eslint-disable-next-line no-console
+    console.tron.log(msg);
+  } else if (logLevel === LOG_LEVEL_ERROR) {
+    // eslint-disable-next-line no-console
+    console.log(msg);
+  }
+};
+
 // Replaces newline with \r*\n and tab with \t
 export function encodeSlashes(str) {
   if (str) {
