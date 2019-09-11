@@ -6,6 +6,9 @@ import createSagaMiddleware from 'redux-saga';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 // import logger from 'redux-logger';
 
+import ReactotronConfig from './ReactotronConfig';
+
+
 import { rootQuarterPickerSaga } from '../containers/QuarterPicker';
 import { reducers } from '../containers';
 
@@ -13,13 +16,16 @@ const combinedReducer = combineReducers({
   ...reducers,
 });
 
-const sagaMiddleware = createSagaMiddleware();
+// const sagaMiddleware = createSagaMiddleware();
+const sagaMonitor = ReactotronConfig.createSagaMonitor();
+const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
 
 const store = createStore(
   combinedReducer,
   //  initialState,
-  composeWithDevTools(applyMiddleware(sagaMiddleware, logger)),
+  composeWithDevTools(applyMiddleware(sagaMiddleware, logger), ReactotronConfig.createEnhancer()),
 );
+
 sagaMiddleware.run(rootQuarterPickerSaga);
 
 /*
