@@ -1,3 +1,6 @@
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable react/static-property-placement */
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 
 import {
@@ -17,9 +20,7 @@ import {
   getIsQuarterPickerLoading,
 } from './redux/reducers';
 
-import seasons, {
-  currentYear, currentQuarter
-} from '../../data/yfflSeasons';
+import seasons from '../../data/yfflSeasons';
 
 
 import {
@@ -180,7 +181,7 @@ class QuarterPicker extends Component {
 
     // TODO confirm if reducer is guarranteed to run
     if (isChanged) {
-      this.props.dispatch(quarterDataRequested());
+      this.props.dispatch(quarterDataRequested('QuarterPicker.isChanged'));
     }
 
     this.props.navigation.goBack();
@@ -188,6 +189,7 @@ class QuarterPicker extends Component {
 
   handleCancelPressed = () => {
     // TODO: Revert working to current
+    // eslint-disable-next-line react/destructuring-assignment
     this.props.navigation.goBack();
   };
 
@@ -206,9 +208,9 @@ class QuarterPicker extends Component {
               <Picker
                 style={styles.picker}
                 selectedValue={this.props.workingSeason.year.toString()}
-                onValueChange={value => this.handleYearPressed(value)}
+                onValueChange={(value) => this.handleYearPressed(value)}
               >
-                {seasons.map(s => (
+                {seasons.map((s) => (
                   <Picker.Item
                     key={s.year.toString()}
                     value={s.year.toString()}
@@ -225,11 +227,11 @@ class QuarterPicker extends Component {
               <Picker
                 selectedValue={this.props.workingQuarter.number.toString()}
                 style={styles.picker}
-                onValueChange={value => this.handleQuarterPressed(value)}
+                onValueChange={(value) => this.handleQuarterPressed(value)}
               >
                 {this.props.workingSeason.quarters
-                  .filter(q => q.isPast || q.isCurrent)
-                  .map(s => (
+                  .filter((q) => q.isPast || q.isCurrent)
+                  .map((s) => (
                     <Picker.Item
                       key={s.number.toString()}
                       value={s.number.toString()}

@@ -5,6 +5,7 @@ import { BoxScoreNavigator, BoxScoreState } from './BoxScore';
 
 export default null;
 
+// TODO: What is this for?  url?
 const BoxScoreNavigationState = (state, action) => {
   const newState = BoxScoreNavigator.router.getStateForAction(action, state);
   return newState || { ...state };

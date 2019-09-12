@@ -53,7 +53,7 @@ function parseGameData(gameData, gameInfo) {
   }
   const homeStats = parseGameSideData(gameData.home.stats, gameInfo);
   const awayStats = parseGameSideData(gameData.away.stats, gameInfo);
-  return Object.assign({}, homeStats, awayStats);
+  return { ...homeStats, ...awayStats};
 }
 
 export const loadGameCenterGameData = async function loadGameCenterGameData(gameInfo) {
@@ -105,7 +105,7 @@ export const loadGameCenterSchedule = async function loadGameList(seasonYear, we
     gameList = result.ss.gms[0].g;
   });
 
-  return gameList.map(c => c.$).map(c => ({
+  return gameList.map((c) => c.$).map((c) => ({
     eid: c.eid,
     HomeTeamName: c.h,
     HomeTeamScore: c.hs,
@@ -127,7 +127,7 @@ export const loadGameCenterWeekData = async function loadGameCenterWeekData(
   // https://stackoverflow.com/questions/31424561/wait-until-all-es6-promises-complete-even-rejected-promises
   const results = await Promise.all(
     gameList.map(
-      c => new Promise(async (resolve) => {
+      (c) => new Promise(async (resolve) => {
         try {
           const gameData = await loadGameCenterGameData(c);
           resolve(gameData);

@@ -1,13 +1,14 @@
 {
   "files.eol": "\n",
   "files.exclude": {
-    "__bak__": true,
+    "__BAK__": true,
+    "__REF__": true,
   },
   "editor.tabSize": 2,
   "editor.formatOnSave": true,
   "prettier.eslintIntegration": true,
   "search.exclude": {
-    "__bak__": true,
+    "__BAK__": true,
   },
-  "react-native.packager.port": 19000
+  "react-native.packager.port": 19001
 }

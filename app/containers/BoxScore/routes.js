@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import BoxScore from './BoxScore';
+import BoxScoreScreen from './BoxScoreScreen';
 import QuarterPicker from '../QuarterPicker';
 import TeamPicker from '../TeamPicker';
 
@@ -7,7 +7,7 @@ import TeamPicker from '../TeamPicker';
 export const BoxScoreNavigator = createStackNavigator(
   {
     BoxScore: {
-      screen: BoxScore,
+      screen: BoxScoreScreen,
     },
     QuarterPicker: {
       screen: QuarterPicker,

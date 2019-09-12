@@ -1,12 +1,12 @@
 // actions
 export const WORKING_SEASON_SELECTED = 'WORKING_SEASON_SELECTED';
-export const workingSeasonSelected = value => ({
+export const workingSeasonSelected = (value) => ({
   type: WORKING_SEASON_SELECTED,
   value: parseInt(value, 10),
 });
 
 export const WORKING_QUARTER_SELECTED = 'WORKING_QUARTER_SELECTED';
-export const workingQuarterSelected = value => ({
+export const workingQuarterSelected = (value) => ({
   type: WORKING_QUARTER_SELECTED,
   value: parseInt(value, 10),
 });
@@ -18,30 +18,31 @@ export const quarterSelected = () => ({
 });
 
 export const QUARTER_DATA_REQUESTED = 'QUARTER_DATA_REQUESTED';
-export const quarterDataRequested = () => ({
+export const quarterDataRequested = (source) => ({
   type: QUARTER_DATA_REQUESTED,
+  value: { source },
 });
 
 export const LINEUPS_LOADED = 'LINEUP_LOADED';
-export const lineupsLoaded = value => ({
+export const lineupsLoaded = (value) => ({
   type: LINEUPS_LOADED,
   value,
 });
 
 export const GAME_DATA_FAILED = 'GAME_DATA_FAILED';
-export const gameDataFailed = value => ({
+export const gameDataFailed = (value) => ({
   type: GAME_DATA_FAILED,
   value,
 });
 
 export const GAME_DATA_LOADED = 'GAME_DATA_LOADED';
-export const gameDataLoaded = value => ({
+export const gameDataLoaded = (value) => ({
   type: GAME_DATA_LOADED,
   value,
 });
 
 export const LINEUP_FAILED = 'LINEUP_FAILED';
-export const lineupsFailed = value => ({
+export const lineupsFailed = (value) => ({
   type: LINEUP_FAILED,
   value,
 });

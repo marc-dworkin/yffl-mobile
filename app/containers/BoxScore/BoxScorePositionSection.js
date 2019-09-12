@@ -1,11 +1,13 @@
 import React from 'react';
-import { Text, ScrollView, FlatList, View, StyleSheet } from 'react-native';
+import {
+  Text, ScrollView, FlatList, View, StyleSheet,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import PropTypes from 'prop-types';
 
 import { getYFFLPoints } from '../../lib/yffl';
 
-import collections from './../../lib/collections';
+import collections from '../../lib/collections';
 
 const styles = EStyleSheet.create({
   dataRow: {
@@ -72,26 +74,25 @@ const styles = EStyleSheet.create({
 });
 
 const BoxScorePositionSection = (props) => {
-  const sectionStatsRaw =
-    props.stats != null
-      ? collections.filter(
-        props.stats,
-        () => true,
-        c => Object.prototype.hasOwnProperty.call(c.gameData, props.section),
-      )
-      : {};
+  const sectionStatsRaw = props.stats != null
+    ? collections.filter(
+      props.stats,
+      () => true,
+      (c) => Object.prototype.hasOwnProperty.call(c.gameData, props.section),
+    )
+    : {};
 
   //  console.log(Object.values(sectionStatsRaw)[0]);
 
   const sectionStats = Object.values(
-    collections.map(sectionStatsRaw, c => ({
+    collections.map(sectionStatsRaw, (c) => ({
       key: `player_${props.section}_${c.player.nfl_id}`,
       player: c.player,
       gameData: c.gameData[props.section],
       gameInfo: c.gameData.gameInfo,
       yfflPoints: getYFFLPoints(props.section, c.gameData[props.section]),
     })),
-  ).sort(collections.sortBy(c => c.yfflPoints, false));
+  ).sort(collections.sortBy((c) => c.yfflPoints, false));
 
   // no-return-assign so have to do in seperat loop
   for (let i = 0; i < sectionStats.length; i += 1) {
@@ -101,24 +102,23 @@ const BoxScorePositionSection = (props) => {
 
   //  console.log(sectionStats[0]);
 
-  const positionStatNames =
-    sectionStats != null && sectionStats.length > 0
-      ? // derive by position stats from what nfl provides
-      Object.keys(sectionStats[0].gameData)
+  const positionStatNames = sectionStats != null && sectionStats.length > 0
+    ? // derive by position stats from what nfl provides
+    Object.keys(sectionStats[0].gameData)
       // skip name
-        .slice(1)
+      .slice(1)
       // skip lngtd
-        .filter(c => !['lngtd', 'totpfg', 'xpmissed', 'xptot'].includes(c))
-        .map(c => ({
-          display: c
-            .replace('twop', '2P')
-            .replace('xpmade', 'Xpm')
-            .replace('fgyds', 'lng')
-            .toUpperCase(),
-          value: c,
-          key: `stat_${props.section}_${c}`,
-        }))
-      : [];
+      .filter((c) => !['lngtd', 'totpfg', 'xpmissed', 'xptot'].includes(c))
+      .map((c) => ({
+        display: c
+          .replace('twop', '2P')
+          .replace('xpmade', 'Xpm')
+          .replace('fgyds', 'lng')
+          .toUpperCase(),
+        value: c,
+        key: `stat_${props.section}_${c}`,
+      }))
+    : [];
 
   return (
     <View>
@@ -130,7 +130,7 @@ const BoxScorePositionSection = (props) => {
             <Text style={[styles.text, styles.th, styles.teamNameData]}>Team</Text>
             <Text style={[styles.text, styles.th, styles.teamNameData]}>Opp</Text>
             <Text style={[styles.text, styles.th, styles.statData]}>PTS</Text>
-            {positionStatNames.map(c => (
+            {positionStatNames.map((c) => (
               <Text style={[styles.text, styles.th, styles.statData]} key={c.key}>
                 {c.display}
               </Text>
@@ -140,7 +140,10 @@ const BoxScorePositionSection = (props) => {
             renderItem={({ item }) => (
               <View style={[styles.dataRow, item.isAltRow && styles.altRow]}>
                 <Text style={[styles.text, styles.playerNameData]}>
-                  {item.player.last_name}, {item.player.first_name}
+                  {item.player.last_name}
+                  ,
+                  {' '}
+                  {item.player.first_name}
                 </Text>
                 <Text style={[styles.text, styles.teamNameData]}>{item.player.nfl_team}</Text>
                 <Text style={[styles.text, styles.teamNameData]}>
@@ -149,7 +152,7 @@ const BoxScorePositionSection = (props) => {
                     : item.gameInfo.RoadTeamName}
                 </Text>
                 <Text style={[styles.text, styles.statData, styles.data]}>{item.yfflPoints}</Text>
-                {positionStatNames.map(c => (
+                {positionStatNames.map((c) => (
                   <Text
                     style={[styles.text, styles.statData, styles.data]}
                     key={`${c.key}_${item.key}`}
