@@ -1,18 +1,37 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import {
-  Text, View, ScrollView, RefreshControl, FlatList,
+  Text, View, ScrollView, RefreshControl, FlatList, StyleSheet,
 } from 'react-native';
 
 import EStyleSheet from 'react-native-extended-stylesheet';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { PropTypes } from 'prop-types';
+
+import { useNavigation } from 'react-navigation-hooks';
 
 import XPlatformIcon from '../../components/XPlatformIcon';
 import XPlatformTouchable from '../../components/XPlatformTouchable';
 // import teams from '../../data/teams';
 
+import teams from '../../data/teams';
+
+
 import ScoreBoardItem from './ScoreBoardItem';
-import { quarterDataRequested } from '../QuarterPicker';
+import {
+  getTeamPlayerWeekData,
+  quarterDataRequested,
+  getIsQuarterPickerLoading,
+  getSeason,
+  getQuarter,
+  getIsQuarterPickerInitialized,
+  quarterPickerInitialized,
+} from '../QuarterPicker';
+
+// eslint-disable-next-line no-unused-vars
+import { log, LOG_LEVEL_INFO } from '../../lib/util';
+
 /*
 import {
   getSeason,
@@ -47,6 +66,9 @@ const styles = EStyleSheet.create({
     },
   },
 
+
+  statContainer: {},
+
   row: {
     flexDirection: 'row',
     flexWrap: 'nowrap',
@@ -66,6 +88,21 @@ const styles = EStyleSheet.create({
     justifyContent: 'flex-start',
   },
 
+
+  headerRow: {
+    flexDirection: 'row',
+    borderBottomColor: '#dcdddf',
+    borderBottomWidth: 1,
+    borderTopColor: '#dcdddf',
+    borderTopWidth: 1,
+  },
+
+  dataRow: {
+    flexDirection: 'row',
+    borderBottomColor: '#f1f2f3',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+
   text: {
     // https://medium.com/differential/better-cross-platform-react-native-components-cb8aadeba472
     fontFamily: 'System',
@@ -76,6 +113,7 @@ const styles = EStyleSheet.create({
     padding: 3,
     marginLeft: 3,
   },
+
 
   h1: {
     color: '#6c6d6f',
@@ -97,122 +135,270 @@ const styles = EStyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
   },
+
+  yfflTeamNameData: {
+    width: 120,
+  },
+
+  statData: {
+    width: 40,
+  },
+
+  altRow: {
+    backgroundColor: '#f7f8f9',
+  },
+
 });
 
-class ScoreBoard extends Component {
-  static mapStateToProps = () => { // state) => {
-    const season = {};// getSeason(state);
-    const quarter = {}; // getQuarter(state);
+// eslint-disable-next-line no-unused-vars
+const ScoreBoard = ({ screenProps, navigation }) => {
+  const season = useSelector((state) => getSeason(state));
+  const quarter = useSelector((state) => getQuarter(state));
 
-    const isQuarterPickerInitialized = {}; // getIsQuarterPickerInitialized(state);
-    const isQuarterPickerLoading = {}; // getIsQuarterPickerLoading(state);
+  const isQuarterPickerInitialized = useSelector((state) => getIsQuarterPickerInitialized(state));
+  const isQuarterPickerLoading = useSelector((state) => getIsQuarterPickerLoading(state));
 
-    /*
+  const teamPlayerWeekData = useSelector((state) => getTeamPlayerWeekData(state));
 
-    const lineups = getLineups(state);
-    const rawGameData = getGameData(state);
-    const weekData =
-      rawGameData != null
-        ? rawGameData
-          .filter(c => c.seasonYear === season.year && c.weekNumber === week.number)
-          .map(c => c.weekData)[0]
-        : {};
+  const dispatch = useDispatch();
+  // https://www.npmjs.com/package/react-navigation-hooks
+  const { navigate } = useNavigation();
 
-    const stats = {};
-    if (lineup != null) {
-      Object.keys(lineup).forEach((key) => {
-        stats[key] = {
-          player: lineup[key],
-          // not all players will have gameData
-          gameData:
-            weekData && weekData.playerData && weekData.playerData[key]
-              ? weekData.playerData[key]
-              : {},
+  useEffect(() => {
+    //    log(`useEffect: isQuarterPickerInitialized ${!isQuarterPickerInitialized}`);
+    // TODO: root saga or some such?
+    if (!isQuarterPickerInitialized) {
+      dispatch(quarterPickerInitialized());
+    }
+  }, []);
 
-          hadGameData: weekData && weekData.playerData && weekData.playerData[key],
-        };
+  let teamData = [];
+
+  if (teamPlayerWeekData) {
+    teamData = Object.entries(teamPlayerWeekData).map(([teamNumber, tpwd]) => {
+      const byWeek = {};
+      quarter.weeks.forEach((c) => { byWeek[c.number] = 0; });
+
+      let total = 0;
+      const byPosition = {
+        QB: 0,
+        RB: 0,
+        WR: 0,
+        K: 0,
+      };
+
+      Object.entries(tpwd).forEach(([playerId, weekData]) => {
+        const { player } = weekData;
+        Object.entries(weekData.weekData).forEach(([weekNumber, stats]) => {
+          if (stats.yfflInfo.IsStarter) {
+            byWeek[weekNumber] += stats.yfflInfo.Points;
+            total += stats.yfflInfo.Points;
+            byPosition[player.position] += stats.yfflInfo.Points;
+          }
+        });
       });
-    }
-    */
 
-    return {
-      season,
-      quarter,
-      isQuarterPickerInitialized,
-      isQuarterPickerLoading,
-    };
-  };
+      return {
+        team: teams[teamNumber],
+        total,
+        byPosition,
+        byWeek,
+      };
+    });
 
-  static propTypes = {
-    // https://github.com/yannickcr/eslint-plugin-react/issues/904
-    navigation: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    dispatch: PropTypes.func,
-    season: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    quarter: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    isQuarterPickerInitialized: PropTypes.bool,
-    isQuarterPickerLoading: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    dispatch: {},
-    navigation: {},
-    season: {},
-    quarter: {},
-    isQuarterPickerInitialized: false,
-    isQuarterPickerLoading: false,
-  };
-
-  componentDidMount() {
-    if (!this.props.isQuarterPickerInitialized) {
-      //      this.props.dispatch(quarterPickerInitialized());
-    }
+    teamData = teamData.sort((a, b) => b.total - a.total);
+  } else {
+    teamData = teams.map((team) => ({
+      team,
+      byPosition: {},
+      byWeek: {},
+    }));
   }
 
-  handleRefreshPulled = () => {
-    // TODO: don't have to refresh all quarter data
-    this.props.dispatch(quarterDataRequested());
-  };
+  for (let i = 0; i < teamData.length; i += 1) {
+    teamData[i].index = i;
+    teamData[i].isAltRow = i % 2 !== 0;
+  }
 
-  handleQuarterPickerPressed = () => {
-    this.props.navigation.navigate('QuarterPicker');
-  };
-
-  handleTeamPickerPressed = () => {
-    this.props.navigation.navigate('TeamPicker');
-  };
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <ScrollView
-          refreshControl={(
-            <RefreshControl
-              colors={['#009688']}
-              tintColor="#009688"
-              refreshing={this.props.isQuarterPickerLoading}
-              onRefresh={this.handleRefreshPulled}
-            />
-            )}
-        >
-          <XPlatformTouchable onPress={this.handleQuarterPickerPressed}>
-            <Text style={[styles.text, styles.h1]}>
-              {this.props.season.year}
-              Quarter
-              {this.props.quarter.number}
-              &nbsp;
-              <XPlatformIcon name="arrow-dropdown" size={18} />
-            </Text>
-          </XPlatformTouchable>
-          <FlatList
-            data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
-            numColumns={2}
-            renderItem={item => <ScoreBoardItem item={item} />}
-            keyExtractor={item => item}
+  return (
+    <View style={styles.container}>
+      <ScrollView
+        refreshControl={(
+          <RefreshControl
+            colors={['#009688']}
+            tintColor="#009688"
+            refreshing={isQuarterPickerLoading}
+            onRefresh={log('ScoreBoard.onRefresh')}
+          // TODO: This seems to loop, fix it. . .
+          //            onRefresh={dispatch(quarterDataRequested('ScoreBoard2.onRefresh'))}
           />
-        </ScrollView>
-      </View>
-    );
-  }
-}
+        )}
+      >
+        <XPlatformTouchable onPress={() => navigate('QuarterPicker')}>
+          <Text style={[styles.text, styles.h1]}>
+            {season && season.year}
+            &nbsp;Quarter&nbsp;
+            {quarter && quarter.number}
+            &nbsp;
+            <XPlatformIcon name="arrow-dropdown" size={11} />
+          </Text>
 
-export default connect(ScoreBoard.mapStateToProps)(ScoreBoard);
+        </XPlatformTouchable>
+
+        <ScrollView style={styles.statContainer} horizontal>
+          <View>
+            <View style={styles.headerRow}>
+              <Text style={[styles.text, styles.th, styles.yfflTeamNameData]}>Team</Text>
+              <Text style={[styles.text, styles.th, styles.statData]}>PTS</Text>
+              <Text style={[styles.text, styles.th, styles.statData]}>QB</Text>
+              <Text style={[styles.text, styles.th, styles.statData]}>RB</Text>
+              <Text style={[styles.text, styles.th, styles.statData]}>WR</Text>
+              <Text style={[styles.text, styles.th, styles.statData]}>K</Text>
+
+
+              {quarter.weeks.map((c) => (
+                <Text style={[styles.text, styles.th, styles.statData]} key={c.number}>
+                  {c.number}
+                </Text>
+              ))}
+            </View>
+
+
+            <FlatList
+              data={teamData}
+              renderItem={({ item }) => (
+                <View style={[styles.dataRow, item.isAltRow && styles.altRow]}>
+                  <Text style={[styles.text, styles.yfflTeamNameData]}>
+                    {item.team.name}
+                    &nbsp;(
+                    {item.team.owner}
+                    )
+                  </Text>
+                  <Text style={[styles.text, styles.statData]}>
+                    {item.total}
+                  </Text>
+                  <Text style={[styles.text, styles.statData]}>
+                    {item.byPosition.QB}
+                  </Text>
+                  <Text style={[styles.text, styles.statData]}>
+                    {item.byPosition.RB}
+                  </Text>
+                  <Text style={[styles.text, styles.statData]}>
+                    {item.byPosition.WR}
+                  </Text>
+                  <Text style={[styles.text, styles.statData]}>
+                    {item.byPosition.K}
+                  </Text>
+                  {quarter.weeks.map((c) => (
+                    <Text style={[styles.text, styles.statData]} key={c.number}>
+                      {item.byWeek[c.number]}
+                    </Text>
+                  ))}
+                </View>
+              )}
+              // renderItem={(item) => <ScoreBoardItem teamData={item[1]} />}
+              keyExtractor={(item) => `${item.team.number}`}
+            />
+          </View>
+        </ScrollView>
+      </ScrollView>
+    </View>
+  );
+};
+
+
+// eslint-disable-next-line no-unused-vars
+const ScoreBoard2 = ({ screenProps, navigation }) => {
+  // log(`ScoreBoard props: ${props}`, LOG_LEVEL_INFO);
+  //  log(props);
+
+  const season = useSelector((state) => getSeason(state));
+  const quarter = useSelector((state) => getQuarter(state));
+
+  // const isQuarterPickerInitialized = useSelector(state => getIsQuarterPickerInitialized(state));
+  const isQuarterPickerLoading = useSelector((state) => getIsQuarterPickerLoading(state));
+
+  const dispatch = useDispatch();
+  // https://www.npmjs.com/package/react-navigation-hooks
+  const { navigate } = useNavigation();
+
+
+  return (
+    <View style={styles.container}>
+      <ScrollView
+        refreshControl={(
+          <RefreshControl
+            colors={['#009688']}
+            tintColor="#009688"
+            refreshing={isQuarterPickerLoading}
+            onRefresh={log('ScoreBoard2.onRefresh')}
+          //            onRefresh={dispatch(quarterDataRequested('ScoreBoard2.onRefresh'))}
+          />
+        )}
+      >
+        <XPlatformTouchable onPress={navigate('QuarterPicker')}>
+          <Text style={[styles.text, styles.h1]}>
+            {season.year}
+            Quarter
+            {quarter.number}
+            &nbsp;
+            <XPlatformIcon name="arrow-dropdown" size={18} />
+          </Text>
+        </XPlatformTouchable>
+        <FlatList
+          data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+          numColumns={2}
+          renderItem={(item) => <Text>{item}</Text>}
+          //          renderItem={(item) => <ScoreBoardItem item={item} />}
+          keyExtractor={(item) => item}
+        />
+      </ScrollView>
+    </View>
+  );
+};
+
+ScoreBoard.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  screenProps: PropTypes.object,
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
+};
+
+
+ScoreBoard2.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  screenProps: PropTypes.object.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
+};
+
+
+/*
+
+const lineups = getLineups(state);
+const rawGameData = getGameData(state);
+const weekData =
+  rawGameData != null
+    ? rawGameData
+      .filter(c => c.seasonYear === season.year && c.weekNumber === week.number)
+      .map(c => c.weekData)[0]
+    : {};
+
+const stats = {};
+if (lineup != null) {
+  Object.keys(lineup).forEach((key) => {
+    stats[key] = {
+      player: lineup[key],
+      // not all players will have gameData
+      gameData:
+        weekData && weekData.playerData && weekData.playerData[key]
+          ? weekData.playerData[key]
+          : {},
+
+      hadGameData: weekData && weekData.playerData && weekData.playerData[key],
+    };
+  });
+}
+*/
+
+export default ScoreBoard; // connect(ScoreBoard2.mapStateToProps)(ScoreBoard);

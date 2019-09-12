@@ -12,6 +12,7 @@ import {
   getGameData,
   getIsQuarterPickerLoading,
   getIsQuarterPickerInitialized,
+  getTeamPlayerWeekData,
   // public reducer
   QuarterPickerState,
 } from './redux/reducers';
@@ -34,6 +35,7 @@ export {
   getGameData,
   getIsQuarterPickerLoading,
   getIsQuarterPickerInitialized,
+  getTeamPlayerWeekData,
   // public reducer
   QuarterPickerState,
   // public saga

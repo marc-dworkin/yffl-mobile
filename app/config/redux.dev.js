@@ -23,7 +23,9 @@ const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
 const store = createStore(
   combinedReducer,
   //  initialState,
-  composeWithDevTools(applyMiddleware(sagaMiddleware, logger), ReactotronConfig.createEnhancer()),
+  // use reactotron, rather than logging
+  //  composeWithDevTools(applyMiddleware(sagaMiddleware, logger), ReactotronConfig.createEnhancer()),
+  composeWithDevTools(applyMiddleware(sagaMiddleware), ReactotronConfig.createEnhancer()),
 );
 
 sagaMiddleware.run(rootQuarterPickerSaga);

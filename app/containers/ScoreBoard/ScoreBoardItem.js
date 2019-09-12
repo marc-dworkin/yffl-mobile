@@ -1,11 +1,13 @@
 import React from 'react';
-import { Text, FlatList, View, StyleSheet } from 'react-native';
+import {
+  Text, FlatList, View, StyleSheet,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import PropTypes from 'prop-types';
 
 import { getYFFLPoints } from '../../lib/yffl';
 
-import collections from './../../lib/collections';
+import collections from '../../lib/collections';
 
 const styles = EStyleSheet.create({
   dataRow: {
@@ -71,21 +73,28 @@ const styles = EStyleSheet.create({
   },
 });
 
-const ScoreBoardItem = (props) => {
-
-  return (
-    <View style={styles.card}>
-      <View style={styles.row}>
-        <FlatList
-          data={[1, 2, 3]}
-          renderItem={({ i2 }) => <Text style={styles.text}>Small {i2}</Text>}
-          keyExtractor={i2 => i2}
-        />
-        <Text style={[styles.text, styles.h1]}>Big {item}</Text>
-      </View>
+const ScoreBoardItem = ({ teamName, stats }) => (
+  <View style={styles.card}>
+    <View style={styles.row}>
+      <FlatList
+        data={[1, 2, 3]}
+        renderItem={({ i2 }) => (
+          <Text style={styles.text}>
+            Small
+            {' '}
+            {i2}
+          </Text>
+        )}
+        keyExtractor={(i2) => i2}
+      />
+      <Text style={[styles.text, styles.h1]}>
+        Big
+        {' '}
+        {teamName}
+      </Text>
     </View>
-  );
-};
+  </View>
+);
 
 ScoreBoardItem.propTypes = {
   teamName: PropTypes.string.isRequired,

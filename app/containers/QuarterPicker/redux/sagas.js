@@ -52,6 +52,7 @@ const loadGameData = function* loadGameData() {
   }
 };
 
+// TODO: Move to yffl?
 const loadLineupsFunc = (seasonYear, quarterName) => {
   //  const url = `https://storage.googleapis.com/y_1993/live-scoring/${quarterName}-${seasonYear}-lineups.json`;
   const url = `http://dlewis.net/yffl/lineups/${quarterName}-${seasonYear}-lineups.json`;
@@ -82,7 +83,7 @@ const quarterDataSaga = function* quarterDataSaga() {
 };
 
 const quarterPickerInitializedSaga = function* quarterPickerInitializedSaga() {
-  yield put(quarterDataRequested());
+  yield put(quarterDataRequested('quarterPickerInitializedSaga'));
 };
 
 export const rootQuarterPickerSaga = function* rootBoxScoreSaga() {

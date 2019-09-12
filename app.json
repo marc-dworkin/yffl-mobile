@@ -10,10 +10,9 @@
       "web"
     ],
     "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./app/assets/yffl_icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./app/assets/yffl_splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

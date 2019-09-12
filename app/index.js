@@ -4,9 +4,14 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { Provider } from 'react-redux';
 import { createAppContainer } from 'react-navigation';
 // import Sample from './screens/Sample';
+// eslint-disable-next-line no-unused-vars
 import { BoxScoreNavigator } from './containers/BoxScore';
+import { ScoreBoardNavigator } from './containers/ScoreBoard';
 import store from './config/redux';
 import Header from './components/Header';
+
+import { log, LOG_LEVEL_INFO } from './lib/util';
+
 // import ScoreBoard from './containers/ScoreBoard';
 
 const styles = EStyleSheet.create({
@@ -39,7 +44,11 @@ if (__DEV__) {
   </Provider>
 */
 
-const AppContainer = createAppContainer(BoxScoreNavigator);
+// const AppContainer = createAppContainer(BoxScoreNavigator);
+
+const AppContainer = createAppContainer(ScoreBoardNavigator);
+// log(BoxScoreNavigator, LOG_LEVEL_INFO);
+// log(ScoreBoardNavigator, LOG_LEVEL_INFO);
 
 // export default App;
 

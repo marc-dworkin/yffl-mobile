@@ -155,6 +155,8 @@ class BoxScore extends Component {
 
     const rawGameData = getGameData(state);
 
+    // TODO: use teamPlayerWeekData.  Issue -- it excludes players who have no data. . .
+
     const weekData = rawGameData != null
       ? rawGameData
         .filter((c) => c.seasonYear === season.year && c.weekNumber === week.number)
@@ -196,7 +198,7 @@ class BoxScore extends Component {
 
   handleRefreshPulled = () => {
     // TODO: don't have to refresh all quarter data
-    this.props.dispatch(quarterDataRequested());
+    this.props.dispatch(quarterDataRequested('BoxScore.handleRefreshPulled'));
   };
 
   handleQuarterPickerPressed = () => {
