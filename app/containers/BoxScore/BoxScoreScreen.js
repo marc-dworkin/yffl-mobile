@@ -126,7 +126,7 @@ const styles = EStyleSheet.create({
 /* eslint-disable react/destructuring-assignment, react/forbid-prop-types */
 
 
-class BoxScore extends Component {
+class BoxScoreScreen extends Component {
   static mapStateToProps(state) {
     // TODO: maybe these should be more primative, or more typesafe?
     const season = getSeason(state);
@@ -273,7 +273,7 @@ class BoxScore extends Component {
 // isQuarterPickerInitialized, isQuarterPickerLoading}
 
 
-BoxScore.propTypes = {
+BoxScoreScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   season: PropTypes.object,
@@ -285,7 +285,7 @@ BoxScore.propTypes = {
   isQuarterPickerLoading: PropTypes.bool,
 };
 
-BoxScore.defaultProps = {
+BoxScoreScreen.defaultProps = {
   season: currentYear,
   week: currentWeek,
   quarter: currentQuarter,
@@ -296,4 +296,4 @@ BoxScore.defaultProps = {
 };
 
 
-export default connect(BoxScore.mapStateToProps)(BoxScore);
+export default connect(BoxScoreScreen.mapStateToProps)(BoxScoreScreen);

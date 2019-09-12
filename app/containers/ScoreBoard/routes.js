@@ -1,12 +1,12 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import ScoreBoard from './ScoreBoard';
+import ScoreBoardScreen from './ScoreBoardScreen';
 import QuarterPicker from '../QuarterPicker';
 
 
 export const ScoreBoardNavigator = createStackNavigator(
   {
     ScoreBoard: {
-      screen: ScoreBoard,
+      screen: ScoreBoardScreen,
     },
     QuarterPicker: {
       screen: QuarterPicker,

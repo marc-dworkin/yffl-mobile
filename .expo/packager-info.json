@@ -1,9 +1,9 @@
 {
   "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 5848,
+  "packagerPort": null,
+  "packagerPid": null,
   "expoServerNgrokUrl": "https://qc-58r.marc-dworkin.yffl-mobile.exp.direct",
   "packagerNgrokUrl": "https://packager.qc-58r.marc-dworkin.yffl-mobile.exp.direct",
-  "ngrokPid": 9732,
+  "ngrokPid": 5952,
   "devToolsPort": 19002
 }

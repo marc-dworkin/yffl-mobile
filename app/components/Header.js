@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Image, ImageBackground, TouchableOpacity, StatusBar } from 'react-native';
+import {
+  // eslint-disable-next-line no-unused-vars
+  View, Image, ImageBackground, TouchableOpacity, StatusBar,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const styles = EStyleSheet.create({
@@ -51,22 +54,35 @@ const styles = EStyleSheet.create({
   },
 });
 
-const Header = ({ onPress }) => (
-  <View style={styles.headerRow}>
-    <ImageBackground resizeMode="stretch" style={styles.bannerImage} source={require('../assets/banner.png')}>
+/*
       <TouchableOpacity onPress={onPress} style={styles.hamburgerButton}>
         <Image resizeMode="contain" source={require('../assets/hamburger_48.png')} />
       </TouchableOpacity>
+*/
+
+// eslint-disable-next-line no-unused-vars
+const Header = ({ onPress }) => (
+  <View style={styles.headerRow}>
+    <ImageBackground
+      resizeMode="stretch"
+      style={styles.bannerImage}
+      source={
+        // eslint-disable-next-line global-require
+        require('../assets/images/banner.png')
+      }
+    >
       <Image
         resizeMode="contain"
         style={styles.logoImage}
-        source={require('../assets/yffl_128.png')}
+        // eslint-disable-next-line global-require
+        source={require('../assets/images/yffl_128.png')}
       />
     </ImageBackground>
   </View>
 );
 
 Header.propTypes = {
+  // eslint-disable-next-line react/require-default-props
   onPress: PropTypes.func,
 };
 

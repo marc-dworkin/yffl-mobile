@@ -1,6 +1,6 @@
-import ScoreBoard from './ScoreBoard';
+import ScoreBoardScreen from './ScoreBoardScreen';
 import { ScoreBoardNavigator } from './routes';
 
 
 export { ScoreBoardNavigator };
-export default ScoreBoard;
+export default ScoreBoardScreen;
