@@ -3,7 +3,7 @@
 // ..action
 export const WEEK_SELECTED = 'WEEK_SELECTED';
 
-export const weekSelected = value => ({
+export const weekSelected = (value) => ({
   type: WEEK_SELECTED,
   value: parseInt(value, 10),
 });
@@ -23,7 +23,7 @@ export const getBoxScoreState = (state = initialState) => {
 };
 
 // TODO: access current quarter to get week object?
-export const getWeekNumber = state => getBoxScoreState(state).weekNumber;
+export const getWeekNumber = (state) => getBoxScoreState(state).weekNumber;
 
 export const BoxScoreState = (state = initialState, action) => {
   const res = {

@@ -10,3 +10,5 @@ npm-debug.*
 web-build/
 web-report/
 .expo/packager-info.json
+.expo/packager-info.json
+.expo/packager-info.json

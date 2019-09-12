@@ -5,11 +5,16 @@ export const LOG_LEVEL_ERROR = 'LOG_LEVEL_ERROR';
 
 export const log = (msg, logLevel) => {
   if (__DEV__) {
-    // eslint-disable-next-line no-console
-    console.tron.log(msg);
+    if (logLevel === LOG_LEVEL_ERROR) {
+      // eslint-disable-next-line no-console
+      console.tron.warn(msg);
+    } else {
+      // eslint-disable-next-line no-console
+      console.tron.log(msg);
+    }
   } else if (logLevel === LOG_LEVEL_ERROR) {
     // eslint-disable-next-line no-console
-    console.log(msg);
+    console.warn(msg);
   }
 };
 
