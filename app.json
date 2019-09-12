@@ -11,7 +11,7 @@
     ],
     "primaryColor": "#d9e5f4",
     "version": "0.3.0",
-    "githubUrl": "https://github.com/marc-dworkin/yffl-mobile/issues",
+    "githubUrl": "https://github.com/marc-dworkin/yffl-mobile/",
     "icon": "./app/assets/images/yffl_icon.png",
     "splash": {
       "image": "./app/assets/images/yffl_splash.png",
