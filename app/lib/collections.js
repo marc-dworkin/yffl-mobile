@@ -86,7 +86,7 @@ class Collections {
     }, {});
   }
 
-  // TODO: doesn't belong in collections
+  // TODO: doesn't belong in collections move to util
   // https://arjunphp.com/capitalize-first-letter-string-javascript/
   static ucFirst(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);

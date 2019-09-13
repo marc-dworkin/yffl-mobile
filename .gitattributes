@@ -1,2 +1,15 @@
+# https://stackoverflow.com/questions/9976986/force-lf-eol-in-git-repo-and-working-copy
+
 # Auto detect text files and perform LF normalization
-* text=auto
+* text=auto eol=lf
+
+# Definitively text files 
+*.txt text
+*.js text
+*.json text
+*.log text
+
+# Ensure those won't be messed up with
+*.jpg binary
+*.data binary
+*.xcf binary
