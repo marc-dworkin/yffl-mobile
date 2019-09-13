@@ -18,7 +18,7 @@ class Collections {
   static intersect(arr1, arr2) {
     const s1 = new Set(arr1);
     const s2 = new Set(arr2);
-    const intersection = new Set([...s1].filter(x => s2.has(x)));
+    const intersection = new Set([...s1].filter((x) => s2.has(x)));
     return Array.from(intersection);
   }
 
@@ -75,7 +75,7 @@ class Collections {
 
   // since we seem to be using objects as dictionaries, or hashes.
   // ability to filter by dictionary key or value.
-  static toDictionary(arr, keySelector = true, valueSelector = c => c) {
+  static toDictionary(arr, keySelector = true, valueSelector = (c) => c) {
     if (arr == null) {
       return null;
     }
@@ -98,6 +98,7 @@ class Collections {
     }
     return arr;
   }
+
   // https://stackoverflow.com/questions/1960473/get-all-unique-values-in-an-array-remove-duplicates
   static distinct(arr, valueSelector = null) {
     if (!valueSelector) {
@@ -105,7 +106,7 @@ class Collections {
     }
     const valArr = arr.map(valueSelector);
     return arr.filter(
-      (value, index) => valArr.indexOf(valueSelector(value)) === index
+      (value, index) => valArr.indexOf(valueSelector(value)) === index,
     );
   }
 }

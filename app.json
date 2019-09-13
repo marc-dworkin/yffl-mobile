@@ -2,7 +2,7 @@
   "expo": {
     "name": "YFFL Mobile",
     "slug": "yffl-mobile",
-    "privacy": "public",
+    "privacy": "unlisted",
     "sdkVersion": "34.0.0",
     "platforms": [
       "ios",
@@ -25,7 +25,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "org.fantasyfootball.yffl.mobile"
     },
     "description": ""
   }
