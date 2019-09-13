@@ -250,8 +250,6 @@ const ScoreBoardScreen = ({ screenProps, navigation }) => {
               colors={['#009688']}
               tintColor="#009688"
               refreshing={isQuarterPickerLoading}
-              //              onRefresh={log('ScoreBoard.onRefresh')}
-              // TODO: This seems to loop, fix it. . .
               onRefresh={() => dispatch(quarterDataRequested('ScoreBoard.onRefresh'))}
             />
           )}

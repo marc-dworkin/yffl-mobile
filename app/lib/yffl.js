@@ -62,6 +62,7 @@ O. Receives 15+ passes = +4
   return pts;
 };
 
+// TODO: Use lib/collections to make this more readable
 export const compileTeamPlayerWeekData = (gameData, lineups) => {
   if (gameData && lineups) {
     // list of players, map arr to object keys for efficiency
