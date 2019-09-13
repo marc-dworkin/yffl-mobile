@@ -54,6 +54,14 @@ const styles = EStyleSheet.create({
     textAlign: 'center',
   },
 
+  note: {
+    color: '#cccccc',
+    fontSize: 11,
+    fontStyle: 'italic',
+    fontWeight: '400',
+    textAlign: 'left',
+  },
+
   playerNameData: {
     width: 120,
     paddingLeft: 3,
@@ -119,6 +127,21 @@ const BoxScorePositionSection = (props) => {
         key: `stat_${props.section}_${c}`,
       }))
     : [];
+
+  if (sectionStats.length == 0) {
+    return (
+      <View>
+        <Text style={[styles.text, styles.h2]}>{collections.ucFirst(props.section)}</Text>
+        <Text style={[styles.text, styles.note]}>
+          No
+          {' '}
+          {collections.ucFirst(props.section)}
+          {' '}
+          stats yet...
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <View>
