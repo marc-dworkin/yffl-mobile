@@ -121,17 +121,19 @@ const BoxScorePositionSection = ({ lineupData, section }) => {
       key: `stat_${section}_${c}`,
     }));
 
-  if (sectionStats.length == 0) {
+  if (sectionData.length == 0) {
     return (
       <View>
-        <Text style={[styles.text, styles.h2]}>{collections.ucFirst(props.section)}</Text>
-        <Text style={[styles.text, styles.note]}>
-          No
-          {' '}
-          {collections.ucFirst(props.section)}
-          {' '}
-          stats yet...
-        </Text>
+        <Text style={[styles.text, styles.h2]}>{collections.ucFirst(section)}</Text>
+        <View style={styles.headerRow}>
+          <Text style={[styles.text, styles.note]}>
+            No
+            {' '}
+            {collections.ucFirst(section)}
+            {' '}
+            stats yet...
+          </Text>
+        </View>
       </View>
     );
   }
@@ -144,6 +146,7 @@ const BoxScorePositionSection = ({ lineupData, section }) => {
           <View style={styles.headerRow}>
             <Text style={[styles.text, styles.th, styles.playerNameData]}>Player</Text>
             <Text style={[styles.text, styles.th, styles.teamNameData]}>Team</Text>
+            <Text style={[styles.text, styles.th, styles.teamNameData]}>Pos</Text>
             <Text style={[styles.text, styles.th, styles.teamNameData]}>Opp</Text>
             <Text style={[styles.text, styles.th, styles.statData]}>PTS</Text>
             {positionStatNames.map((c) => (
@@ -164,6 +167,7 @@ const BoxScorePositionSection = ({ lineupData, section }) => {
                     {item.player.first_name}
                   </Text>
                   <Text style={[styles.text, styles.teamNameData]}>{item.player.nfl_team}</Text>
+                  <Text style={[styles.text, styles.teamNameData]}>{item.player.position}</Text>
                   <Text style={[styles.text, styles.teamNameData]}>
                     {
                       item.gameInfo ? (
