@@ -82,6 +82,10 @@ const styles = EStyleSheet.create({
   },
 });
 
+const statSections = {
+ passing: 1, rushing: 1, receiving: 1, kicking: 1 
+};
+
 const BoxScorePositionSection = ({ lineupData, section }) => {
   const sectionData = lineupData.map((l) => ({
     key: `player_${section}_${l.player.nfl_id}`,
@@ -89,7 +93,9 @@ const BoxScorePositionSection = ({ lineupData, section }) => {
     stats: (section in l.stats) ? l.stats[section] : {},
     yfflInfo: l.stats.yfflInfo,
     gameInfo: l.stats.gameInfo,
-    isRelevent: section in l.stats,
+    isRelevent: (section in statSections) ? (section in l.stats)
+      // if it has no stats its relavent to pending
+      : collections.intersect(l.stats, statSections).length === 0,
   }))
     .filter((c) => c.isRelevent)
     // eslint-disable-next-line no-underscore-dangle

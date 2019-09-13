@@ -16,8 +16,8 @@ class Collections {
 
   // https://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript
   static intersect(arr1, arr2) {
-    const s1 = new Set(arr1);
-    const s2 = new Set(arr2);
+    const s1 = Array.isArray(arr1) ? new Set(arr1) : new Set(Object.keys(arr1));
+    const s2 = Array.isArray(arr2) ? new Set(arr2) : new Set(Object.keys(arr2));
     const intersection = new Set([...s1].filter((x) => s2.has(x)));
     return Array.from(intersection);
   }

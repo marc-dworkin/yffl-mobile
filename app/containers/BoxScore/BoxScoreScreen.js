@@ -213,6 +213,7 @@ const BoxScoreScreen = () => {
           <BoxScorePositionSection lineupData={lineupData} section="rushing" />
           <BoxScorePositionSection lineupData={lineupData} section="receiving" />
           <BoxScorePositionSection lineupData={lineupData} section="kicking" />
+          <BoxScorePositionSection lineupData={lineupData} section="pending" />
         </ScrollView>
       </View>
     </View>
