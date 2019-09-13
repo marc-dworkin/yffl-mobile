@@ -83,7 +83,7 @@ const styles = EStyleSheet.create({
 });
 
 const statSections = {
- passing: 1, rushing: 1, receiving: 1, kicking: 1 
+  passing: 1, rushing: 1, receiving: 1, kicking: 1,
 };
 
 const BoxScorePositionSection = ({ lineupData, section }) => {
@@ -151,8 +151,8 @@ const BoxScorePositionSection = ({ lineupData, section }) => {
         <View>
           <View style={styles.headerRow}>
             <Text style={[styles.text, styles.th, styles.playerNameData]}>Player</Text>
-            <Text style={[styles.text, styles.th, styles.teamNameData]}>Team</Text>
             <Text style={[styles.text, styles.th, styles.teamNameData]}>Pos</Text>
+            <Text style={[styles.text, styles.th, styles.teamNameData]}>Team</Text>
             <Text style={[styles.text, styles.th, styles.teamNameData]}>Opp</Text>
             <Text style={[styles.text, styles.th, styles.statData]}>PTS</Text>
             {positionStatNames.map((c) => (
@@ -172,8 +172,8 @@ const BoxScorePositionSection = ({ lineupData, section }) => {
                     {' '}
                     {item.player.first_name}
                   </Text>
-                  <Text style={[styles.text, styles.teamNameData]}>{item.player.nfl_team}</Text>
                   <Text style={[styles.text, styles.teamNameData]}>{item.player.position}</Text>
+                  <Text style={[styles.text, styles.teamNameData]}>{item.player.nfl_team}</Text>
                   <Text style={[styles.text, styles.teamNameData]}>
                     {
                       item.gameInfo ? (
