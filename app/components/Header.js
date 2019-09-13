@@ -51,6 +51,7 @@ const styles = EStyleSheet.create({
     flex: 5,
     width: 128,
     height: 72,
+    //    backgroundColor: '#ee0000',
   },
 });
 
@@ -64,7 +65,7 @@ const styles = EStyleSheet.create({
 const Header = ({ onPress }) => (
   <View style={styles.headerRow}>
     <ImageBackground
-      resizeMode="stretch"
+      resizeMode="cover"
       style={styles.bannerImage}
       source={
         // eslint-disable-next-line global-require
@@ -75,7 +76,7 @@ const Header = ({ onPress }) => (
         resizeMode="contain"
         style={styles.logoImage}
         // eslint-disable-next-line global-require
-        source={require('../assets/images/yffl_128.png')}
+        source={require('../assets/images/yffl_logo.png')}
       />
     </ImageBackground>
   </View>

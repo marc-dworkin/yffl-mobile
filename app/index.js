@@ -31,7 +31,7 @@ async function loadResourcesAsync() {
       // eslint-disable-next-line global-require
       require('./assets/images/banner.png'),
       // eslint-disable-next-line global-require
-      require('./assets/images/yffl_128.png'),
+      require('./assets/images/yffl_logo.png'),
       //      require('./assets/images/robot-prod.png'),
     ]),
     Font.loadAsync({
