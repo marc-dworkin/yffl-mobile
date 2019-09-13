@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import { getYFFLPoints } from '../../lib/yffl';
 
 import collections from '../../lib/collections';
+import { log, LOG_LEVEL_INFO } from '../../lib/util';
 
 const styles = EStyleSheet.create({
   dataRow: {
@@ -81,52 +82,44 @@ const styles = EStyleSheet.create({
   },
 });
 
-const BoxScorePositionSection = (props) => {
-  const sectionStatsRaw = props.stats != null
-    ? collections.filter(
-      props.stats,
-      () => true,
-      (c) => Object.prototype.hasOwnProperty.call(c.gameData, props.section),
-    )
-    : {};
+const BoxScorePositionSection = ({ lineupData, section }) => {
+  const sectionData = lineupData.map((l) => ({
+    key: `player_${section}_${l.player.nfl_id}`,
+    player: l.player,
+    stats: (section in l.stats) ? l.stats[section] : {},
+    yfflInfo: l.stats.yfflInfo,
+    gameInfo: l.stats.gameInfo,
+    isRelevent: section in l.stats,
+  }))
+    .filter((c) => c.isRelevent)
+    // eslint-disable-next-line no-underscore-dangle
+    .sort(collections.sortBy((c) => c.stats._pts, false));
 
-  //  console.log(Object.values(sectionStatsRaw)[0]);
-
-  const sectionStats = Object.values(
-    collections.map(sectionStatsRaw, (c) => ({
-      key: `player_${props.section}_${c.player.nfl_id}`,
-      player: c.player,
-      gameData: c.gameData[props.section],
-      gameInfo: c.gameData.gameInfo,
-      yfflPoints: getYFFLPoints(props.section, c.gameData[props.section]),
-    })),
-  ).sort(collections.sortBy((c) => c.yfflPoints, false));
 
   // no-return-assign so have to do in seperat loop
-  for (let i = 0; i < sectionStats.length; i += 1) {
-    sectionStats[i].index = i;
-    sectionStats[i].isAltRow = i % 2 !== 0;
+  for (let i = 0; i < sectionData.length; i += 1) {
+    sectionData[i].index = i;
+    sectionData[i].isAltRow = i % 2 !== 0;
   }
 
   //  console.log(sectionStats[0]);
 
-  const positionStatNames = sectionStats != null && sectionStats.length > 0
-    ? // derive by position stats from what nfl provides
-    Object.keys(sectionStats[0].gameData)
-      // skip name
-      .slice(1)
-      // skip lngtd
-      .filter((c) => !['lngtd', 'totpfg', 'xpmissed', 'xptot'].includes(c))
-      .map((c) => ({
-        display: c
-          .replace('twop', '2P')
-          .replace('xpmade', 'Xpm')
-          .replace('fgyds', 'lng')
-          .toUpperCase(),
-        value: c,
-        key: `stat_${props.section}_${c}`,
-      }))
-    : [];
+  const positionStatNames = (sectionData.length === 0) ? [] : Object.keys(
+    sectionData[0].stats,
+  )
+    // skip name
+    .slice(1)
+    // skip lngtd
+    .filter((c) => !['lngtd', 'totpfg', 'xpmissed', 'xptot', '_pts'].includes(c))
+    .map((c) => ({
+      display: c
+        .replace('twop', '2P')
+        .replace('xpmade', 'Xpm')
+        .replace('fgyds', 'lng')
+        .toUpperCase(),
+      value: c,
+      key: `stat_${section}_${c}`,
+    }));
 
   if (sectionStats.length == 0) {
     return (
@@ -145,7 +138,7 @@ const BoxScorePositionSection = (props) => {
 
   return (
     <View>
-      <Text style={[styles.text, styles.h2]}>{collections.ucFirst(props.section)}</Text>
+      <Text style={[styles.text, styles.h2]}>{collections.ucFirst(section)}</Text>
       <ScrollView style={styles.statContainer} horizontal>
         <View>
           <View style={styles.headerRow}>
@@ -160,32 +153,44 @@ const BoxScorePositionSection = (props) => {
             ))}
           </View>
           <FlatList
-            renderItem={({ item }) => (
-              <View style={[styles.dataRow, item.isAltRow && styles.altRow]}>
-                <Text style={[styles.text, styles.playerNameData]}>
-                  {item.player.last_name}
-                  ,
-                  {' '}
-                  {item.player.first_name}
-                </Text>
-                <Text style={[styles.text, styles.teamNameData]}>{item.player.nfl_team}</Text>
-                <Text style={[styles.text, styles.teamNameData]}>
-                  {item.player.nfl_team === item.gameInfo.RoadTeamName
-                    ? item.gameInfo.HomeTeamName
-                    : item.gameInfo.RoadTeamName}
-                </Text>
-                <Text style={[styles.text, styles.statData, styles.data]}>{item.yfflPoints}</Text>
-                {positionStatNames.map((c) => (
-                  <Text
-                    style={[styles.text, styles.statData, styles.data]}
-                    key={`${c.key}_${item.key}`}
-                  >
-                    {item.gameData[c.value]}
+            renderItem={({ item }) => {
+              log(item);
+              return (
+                <View style={[styles.dataRow, item.isAltRow && styles.altRow]}>
+                  <Text style={[styles.text, styles.playerNameData]}>
+                    {item.player.last_name}
+                    ,
+                    {' '}
+                    {item.player.first_name}
                   </Text>
-                ))}
-              </View>
-            )}
-            data={sectionStats}
+                  <Text style={[styles.text, styles.teamNameData]}>{item.player.nfl_team}</Text>
+                  <Text style={[styles.text, styles.teamNameData]}>
+                    {
+                      item.gameInfo ? (
+                        item.player.nfl_team === item.gameInfo.RoadTeamName
+                          ? item.gameInfo.HomeTeamName
+                          : item.gameInfo.RoadTeamName
+                      ) : 'N/A'
+                    }
+                  </Text>
+                  <Text style={[styles.text, styles.statData, styles.data]}>
+                    {
+                      // eslint-disable-next-line no-underscore-dangle
+                      item.stats._pts
+                    }
+                  </Text>
+                  {positionStatNames.map((c) => (
+                    <Text
+                      style={[styles.text, styles.statData, styles.data]}
+                      key={`${c.key}_${item.key}`}
+                    >
+                      {item.stats[c.value]}
+                    </Text>
+                  ))}
+                </View>
+              );
+            }}
+            data={sectionData}
           />
         </View>
       </ScrollView>
@@ -195,7 +200,8 @@ const BoxScorePositionSection = (props) => {
 
 BoxScorePositionSection.propTypes = {
   section: PropTypes.string.isRequired,
-  stats: PropTypes.object.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  lineupData: PropTypes.array.isRequired,
 };
 
 export default BoxScorePositionSection;
