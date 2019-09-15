@@ -98,8 +98,8 @@ const BoxScorePositionSection = ({ lineupData, section }) => {
       : collections.intersect(l.stats, statSections).length === 0,
   }))
     .filter((c) => c.isRelevent)
-    // eslint-disable-next-line no-underscore-dangle
-    .sort(collections.sortBy((c) => c.stats._pts, false));
+
+    .sort(collections.sortBy((c) => c.stats.pts, false));
 
 
   // no-return-assign so have to do in seperat loop
@@ -116,7 +116,7 @@ const BoxScorePositionSection = ({ lineupData, section }) => {
     // skip name
     .slice(1)
     // skip lngtd
-    .filter((c) => !['lngtd', 'totpfg', 'xpmissed', 'xptot', '_pts'].includes(c))
+    .filter((c) => !['lngtd', 'totpfg', 'xpmissed', 'xptot', 'pts'].includes(c))
     .map((c) => ({
       display: c
         .replace('twop', '2P')
@@ -162,9 +162,9 @@ const BoxScorePositionSection = ({ lineupData, section }) => {
             ))}
           </View>
           <FlatList
-            renderItem={({ item }) => {
-              log(item);
-              return (
+            renderItem={({ item }) => 
+              //              log(item);
+               (
                 <View style={[styles.dataRow, item.isAltRow && styles.altRow]}>
                   <Text style={[styles.text, styles.playerNameData]}>
                     {item.player.last_name}
@@ -185,8 +185,8 @@ const BoxScorePositionSection = ({ lineupData, section }) => {
                   </Text>
                   <Text style={[styles.text, styles.statData, styles.data]}>
                     {
-                      // eslint-disable-next-line no-underscore-dangle
-                      item.stats._pts
+
+                      item.stats.pts
                     }
                   </Text>
                   {positionStatNames.map((c) => (
@@ -198,8 +198,8 @@ const BoxScorePositionSection = ({ lineupData, section }) => {
                     </Text>
                   ))}
                 </View>
-              );
-            }}
+              )
+            }
             data={sectionData}
           />
         </View>

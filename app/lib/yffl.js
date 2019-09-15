@@ -1,3 +1,6 @@
+import { log } from './util';
+import Collections from './collections';
+
 const ifNull = (val, ifNullVal = 0) => {
   if (val) {
     return val;
@@ -68,7 +71,7 @@ export const compileTeamPlayerWeekData = (gameData, lineups) => {
     // list of players, map arr to object keys for efficiency
     const players = lineups
       .reduce((accumulator, currentValue) => {
-        accumulator[currentValue.gsis_id] = currentValue;
+        accumulator[currentValue.gsis_id] = { ...currentValue };
         return accumulator;
       }, {});
 
@@ -76,6 +79,7 @@ export const compileTeamPlayerWeekData = (gameData, lineups) => {
     // dict of team_id -> player_id -> 'weekData' -> week_number -> data
     // && team_id -> player_id -> 'player'
     const teamPlayerWeekData = {};
+    const playerWeekData = {};
 
     // initialize dictionary (ensure all playyers in lineup are in)
     Object.entries(players).forEach(([playerId, player]) => {
@@ -87,7 +91,13 @@ export const compileTeamPlayerWeekData = (gameData, lineups) => {
         weekData: {},
         player,
       };
+
+      playerWeekData[playerId] = teamData[playerId];
     });
+
+
+    log('gameData');
+    log(gameData);
 
     gameData.forEach((weekData) => {
       // populate game info for each week
@@ -104,7 +114,7 @@ export const compileTeamPlayerWeekData = (gameData, lineups) => {
             if (section !== 'gameInfo') {
               const pts = getYFFLPoints(section, stats);
               points += pts;
-              playerGameDataCopy[section]._pts = pts;
+              playerGameDataCopy[section].pts = pts;
             }
           });
           playerGameDataCopy.yfflInfo = {
@@ -123,6 +133,26 @@ export const compileTeamPlayerWeekData = (gameData, lineups) => {
             teamPlayerData[player.yffl_team][player.position] = {};
           }
           teamPlayerData[player.yffl_team][player.position][playerId] = playerGameDataCopy;
+        }
+      });
+
+      const gameInfoMap = {};
+      weekData.weekData.gameList.forEach((game) => {
+        gameInfoMap[game.HomeTeamName] = game;
+        gameInfoMap[game.RoadTeamName] = game;
+      });
+
+      // map player games by team
+      Object.values(playerWeekData).forEach((pwd) => {
+        if (!pwd.weekData[weekData.weekNumber]) {
+          pwd.weekData[weekData.weekNumber] = {
+            gameInfo: gameInfoMap[pwd.player.nfl_team],
+            yfflInfo: {
+              Points: 0,
+              IsStarter: false,
+              weekNumber: weekData.weekNumber,
+            },
+          };
         }
       });
 
@@ -156,6 +186,11 @@ export const compileTeamPlayerWeekData = (gameData, lineups) => {
         });
       });
     });
+
+    log('teamPlayerWeekData');
+    log(teamPlayerWeekData);
+
+
     return teamPlayerWeekData;
   }
   return null;

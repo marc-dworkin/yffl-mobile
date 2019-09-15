@@ -210,7 +210,7 @@ const ScoreBoardScreen = ({ screenProps, navigation }) => {
       Object.entries(tpwd).forEach(([playerId, weekData]) => {
         const { player } = weekData;
         Object.entries(weekData.weekData).forEach(([weekNumber, stats]) => {
-          if (stats.yfflInfo.IsStarter) {
+          if (stats && stats.yfflInfo && stats.yfflInfo.IsStarter) {
             byWeek[weekNumber] += stats.yfflInfo.Points;
             total += stats.yfflInfo.Points;
             byPosition[player.position] += stats.yfflInfo.Points;
