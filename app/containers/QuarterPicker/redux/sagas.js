@@ -62,7 +62,12 @@ const loadLineupsFunc = (seasonYear, quarterName) => {
 
 const loadLineups = function* loadLineups() {
   const seasonYear = yield select(getSeasonYear);
-  const quarterName = yield select(getQuarterName);
+  let quarterName = yield select(getQuarterName);
+  if (isNaN(quarterName)) {
+    quarterName = quarterName.toLowerCase();
+  } else {
+    quarterName = `q${quarterName}`;
+  }
   try {
     const response = yield call(loadLineupsFunc, seasonYear, quarterName);
     const result = yield response.json();

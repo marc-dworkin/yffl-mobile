@@ -258,7 +258,7 @@ const ScoreBoardScreen = ({ screenProps, navigation }) => {
             <Text style={[styles.text, styles.h1]}>
               {season && season.year}
               &nbsp;Quarter&nbsp;
-              {quarter && quarter.number}
+              {quarter && quarter.name}
               &nbsp;
               <XPlatformIcon name="arrow-dropdown" size={11} />
             </Text>

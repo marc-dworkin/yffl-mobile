@@ -190,7 +190,7 @@ const BoxScoreScreen = () => {
               <Text style={styles.text}>
                 {season && season.year}
                 &nbsp;Quarter&nbsp;
-                {quarter && quarter.number}
+                {quarter && quarter.name}
                 &nbsp;
                 <XPlatformIcon name="arrow-dropdown" size={11} />
               </Text>
@@ -213,7 +213,7 @@ const BoxScoreScreen = () => {
           <BoxScorePositionSection lineupData={lineupData} section="rushing" />
           <BoxScorePositionSection lineupData={lineupData} section="receiving" />
           <BoxScorePositionSection lineupData={lineupData} section="kicking" />
-          <BoxScorePositionSection lineupData={lineupData} section="pending" />
+          <BoxScorePositionSection lineupData={lineupData} section="Not Played" />
         </ScrollView>
       </View>
     </View>

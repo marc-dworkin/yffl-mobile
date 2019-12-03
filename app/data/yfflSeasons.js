@@ -8,21 +8,23 @@ extendMoment(window.moment);
 
 const today = moment();
 
-
+// TODO: 4 week superbowl
 const quarters = (year) => {
   if (year >= 2019) {
     return [
-      { name: 'q1', number: 1, weekCount: 3 },
-      { name: 'q2', number: 2, weekCount: 3 },
-      { name: 'q3', number: 3, weekCount: 3 },
-      { name: 'q4', number: 4, weekCount: 3 },
+      { name: '1', number: 1, weekCount: 3 },
+      { name: '2', number: 2, weekCount: 3 },
+      { name: '3', number: 3, weekCount: 3 },
+      { name: '4', number: 4, weekCount: 3 },
+      { name: 'Playoffs', number: 5, weekCount: 2 },
+      { name: 'SuperBowl', number: 6, weekCount: 2 },
     ];
   }
   return [
-    { name: 'q1', number: 1, weekCount: 3 },
-    { name: 'q2', number: 2, weekCount: 4 },
-    { name: 'q3', number: 3, weekCount: 3 },
-    { name: 'q4', number: 4, weekCount: 3 },
+    { name: '1', number: 1, weekCount: 3 },
+    { name: '2', number: 2, weekCount: 4 },
+    { name: '3', number: 3, weekCount: 3 },
+    { name: '4', number: 4, weekCount: 3 },
   ];
 };
 
