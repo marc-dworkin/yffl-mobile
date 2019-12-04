@@ -59,6 +59,7 @@ export const getSeasonYear = (state) => getSeason(state).year;
 export const getQuarter = (state) => getQuarterPickerState(state).quarter;
 export const getQuarterNumber = (state) => getQuarter(state).number;
 export const getQuarterName = (state) => getQuarter(state).name;
+export const getQuarterCode = (state) => getQuarter(state).code;
 export const getWeek = (state) => getQuarterPickerState(state).week;
 export const getWeekNumber = (state) => getWeek(state).number;
 

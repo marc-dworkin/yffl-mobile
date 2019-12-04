@@ -16,7 +16,7 @@ import {
   quarterDataRequested,
 } from './actions';
 
-import { getSeasonYear, getQuarter, getQuarterName } from './reducers';
+import { getSeasonYear, getQuarter, getQuarterCode } from './reducers';
 
 import { loadGameCenterWeekData } from '../../../lib/NFLGameCenter';
 import { log, LOG_LEVEL_ERROR, LOG_LEVEL_INFO } from '../../../lib/util';
@@ -53,23 +53,18 @@ const loadGameData = function* loadGameData() {
 };
 
 // TODO: Move to yffl?
-const loadLineupsFunc = (seasonYear, quarterName) => {
+const loadLineupsFunc = (seasonYear, quarterCode) => {
   //  const url = `https://storage.googleapis.com/y_1993/live-scoring/${quarterName}-${seasonYear}-lineups.json`;
-  const url = `http://dlewis.net/yffl/lineups/${quarterName}-${seasonYear}-lineups.json`;
+  const url = `http://dlewis.net/yffl/lineups/${quarterCode}-${seasonYear}-lineups.json`;
   log(`loadLineupsFunc: ${url}`, LOG_LEVEL_INFO);
   return fetch(url);
 };
 
 const loadLineups = function* loadLineups() {
   const seasonYear = yield select(getSeasonYear);
-  let quarterName = yield select(getQuarterName);
-  if (isNaN(quarterName)) {
-    quarterName = quarterName.toLowerCase();
-  } else {
-    quarterName = `q${quarterName}`;
-  }
+  const quarterCode = yield select(getQuarterCode);
   try {
-    const response = yield call(loadLineupsFunc, seasonYear, quarterName);
+    const response = yield call(loadLineupsFunc, seasonYear, quarterCode);
     const result = yield response.json();
     if (result.error) {
       yield put(lineupsFailed(result.error));

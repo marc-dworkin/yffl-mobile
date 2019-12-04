@@ -235,7 +235,7 @@ class QuarterPicker extends Component {
                     <Picker.Item
                       key={s.number.toString()}
                       value={s.number.toString()}
-                      label={s.name.toString()}
+                      label={s.code.charAt(0).toUpperCase() + s.code.slice(1)}
                     />
                   ))}
               </Picker>

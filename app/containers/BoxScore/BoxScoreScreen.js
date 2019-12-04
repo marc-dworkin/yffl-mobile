@@ -146,11 +146,12 @@ const BoxScoreScreen = () => {
 
   const teamPlayerWeekData = useSelector((state) => getTeamPlayerWeekData(state));
 
-  const lineupData = Object.entries(teamPlayerWeekData[team.number])
-    .map(([playerId, e]) => ({
-      player: e.player,
-      stats: (week.number in e.weekData) ? e.weekData[week.number] : {},
-    }));
+  const lineupData = (team.number in teamPlayerWeekData)
+    ? Object.entries(teamPlayerWeekData[team.number])
+      .map(([playerId, e]) => ({
+        player: e.player,
+        stats: week && (week.number in e.weekData) ? e.weekData[week.number] : {},
+      })) : null;
 
   const dispatch = useDispatch();
   // https://www.npmjs.com/package/react-navigation-hooks
@@ -189,7 +190,7 @@ const BoxScoreScreen = () => {
             <XPlatformTouchable onPress={() => navigate('QuarterPicker')}>
               <Text style={styles.text}>
                 {season && season.year}
-                &nbsp;Quarter&nbsp;
+                &nbsp;
                 {quarter && quarter.name}
                 &nbsp;
                 <XPlatformIcon name="arrow-dropdown" size={11} />
@@ -209,11 +210,11 @@ const BoxScoreScreen = () => {
               dispatch(weekSelected(value));
             }}
           />
-          <BoxScorePositionSection lineupData={lineupData} section="passing" />
-          <BoxScorePositionSection lineupData={lineupData} section="rushing" />
-          <BoxScorePositionSection lineupData={lineupData} section="receiving" />
-          <BoxScorePositionSection lineupData={lineupData} section="kicking" />
-          <BoxScorePositionSection lineupData={lineupData} section="Not Played" />
+          {lineupData && <BoxScorePositionSection lineupData={lineupData} section="passing" />}
+          {lineupData && <BoxScorePositionSection lineupData={lineupData} section="rushing" />}
+          {lineupData && <BoxScorePositionSection lineupData={lineupData} section="receiving" />}
+          {lineupData && <BoxScorePositionSection lineupData={lineupData} section="kicking" />}
+          {lineupData && <BoxScorePositionSection lineupData={lineupData} section="Not Played" />}
         </ScrollView>
       </View>
     </View>

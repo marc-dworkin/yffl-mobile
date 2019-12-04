@@ -257,7 +257,7 @@ const ScoreBoardScreen = ({ screenProps, navigation }) => {
           <XPlatformTouchable onPress={() => navigate('QuarterPicker')}>
             <Text style={[styles.text, styles.h1]}>
               {season && season.year}
-              &nbsp;Quarter&nbsp;
+              &nbsp;
               {quarter && quarter.name}
               &nbsp;
               <XPlatformIcon name="arrow-dropdown" size={11} />

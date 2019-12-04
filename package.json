@@ -55,7 +55,7 @@
     "remote-redux-devtools": "^0.5.16"
   },
   "name": "yffl-mobile",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
   "license": "UNLICENSED"
 }

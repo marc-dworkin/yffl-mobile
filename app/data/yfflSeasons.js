@@ -12,19 +12,45 @@ const today = moment();
 const quarters = (year) => {
   if (year >= 2019) {
     return [
-      { name: '1', number: 1, weekCount: 3 },
-      { name: '2', number: 2, weekCount: 3 },
-      { name: '3', number: 3, weekCount: 3 },
-      { name: '4', number: 4, weekCount: 3 },
-      { name: 'Playoffs', number: 5, weekCount: 2 },
-      { name: 'SuperBowl', number: 6, weekCount: 2 },
+      {
+        name: 'Quarter 1', code: 'q1', number: 1, weekCount: 3,
+      },
+      {
+        name: 'Quarter 2', code: 'q2', number: 2, weekCount: 3,
+      },
+      {
+        name: 'Quarter 3', code: 'q3', number: 3, weekCount: 3,
+      },
+      {
+        name: 'Quarter 4', code: 'q4', number: 4, weekCount: 3,
+      },
+      {
+        name: 'Playoffs', code: 'playoffs', number: 5, weekCount: 2,
+      },
+      {
+        name: 'SuperBowl', code: 'superbowl', number: 6, weekCount: 2,
+      },
     ];
   }
   return [
-    { name: '1', number: 1, weekCount: 3 },
-    { name: '2', number: 2, weekCount: 4 },
-    { name: '3', number: 3, weekCount: 3 },
-    { name: '4', number: 4, weekCount: 3 },
+    {
+      name: 'Quarter 1', code: 'q1', number: 1, weekCount: 3,
+    },
+    {
+      name: 'Quarter 2', code: 'q2', number: 2, weekCount: 4,
+    },
+    {
+      name: 'Quarter 3', code: 'q3', number: 3, weekCount: 3,
+    },
+    {
+      name: 'Quarter 4', code: 'q4', number: 4, weekCount: 3,
+    },
+    {
+      name: 'Playoffs', code: 'playoffs', number: 5, weekCount: 2,
+    },
+    {
+      name: 'SuperBowl', code: 'superbowl', number: 6, weekCount: 2,
+    },
   ];
 };
 
